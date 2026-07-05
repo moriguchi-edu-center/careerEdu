@@ -1,0 +1,4151 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>キャリア教育情報ブロック</title>
+  <!-- EMBED:css:START -->
+<style id="overview-css-embed">
+:root {
+  --thumb-size: 128px;
+  --col-self: #5b9bd5;
+  --col-relation: #70ad47;
+  --col-problem: #ffc000;
+  --col-career: #ed7d31;
+  --tc-card-w: 320px;
+  --tc-card-ratio: 5 / 7;
+  --tc-art-share: 55%;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+  background: #eee;
+  margin: 0;
+  padding: 16px;
+  padding-bottom: 90px;
+}
+.file-warning {
+  display: none;
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  color: #664d03;
+  padding: 12px 14px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+.file-warning strong { display: block; margin-bottom: 4px; }
+.page-header {
+  background: #fff;
+  padding: 0;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.1);
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+.page-header-title-wrap {
+  padding: 22px 20px 18px;
+  text-align: center;
+  background: #fff;
+  border-bottom: 1px solid #e2e8f0;
+}
+.page-header-banner {
+  background: linear-gradient(90deg, #eef5fc 0%, #f5f0ff 50%, #fff7ed 100%);
+  border-bottom: 3px solid transparent;
+  border-image: linear-gradient(90deg, var(--col-self), var(--col-relation), var(--col-problem), var(--col-career)) 1;
+}
+.page-header-banner-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.page-header-text {
+  padding: 14px 16px;
+}
+.page-header h1 {
+  margin: 0;
+  font-family: "Hiragino Maru Gothic ProN", "Hiragino Maru Gothic Pro", "UD Digi Kyokasho", "BIZ UDGothic", "M+ 1p", "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: clamp(1.6rem, 4.5vw, 2.25rem);
+  font-weight: bold;
+  line-height: 1.4;
+  letter-spacing: 0.03em;
+  color: #1e293b;
+}
+.page-header p { margin: 0; color: #555; font-size: 0.85rem; }
+.page-header a { color: #4a90d9; }
+.toolbar {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 14px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 16px rgba(0,0,0,.18);
+  min-width: 220px;
+}
+.toolbar--collapsed {
+  min-width: 0;
+  padding: 8px 12px;
+}
+.toolbar-toggle {
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  border: 1px solid #3a7bc8;
+  border-radius: 4px;
+  background: #4a90d9;
+  color: #fff;
+  font-weight: bold;
+  width: 100%;
+  text-align: left;
+}
+.toolbar-toggle:hover { background: #3a7bc8; }
+.toolbar--collapsed .toolbar-panel { display: none; }
+.toolbar-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.toolbar button {
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  border: 1px solid #3a7bc8;
+  border-radius: 4px;
+  background: #4a90d9;
+  color: #fff;
+  font-weight: bold;
+}
+.toolbar button:disabled { opacity: 0.5; cursor: not-allowed; }
+.toolbar button:not(:disabled):hover { background: #3a7bc8; }
+.toolbar button.btn-print {
+  background: #fff;
+  color: #3a7bc8;
+  border-color: #3a7bc8;
+}
+.toolbar button.btn-print:not(:disabled):hover {
+  background: #eef5fc;
+}
+.toolbar-print-mode {
+  border: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.75rem;
+  color: #555;
+}
+.toolbar-print-mode legend {
+  font-weight: bold;
+  margin-bottom: 4px;
+  padding: 0;
+}
+.toolbar-print-mode label {
+  display: block;
+  margin-bottom: 3px;
+  cursor: pointer;
+  user-select: none;
+}
+.toolbar-print-mode input { margin-right: 4px; vertical-align: middle; }
+.toolbar-select-all {
+  font-size: 0.75rem;
+  color: #555;
+  cursor: pointer;
+  user-select: none;
+}
+.toolbar-select-all input { margin-right: 4px; vertical-align: middle; }
+.toolbar .status { font-size: 0.75rem; color: #666; text-align: center; }
+#overview {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+.perspective-col {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.1);
+  overflow: hidden;
+  min-width: 0;
+}
+.perspective-head {
+  color: #fff;
+  padding: 12px 10px;
+  font-size: 0.88rem;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.4;
+}
+.perspective-official {
+  font-size: 0.72em;
+  font-weight: normal;
+  opacity: 0.92;
+}
+.perspective-body { padding: 10px; }
+.block-section { margin-bottom: 14px; }
+.block-section:last-child { margin-bottom: 0; }
+.block-title {
+  font-size: 0.72rem;
+  font-weight: bold;
+  color: #444;
+  background: #f5f5f5;
+  padding: 5px 8px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  line-height: 1.35;
+}
+.items-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.cell {
+  text-align: center;
+  font-size: 0.78rem;
+  color: #333;
+  line-height: 1.35;
+}
+.cell-print-label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 0.68rem;
+  color: #666;
+  cursor: pointer;
+  user-select: none;
+}
+.cell-print-label input {
+  margin-right: 3px;
+  vertical-align: middle;
+}
+.cell.is-print-selected { outline: 2px solid #4a90d9; outline-offset: 2px; border-radius: 6px; }
+.cell .cell-caption { margin-bottom: 4px; }
+.cell-thumb {
+  display: block;
+  margin: 0 auto 4px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+.cell-thumb:hover { background: rgba(74, 144, 217, 0.1); }
+.cell-thumb:focus-visible {
+  outline: 2px solid #4a90d9;
+  outline-offset: 2px;
+}
+.cell-thumb canvas {
+  display: block;
+  width: var(--thumb-size);
+  height: var(--thumb-size);
+  margin: 0;
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  pointer-events: none;
+}
+.cell-lesson-btn {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 4px 10px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  line-height: 1.3;
+  color: #3a7bc8;
+  background: #eef5fc;
+  border: 1px solid #b8d4f0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.cell-lesson-btn:hover {
+  background: #dceaf8;
+  border-color: #4a90d9;
+}
+.cell-lesson-btn:focus-visible {
+  outline: 2px solid #4a90d9;
+  outline-offset: 1px;
+}
+
+/* study card popup (illustration + career text) */
+.card-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 2100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  box-sizing: border-box;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.28s ease, visibility 0.28s ease;
+}
+.card-popup.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+.card-popup-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(88, 72, 120, 0.35);
+  backdrop-filter: blur(3px);
+  cursor: pointer;
+}
+.card-popup-sheet {
+  position: relative;
+  width: var(--tc-card-w);
+  box-sizing: border-box;
+  overflow: visible;
+  animation: card-pop-in 0.32s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+@keyframes card-pop-in {
+  from { opacity: 0; transform: scale(0.94) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.card-popup-close {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  z-index: 3;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 2px solid rgba(255, 255, 255, 0.55);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: none;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.card-popup-close:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.32);
+  color: #fff;
+}
+.study-card {
+  font-family: "Hiragino Maru Gothic ProN", "Hiragino Maru Gothic Pro", "UD Digi Kyokasho", "BIZ UDGothic", "Hiragino Sans", "Yu Gothic", sans-serif;
+  --card-font-scale: 1;
+  display: flex;
+  flex-direction: column;
+  width: var(--tc-card-w);
+  aspect-ratio: var(--tc-card-ratio);
+  box-sizing: border-box;
+  background: linear-gradient(160deg, #fffafc 0%, #f7f4ff 48%, #f0f9ff 100%);
+  border-radius: 14px;
+  box-shadow:
+    0 12px 32px rgba(167, 139, 250, 0.16),
+    0 4px 10px rgba(244, 114, 182, 0.1);
+  overflow: hidden;
+  border: 3px solid var(--col-self);
+  position: relative;
+}
+.study-card.persp-self { border-color: var(--col-self); }
+.study-card.persp-relation { border-color: var(--col-relation); }
+.study-card.persp-problem { border-color: var(--col-problem); }
+.study-card.persp-career { border-color: var(--col-career); }
+.study-card-perspective {
+  flex-shrink: 0;
+  margin: 0;
+  padding: 9px 36px 9px 10px;
+  font-size: calc(0.88rem * var(--card-font-scale));
+  font-weight: bold;
+  line-height: 1.35;
+  text-align: center;
+  color: #fff;
+  letter-spacing: 0.03em;
+  background: var(--col-self);
+}
+.study-card-perspective .perspective-official {
+  font-size: 0.68em;
+  font-weight: normal;
+  opacity: 0.92;
+}
+.study-card.persp-self .study-card-perspective { background: var(--col-self); }
+.study-card.persp-relation .study-card-perspective { background: var(--col-relation); }
+.study-card.persp-problem .study-card-perspective { background: var(--col-problem); }
+.study-card.persp-career .study-card-perspective { background: var(--col-career); }
+.study-card-figure {
+  margin: 0;
+  flex: 0 0 var(--tc-art-share);
+  min-height: 0;
+  padding: 4px 8px 0;
+  display: flex;
+  flex-direction: column;
+}
+.study-card-img-wrap {
+  flex: 1;
+  min-height: 0;
+  line-height: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  border: 2px solid rgba(196, 181, 253, 0.35);
+  box-shadow: inset 0 1px 6px rgba(167, 139, 250, 0.06);
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.study-card-img,
+.study-card-img-wrap img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: contain;
+  border-radius: 8px;
+}
+.study-card-img--missing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  color: #a78bfa;
+  font-size: 0.78rem;
+  background: linear-gradient(135deg, #faf5ff, #fdf2f8);
+  border-radius: 6px;
+}
+.study-card-body {
+  flex: 1 1 0;
+  min-height: 0;
+  padding: calc(5px * var(--card-font-scale)) calc(10px * var(--card-font-scale)) calc(2px * var(--card-font-scale));
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.study-card-title {
+  margin: 0 0 calc(5px * var(--card-font-scale));
+  padding: calc(5px * var(--card-font-scale)) calc(8px * var(--card-font-scale));
+  font-size: calc(1.05rem * var(--card-font-scale));
+  font-weight: bold;
+  line-height: 1.35;
+  color: #6d28d9;
+  text-align: center;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(237, 233, 254, 0.9));
+  border-radius: 999px;
+  border: 1px solid rgba(196, 181, 253, 0.45);
+  box-shadow: 0 2px 6px rgba(167, 139, 250, 0.1);
+}
+.study-card.persp-self .study-card-title { color: #2563eb; border-color: rgba(147, 197, 253, 0.5); }
+.study-card.persp-relation .study-card-title { color: #15803d; border-color: rgba(134, 239, 172, 0.5); }
+.study-card.persp-problem .study-card-title { color: #a16207; border-color: rgba(253, 224, 71, 0.55); }
+.study-card.persp-career .study-card-title { color: #c2410c; border-color: rgba(253, 186, 116, 0.55); }
+.study-card-section-label {
+  display: inline-block;
+  margin: 0 0 5px;
+  padding: 3px 9px;
+  font-size: calc(0.74rem * var(--card-font-scale));
+  font-weight: bold;
+  color: #db2777;
+  letter-spacing: 0.02em;
+  background: rgba(255, 228, 240, 0.85);
+  border-radius: 6px;
+  border: 1px solid rgba(251, 207, 232, 0.9);
+}
+.study-card-text {
+  margin: 0;
+  padding: calc(8px * var(--card-font-scale)) calc(10px * var(--card-font-scale));
+  font-size: calc(1.125rem * var(--card-font-scale));
+  line-height: calc(1.15 + 0.47 * var(--card-font-scale));
+  color: #374151;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  background: rgba(255, 255, 255, 0.72);
+  border-radius: 8px;
+  border: 1px solid rgba(233, 213, 255, 0.65);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+.study-card-block {
+  flex-shrink: 0;
+  margin: 0;
+  padding: 2px 12px 8px;
+  font-size: calc(0.62rem * var(--card-font-scale));
+  line-height: 1.35;
+  text-align: right;
+  color: #94a3b8;
+  letter-spacing: 0.02em;
+}
+
+/* lesson popup */
+.lesson-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+.lesson-popup.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+.lesson-popup-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.5);
+  cursor: pointer;
+}
+.lesson-popup-content {
+  position: relative;
+  width: 100%;
+  max-width: 760px;
+  max-height: 90vh;
+  overflow: auto;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border-left: 6px solid #5b9bd5;
+}
+.lesson-popup-content.persp-self { border-left-color: var(--col-self); }
+.lesson-popup-content.persp-relation { border-left-color: var(--col-relation); }
+.lesson-popup-content.persp-problem { border-left-color: var(--col-problem); }
+.lesson-popup-content.persp-career { border-left-color: var(--col-career); }
+.lesson-popup-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.06);
+  font-size: 1.5rem;
+  line-height: 1;
+  color: #475569;
+  cursor: pointer;
+}
+.lesson-popup-close:hover {
+  background: rgba(0, 0, 0, 0.1);
+  color: #0f172a;
+}
+.lesson-popup-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  align-items: start;
+}
+.lesson-popup-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+  line-height: 1.35;
+  color: #0f172a;
+}
+.lesson-popup-desc {
+  margin: 0 0 0.75rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #475569;
+}
+.lesson-popup-sublabel {
+  margin: 0 0 0.5rem;
+  font-size: 0.72rem;
+  font-weight: bold;
+  color: #64748b;
+}
+.lesson-popup-meta {
+  margin: 0 0 0.75rem;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: #64748b;
+}
+.lesson-popup-meta .perspective-official {
+  font-size: 0.85em;
+  opacity: 0.9;
+}
+.lesson-popup-block {
+  margin-bottom: 0.75rem;
+  padding-left: 0.75rem;
+  border-left: 3px solid #e2e8f0;
+}
+.lesson-popup-label {
+  margin: 0 0 0.35rem;
+  font-size: 0.72rem;
+  font-weight: bold;
+  color: #334155;
+}
+.lesson-popup-body {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.65;
+  color: #1e293b;
+  white-space: pre-wrap;
+}
+.lesson-popup-image-wrap { text-align: center; }
+.lesson-popup-image {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+}
+.lesson-popup-career-block {
+  margin-top: 0.75rem;
+  margin-bottom: 0;
+  text-align: left;
+}
+@media (max-width: 700px) {
+  .lesson-popup-inner { grid-template-columns: 1fr; }
+  .lesson-popup-image-wrap { order: -1; }
+}
+@media (max-width: 1100px) {
+  #overview { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  #overview { grid-template-columns: 1fr; }
+  :root { --thumb-size: 112px; }
+}
+
+/* print cards (A4) */
+.print-area {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 210mm;
+  visibility: hidden;
+  opacity: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: visible;
+}
+.print-area.print-area--layout {
+  visibility: visible;
+  opacity: 1;
+}
+.print-area,
+.print-area * {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.print-area--card {
+  width: 190mm;
+}
+.print-page {
+  page-break-after: always;
+  break-after: page;
+}
+.print-area--card .print-page {
+  width: 190mm;
+  height: 277mm;
+  max-height: 277mm;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.print-page:last-child {
+  page-break-after: auto;
+  break-after: auto;
+}
+.print-grid {
+  display: grid;
+  grid-template-columns: repeat(3, calc((190mm - 8mm) / 3));
+  grid-template-rows: repeat(3, calc((277mm - 8mm) / 3));
+  gap: 4mm;
+  width: 190mm;
+  height: 277mm;
+  box-sizing: border-box;
+  align-content: start;
+}
+.print-card-slot {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  aspect-ratio: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.print-study-card {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  aspect-ratio: auto;
+  --card-font-scale: 1;
+  box-shadow: none;
+  border-width: 2px;
+  border-radius: 8px;
+  break-inside: avoid;
+  page-break-inside: avoid;
+  overflow: hidden;
+  background: #fff !important;
+}
+.print-study-card .study-card-text {
+  color: #374151 !important;
+}
+.print-study-card .study-card-block {
+  color: #64748b !important;
+}
+.print-area--lesson .lesson-popup-body,
+.print-area--lesson .lesson-popup-label,
+.print-area--lesson .lesson-popup-title,
+.print-area--lesson .lesson-popup-meta {
+  color: #1e293b !important;
+}
+.print-study-card.persp-self { border-color: #5b9bd5 !important; }
+.print-study-card.persp-relation { border-color: #70ad47 !important; }
+.print-study-card.persp-problem { border-color: #ffc000 !important; }
+.print-study-card.persp-career { border-color: #ed7d31 !important; }
+.print-study-card .study-card-perspective {
+  padding: 6px 8px;
+  color: #fff !important;
+}
+.print-study-card .study-card-perspective .perspective-official {
+  font-size: 0.68em;
+  font-weight: normal;
+  opacity: 0.92;
+}
+.print-study-card.persp-self .study-card-perspective { background: #5b9bd5 !important; }
+.print-study-card.persp-relation .study-card-perspective { background: #70ad47 !important; }
+.print-study-card.persp-problem .study-card-perspective { background: #ffc000 !important; color: #333 !important; }
+.print-study-card.persp-career .study-card-perspective { background: #ed7d31 !important; }
+.print-study-card.persp-self .study-card-title { color: #2563eb !important; border-color: #93c5fd !important; }
+.print-study-card.persp-relation .study-card-title { color: #15803d !important; border-color: #86efac !important; }
+.print-study-card.persp-problem .study-card-title { color: #a16207 !important; border-color: #fde047 !important; }
+.print-study-card.persp-career .study-card-title { color: #c2410c !important; border-color: #fdba74 !important; }
+.print-study-card .study-card-section-label {
+  color: #db2777 !important;
+  background: #ffe4f0 !important;
+  border-color: #fbcfe8 !important;
+}
+
+/* print lesson plans (A4, two per page) */
+.print-a4-sheet {
+  page-break-after: always;
+  break-after: page;
+  display: flex;
+  flex-direction: column;
+  gap: 4mm;
+  height: 277mm;
+  box-sizing: border-box;
+}
+.print-a4-sheet:last-child {
+  page-break-after: auto;
+  break-after: auto;
+}
+.print-lesson-sheet {
+  flex: 0 0 calc((277mm - 4mm) / 2);
+  height: calc((277mm - 4mm) / 2);
+  min-height: 0;
+  max-height: calc((277mm - 4mm) / 2);
+  overflow: hidden;
+  box-sizing: border-box;
+  border-radius: 0;
+  box-shadow: none;
+  max-width: none;
+}
+.print-area--lesson .print-lesson-inner {
+  padding: 3mm 4mm;
+  gap: 3mm;
+  height: 100%;
+  box-sizing: border-box;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+}
+.print-area--lesson .lesson-popup-title {
+  margin: 0 0 1.5mm;
+  font-size: 11pt;
+  line-height: 1.35;
+}
+.print-area--lesson .lesson-popup-meta {
+  margin: 0 0 2mm;
+  font-size: 7pt;
+  line-height: 1.45;
+}
+.print-area--lesson .lesson-popup-block {
+  margin-bottom: 2mm;
+  padding-left: 2mm;
+}
+.print-area--lesson .lesson-popup-label {
+  margin: 0 0 0.5mm;
+  font-size: 7pt;
+}
+.print-area--lesson .lesson-popup-body {
+  margin: 0;
+  font-size: 7.5pt;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.print-area--lesson .lesson-popup-image-wrap {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.print-area--lesson .print-lesson-img-host {
+  flex-shrink: 0;
+  text-align: center;
+}
+.print-area--lesson .lesson-popup-image {
+  width: auto;
+  max-width: 100%;
+  max-height: 32mm;
+  height: auto;
+}
+.print-area--lesson .lesson-popup-image--missing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 42mm;
+  height: 32mm;
+  margin: 0 auto;
+  font-size: 7pt;
+  color: #94a3b8;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+}
+.print-area--lesson .lesson-popup-career-block {
+  margin-top: 2mm;
+  margin-bottom: 0;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 10mm;
+  }
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  body {
+    background: #fff;
+    padding: 0;
+    margin: 0;
+  }
+  #export-area,
+  .toolbar,
+  .card-popup,
+  .lesson-popup {
+    display: none !important;
+  }
+  .print-area {
+    position: static !important;
+    left: auto !important;
+    top: auto !important;
+    width: auto !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: block !important;
+  }
+  .print-area--card {
+    width: 190mm !important;
+  }
+  .print-area--card .print-page {
+    width: 190mm !important;
+    height: 277mm !important;
+    max-height: 277mm !important;
+    overflow: hidden !important;
+  }
+  .print-area--card .print-grid {
+    width: 190mm !important;
+    height: 277mm !important;
+  }
+}
+</style>
+<!-- EMBED:css:END -->
+  <!-- EMBED:data:START -->
+<script type="application/json" id="career-data-json">
+[
+  {
+    "row": 156,
+    "label": "感情の理解",
+    "file": "row156_感情の理解.png",
+    "char": "リク",
+    "category": "自己理解 / 情報ブロックA「気持ちを知る」",
+    "desc": "喜び・怒り・悲しみなど、気持ちに名前をつけて理解する。"
+  },
+  {
+    "row": 157,
+    "label": "気持ちの伝え方",
+    "file": "row157_気持ちの伝え方.png",
+    "char": "アオイ",
+    "category": "自己理解 / 情報ブロックA「気持ちを知る」",
+    "desc": "言葉・絵・ジェスチャーで自分の気持ちを表す。"
+  },
+  {
+    "row": 158,
+    "label": "気持ちの切り替え",
+    "file": "row158_気持ちの切り替え.png",
+    "char": "サクラ",
+    "category": "自己理解 / 情報ブロックA「気持ちを知る」",
+    "desc": "深呼吸・休むなど、落ち着く工夫で気持ちを切り替える。"
+  },
+  {
+    "row": 159,
+    "label": "ストレス",
+    "file": "row159_ストレス.png",
+    "char": "ハルト",
+    "category": "自己理解 / 情報ブロックA「気持ちを知る」",
+    "desc": "プレッシャーや不安が心や体に与える影響を知る。"
+  },
+  {
+    "row": 160,
+    "label": "リラックス",
+    "file": "row160_リラックス.png",
+    "char": "リク",
+    "category": "自己理解 / 情報ブロックA「気持ちを知る」",
+    "desc": "心と体を休めることの大切さを学ぶ。"
+  },
+  {
+    "row": 161,
+    "label": "興味・関心",
+    "file": "row161_興味・関心.png",
+    "char": "アオイ",
+    "category": "自己理解 / 情報ブロックB「好き・得意を知る」",
+    "desc": "わくわくする・もっと知りたいと思うことを見つける。"
+  },
+  {
+    "row": 162,
+    "label": "得意なこと",
+    "file": "row162_得意なこと.png",
+    "char": "サクラ",
+    "category": "自己理解 / 情報ブロックB「好き・得意を知る」",
+    "desc": "自分がうまくできることを認識する。"
+  },
+  {
+    "row": 163,
+    "label": "苦手なこと",
+    "file": "row163_苦手なこと.png",
+    "char": "ハルト",
+    "category": "自己理解 / 情報ブロックB「好き・得意を知る」",
+    "desc": "まだ難しいことに気づき、向き合う。"
+  },
+  {
+    "row": 164,
+    "label": "個性",
+    "file": "row164_個性.png",
+    "char": "リク",
+    "category": "自己理解 / 情報ブロックB「好き・得意を知る」",
+    "desc": "人それぞれちがうよいところがある。"
+  },
+  {
+    "row": 165,
+    "label": "挑戦",
+    "file": "row165_挑戦.png",
+    "char": "アオイ",
+    "category": "自己理解 / 情報ブロックB「好き・得意を知る」",
+    "desc": "苦手でもやってみる勇気をもつ。"
+  },
+  {
+    "row": 166,
+    "label": "振り返り",
+    "file": "row166_振り返り.png",
+    "char": "サクラ",
+    "category": "自己理解 / 情報ブロックC「振り返って成長する」",
+    "desc": "できたこと・学んだことを思い出す。"
+  },
+  {
+    "row": 167,
+    "label": "目標",
+    "file": "row167_目標.png",
+    "char": "ハルト",
+    "category": "自己理解 / 情報ブロックC「振り返って成長する」",
+    "desc": "これから達成したいことを決める。"
+  },
+  {
+    "row": 168,
+    "label": "できたこと",
+    "file": "row168_できたこと.png",
+    "char": "リク",
+    "category": "自己理解 / 情報ブロックC「振り返って成長する」",
+    "desc": "努力の成果を認める。"
+  },
+  {
+    "row": 169,
+    "label": "失敗から学ぶ",
+    "file": "row169_失敗から学ぶ.png",
+    "char": "アオイ",
+    "category": "自己理解 / 情報ブロックC「振り返って成長する」",
+    "desc": "うまくいかなくても次につなげる。"
+  },
+  {
+    "row": 170,
+    "label": "粘り強さ",
+    "file": "row170_粘り強さ.png",
+    "char": "サクラ",
+    "category": "自己理解 / 情報ブロックC「振り返って成長する」",
+    "desc": "あきらめずに続ける力。"
+  },
+  {
+    "row": 171,
+    "label": "価値観",
+    "file": "row171_価値観.png",
+    "char": "ハルト",
+    "category": "自己理解 / 情報ブロックD「大切にしていることを知る」",
+    "desc": "自分にとって大切な考え方を知る。"
+  },
+  {
+    "row": 172,
+    "label": "やりがい",
+    "file": "row172_やりがい.png",
+    "char": "リク",
+    "category": "自己理解 / 情報ブロックD「大切にしていることを知る」",
+    "desc": "がんばる意味・満たされる感じを見つける。"
+  },
+  {
+    "row": 173,
+    "label": "将来の夢",
+    "file": "row173_将来の夢.png",
+    "char": "アオイ",
+    "category": "自己理解 / 情報ブロックD「大切にしていることを知る」",
+    "desc": "なりたい自分・やってみたいことを描く。"
+  },
+  {
+    "row": 174,
+    "label": "理想の自分",
+    "file": "row174_理想の自分.png",
+    "char": "サクラ",
+    "category": "自己理解 / 情報ブロックD「大切にしていることを知る」",
+    "desc": "目指す姿を具体的に想像する。"
+  },
+  {
+    "row": 175,
+    "label": "自己肯定感",
+    "file": "row175_自己肯定感.png",
+    "char": "ハルト",
+    "category": "自己理解 / 情報ブロックD「大切にしていることを知る」",
+    "desc": "自分を認め、認めてもらう感覚を大切にする。"
+  },
+  {
+    "row": 176,
+    "label": "共感",
+    "file": "row176_共感.png",
+    "char": "リク",
+    "category": "共感的人間関係 / 情報ブロックE「相手の気持ちに気づく」",
+    "desc": "相手の気持ちに寄りそう。"
+  },
+  {
+    "row": 177,
+    "label": "思いやり",
+    "file": "row177_思いやり.png",
+    "char": "アオイ",
+    "category": "共感的人間関係 / 情報ブロックE「相手の気持ちに気づく」",
+    "desc": "相手のために行動しようとする心。"
+  },
+  {
+    "row": 178,
+    "label": "相手の立場",
+    "file": "row178_相手の立場.png",
+    "char": "サクラ",
+    "category": "共感的人間関係 / 情報ブロックE「相手の気持ちに気づく」",
+    "desc": "自分とちがう状況・気持ちを想像する。"
+  },
+  {
+    "row": 179,
+    "label": "気持ちを想像する",
+    "file": "row179_気持ちを想像する.png",
+    "char": "ハルト",
+    "category": "共感的人間関係 / 情報ブロックE「相手の気持ちに気づく」",
+    "desc": "「もし自分だったら」と考える。"
+  },
+  {
+    "row": 180,
+    "label": "傾聴",
+    "file": "row180_傾聴.png",
+    "char": "リク",
+    "category": "共感的人間関係 / 情報ブロックF「伝える・聞く」",
+    "desc": "相手の話を最後まで聞く。"
+  },
+  {
+    "row": 181,
+    "label": "わかりやすく伝える",
+    "file": "row181_わかりやすく伝える.png",
+    "char": "アオイ",
+    "category": "共感的人間関係 / 情報ブロックF「伝える・聞く」",
+    "desc": "相手に伝わる言葉・順序で話す。"
+  },
+  {
+    "row": 182,
+    "label": "感謝",
+    "file": "row182_感謝.png",
+    "char": "サクラ",
+    "category": "共感的人間関係 / 情報ブロックF「伝える・聞く」",
+    "desc": "ありがとうを言葉や行動で示す。"
+  },
+  {
+    "row": 183,
+    "label": "謝る",
+    "file": "row183_謝る.png",
+    "char": "ハルト",
+    "category": "共感的人間関係 / 情報ブロックF「伝える・聞く」",
+    "desc": "間違いを認め、気持ちを伝える。"
+  },
+  {
+    "row": 184,
+    "label": "依頼する",
+    "file": "row184_依頼する.png",
+    "char": "リク",
+    "category": "共感的人間関係 / 情報ブロックF「伝える・聞く」",
+    "desc": "助けを求める言い方。"
+  },
+  {
+    "row": 185,
+    "label": "チームワーク",
+    "file": "row185_チームワーク.png",
+    "char": "アオイ",
+    "category": "共感的人間関係 / 情報ブロックG「みんなで協力する」",
+    "desc": "共通の目標に向かって力を合わせる。"
+  },
+  {
+    "row": 186,
+    "label": "役割分担",
+    "file": "row186_役割分担.png",
+    "char": "サクラ",
+    "category": "共感的人間関係 / 情報ブロックG「みんなで協力する」",
+    "desc": "それぞれの役割を決めて取り組む。"
+  },
+  {
+    "row": 187,
+    "label": "助け合い",
+    "file": "row187_助け合い.png",
+    "char": "ハルト",
+    "category": "共感的人間関係 / 情報ブロックG「みんなで協力する」",
+    "desc": "困っている人を支える。"
+  },
+  {
+    "row": 188,
+    "label": "約束を守る",
+    "file": "row188_約束を守る.png",
+    "char": "リク",
+    "category": "共感的人間関係 / 情報ブロックG「みんなで協力する」",
+    "desc": "信頼関係の土台となる約束をまもる。"
+  },
+  {
+    "row": 189,
+    "label": "責任感",
+    "file": "row189_責任感.png",
+    "char": "アオイ",
+    "category": "共感的人間関係 / 情報ブロックG「みんなで協力する」",
+    "desc": "自分の役割をまっとうする。"
+  },
+  {
+    "row": 190,
+    "label": "多様性",
+    "file": "row190_多様性.png",
+    "char": "サクラ",
+    "category": "共感的人間関係 / 情報ブロックH「ちがいを認め、話し合う」",
+    "desc": "考え方・背景・個性のちがいを認める。"
+  },
+  {
+    "row": 191,
+    "label": "意見のちがい",
+    "file": "row191_意見のちがい.png",
+    "char": "ハルト",
+    "category": "共感的人間関係 / 情報ブロックH「ちがいを認め、話し合う」",
+    "desc": "対立ではなく、異なる視点として受け止める。"
+  },
+  {
+    "row": 192,
+    "label": "話し合い",
+    "file": "row192_話し合い.png",
+    "char": "リク",
+    "category": "共感的人間関係 / 情報ブロックH「ちがいを認め、話し合う」",
+    "desc": "言い合いではなく、解決に向けて話す。"
+  },
+  {
+    "row": 193,
+    "label": "公平・公正",
+    "file": "row193_公平・公正.png",
+    "char": "アオイ",
+    "category": "共感的人間関係 / 情報ブロックH「ちがいを認め、話し合う」",
+    "desc": "偏りなく、ルールにのっとる。"
+  },
+  {
+    "row": 194,
+    "label": "相談する",
+    "file": "row194_相談する.png",
+    "char": "サクラ",
+    "category": "共感的人間関係 / 情報ブロックH「ちがいを認め、話し合う」",
+    "desc": "一人で抱え込まず、頼れる人に伝える。"
+  },
+  {
+    "row": 195,
+    "label": "問題発見",
+    "file": "row195_問題発見.png",
+    "char": "ハルト",
+    "category": "課題解決 / 情報ブロックI「困りごとに気づく」",
+    "desc": "改善したい・解決したいことを見つける。"
+  },
+  {
+    "row": 196,
+    "label": "困りごと",
+    "file": "row196_困りごと.png",
+    "char": "リク",
+    "category": "課題解決 / 情報ブロックI「困りごとに気づく」",
+    "desc": "自分・仲間・地域の「困った」を見つける。"
+  },
+  {
+    "row": 197,
+    "label": "現状把握",
+    "file": "row197_現状把握.png",
+    "char": "アオイ",
+    "category": "課題解決 / 情報ブロックI「困りごとに気づく」",
+    "desc": "今どうなっているかを整理する。"
+  },
+  {
+    "row": 198,
+    "label": "関係する人",
+    "file": "row198_関係する人.png",
+    "char": "サクラ",
+    "category": "課題解決 / 情報ブロックI「困りごとに気づく」",
+    "desc": "誰に影響があるかを考える。"
+  },
+  {
+    "row": 199,
+    "label": "なぜなぜ",
+    "file": "row199_なぜなぜ.png",
+    "char": "ハルト",
+    "category": "課題解決 / 情報ブロックJ「深く考える」",
+    "desc": "原因を掘り下げて考える。"
+  },
+  {
+    "row": 200,
+    "label": "多面的に見る",
+    "file": "row200_多面的に見る.png",
+    "char": "リク",
+    "category": "課題解決 / 情報ブロックJ「深く考える」",
+    "desc": "一つの見方だけにとらわれない。"
+  },
+  {
+    "row": 201,
+    "label": "仮説",
+    "file": "row201_仮説.png",
+    "char": "アオイ",
+    "category": "課題解決 / 情報ブロックJ「深く考える」",
+    "desc": "「こうすればよくなるかも」という予想を立てる。"
+  },
+  {
+    "row": 202,
+    "label": "理由づけ",
+    "file": "row202_理由づけ.png",
+    "char": "サクラ",
+    "category": "課題解決 / 情報ブロックJ「深く考える」",
+    "desc": "考えに根拠をもたせる。"
+  },
+  {
+    "row": 203,
+    "label": "比較する",
+    "file": "row203_比較する.png",
+    "char": "ハルト",
+    "category": "課題解決 / 情報ブロックJ「深く考える」",
+    "desc": "複数の案・情報をくらべる。"
+  },
+  {
+    "row": 204,
+    "label": "計画",
+    "file": "row204_計画.png",
+    "char": "リク",
+    "category": "課題解決 / 情報ブロックK「動いて、振り返る」",
+    "desc": "何を・いつ・どうするかを決める。"
+  },
+  {
+    "row": 205,
+    "label": "実行",
+    "file": "row205_実行.png",
+    "char": "アオイ",
+    "category": "課題解決 / 情報ブロックK「動いて、振り返る」",
+    "desc": "決めたことを実際に行う。"
+  },
+  {
+    "row": 206,
+    "label": "試行錯誤",
+    "file": "row206_試行錯誤.png",
+    "char": "サクラ",
+    "category": "課題解決 / 情報ブロックK「動いて、振り返る」",
+    "desc": "うまくいかなくても直して再挑戦する。"
+  },
+  {
+    "row": 207,
+    "label": "振り返り（改善）",
+    "file": "row207_振り返り（改善）.png",
+    "char": "ハルト",
+    "category": "課題解決 / 情報ブロックK「動いて、振り返る」",
+    "desc": "結果を評価し、次につなげる。"
+  },
+  {
+    "row": 208,
+    "label": "PDCA",
+    "file": "row208_PDCA.png",
+    "char": "リク",
+    "category": "課題解決 / 情報ブロックK「動いて、振り返る」",
+    "desc": "計画→実行→振り返り→改善のくり返し。"
+  },
+  {
+    "row": 209,
+    "label": "社会課題",
+    "file": "row209_社会課題.png",
+    "char": "アオイ",
+    "category": "課題解決 / 情報ブロックL「社会の課題と向き合う」",
+    "desc": "社会全体に関わる問題に目を向ける。"
+  },
+  {
+    "row": 210,
+    "label": "地域課題",
+    "file": "row210_地域課題.png",
+    "char": "サクラ",
+    "category": "課題解決 / 情報ブロックL「社会の課題と向き合う」",
+    "desc": "身近なまち・学校の課題を考える。"
+  },
+  {
+    "row": 211,
+    "label": "当事者意識",
+    "file": "row211_当事者意識.png",
+    "char": "ハルト",
+    "category": "課題解決 / 情報ブロックL「社会の課題と向き合う」",
+    "desc": "「自分ごと」として考える。"
+  },
+  {
+    "row": 212,
+    "label": "持続可能性",
+    "file": "row212_持続可能性.png",
+    "char": "リク",
+    "category": "課題解決 / 情報ブロックL「社会の課題と向き合う」",
+    "desc": "未来も大切にする考え方（SDGs）。"
+  },
+  {
+    "row": 213,
+    "label": "仕事の意味",
+    "file": "row213_仕事の意味.png",
+    "char": "アオイ",
+    "category": "キャリアプランニング / 情報ブロックM「仕事と働くこと」",
+    "desc": "社会の役に立ち、生活を支えること。"
+  },
+  {
+    "row": 214,
+    "label": "職業の種類",
+    "file": "row214_職業の種類.png",
+    "char": "サクラ",
+    "category": "キャリアプランニング / 情報ブロックM「仕事と働くこと」",
+    "desc": "いろいろな仕事があることを知る。"
+  },
+  {
+    "row": 215,
+    "label": "働く人",
+    "file": "row215_働く人.png",
+    "char": "ハルト",
+    "category": "キャリアプランニング / 情報ブロックM「仕事と働くこと」",
+    "desc": "地域・社会で活躍する人を知る。"
+  },
+  {
+    "row": 216,
+    "label": "仕事のやりがい",
+    "file": "row216_仕事のやりがい.png",
+    "char": "リク",
+    "category": "キャリアプランニング / 情報ブロックM「仕事と働くこと」",
+    "desc": "がんばる価値・満足感を理解する。"
+  },
+  {
+    "row": 217,
+    "label": "仕事の大変さ",
+    "file": "row217_仕事の大変さ.png",
+    "char": "アオイ",
+    "category": "キャリアプランニング / 情報ブロックM「仕事と働くこと」",
+    "desc": "責任・時間・人間関係の難しさを知る。"
+  },
+  {
+    "row": 218,
+    "label": "職業研究",
+    "file": "row218_職業研究.png",
+    "char": "サクラ",
+    "category": "キャリアプランニング / 情報ブロックN「仕事を調べる」",
+    "desc": "仕事の内容・必要な力を調べる。"
+  },
+  {
+    "row": 219,
+    "label": "インタビュー",
+    "file": "row219_インタビュー.png",
+    "char": "ハルト",
+    "category": "キャリアプランニング / 情報ブロックN「仕事を調べる」",
+    "desc": "働く人に直接聞く。"
+  },
+  {
+    "row": 220,
+    "label": "職場見学",
+    "file": "row220_職場見学.png",
+    "char": "リク",
+    "category": "キャリアプランニング / 情報ブロックN「仕事を調べる」",
+    "desc": "現場を見て体感する。"
+  },
+  {
+    "row": 221,
+    "label": "ロールモデル",
+    "file": "row221_ロールモデル.png",
+    "char": "アオイ",
+    "category": "キャリアプランニング / 情報ブロックN「仕事を調べる」",
+    "desc": "目標にする先輩・大人を見つける。"
+  },
+  {
+    "row": 222,
+    "label": "適性",
+    "file": "row222_適性.png",
+    "char": "サクラ",
+    "category": "キャリアプランニング / 情報ブロックO「自分と進路」",
+    "desc": "自分に合いやすいことを考える。"
+  },
+  {
+    "row": 223,
+    "label": "進路の選択肢",
+    "file": "row223_進路の選択肢.png",
+    "char": "ハルト",
+    "category": "キャリアプランニング / 情報ブロックO「自分と進路」",
+    "desc": "進学・就職など、いくつもの道がある。"
+  },
+  {
+    "row": 224,
+    "label": "強みの活かし方",
+    "file": "row224_強みの活かし方.png",
+    "char": "リク",
+    "category": "キャリアプランニング / 情報ブロックO「自分と進路」",
+    "desc": "得意を将来につなげる。"
+  },
+  {
+    "row": 225,
+    "label": "目標設定",
+    "file": "row225_目標設定.png",
+    "char": "アオイ",
+    "category": "キャリアプランニング / 情報ブロックO「自分と進路」",
+    "desc": "具体的で達成可能な目標を決める。"
+  },
+  {
+    "row": 226,
+    "label": "行動計画",
+    "file": "row226_行動計画.png",
+    "char": "サクラ",
+    "category": "キャリアプランニング / 情報ブロックO「自分と進路」",
+    "desc": "目標に向けたステップを立てる。"
+  },
+  {
+    "row": 227,
+    "label": "社会人基礎力",
+    "file": "row227_社会人基礎力.png",
+    "char": "ハルト",
+    "category": "キャリアプランニング / 情報ブロックP「社会で生きる力」",
+    "desc": "働くうえで大切な力の総称。"
+  },
+  {
+    "row": 228,
+    "label": "主体性",
+    "file": "row228_主体性.png",
+    "char": "リク",
+    "category": "キャリアプランニング / 情報ブロックP「社会で生きる力」",
+    "desc": "自分から進んで動く。"
+  },
+  {
+    "row": 229,
+    "label": "報告・連絡・相談",
+    "file": "row229_報告・連絡・相談.png",
+    "char": "アオイ",
+    "category": "キャリアプランニング / 情報ブロックP「社会で生きる力」",
+    "desc": "職場・学校での基本コミュニケーション。"
+  },
+  {
+    "row": 230,
+    "label": "時間厳守",
+    "file": "row230_時間厳守.png",
+    "char": "サクラ",
+    "category": "キャリアプランニング / 情報ブロックP「社会で生きる力」",
+    "desc": "約束の時間を守る。"
+  },
+  {
+    "row": 231,
+    "label": "経済的自立",
+    "file": "row231_経済的自立.png",
+    "char": "ハルト",
+    "category": "キャリアプランニング / 情報ブロックP「社会で生きる力」",
+    "desc": "自分の生活を支えるお金の基礎を学ぶ。"
+  }
+]
+</script>
+<!-- EMBED:data:END -->
+  <!-- EMBED:lessons:START -->
+<script type="application/json" id="career-lessons-json">
+{
+  "meta": {
+    "title": "キャリア教育 授業案データ",
+    "rows": "156-231",
+    "count": 76,
+    "model": "45分（習得15分＋実践30分）",
+    "unitTypes": [
+      "お助け隊",
+      "モヤモヤ会議",
+      "トリセツ"
+    ]
+  },
+  "lessons": [
+    {
+      "row": 156,
+      "title": "感情の理解",
+      "description": "喜び・怒り・悲しみなど、気持ちに名前をつけて理解する。",
+      "career_relevance": "将来、試験・就職・職場でプレッシャーを感じても、感情に名前をつけられば冷静に対処できます。進路選択や人間関係の土台となる力です。",
+      "image": "careerimg/row156_感情の理解.png",
+      "perspective": "自己理解",
+      "blockId": "A",
+      "blockTitle": "気持ちを知る",
+      "unitType": "お助け隊",
+      "shutoku_plan": "カード「感情の理解」の将来のキャリアとのつながりを読んで確認し、情報ブロック「気持ちを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "下級生の「困ったくん」から「友だちとケンカしたけど、自分が怒ってる理由がわからない」と相談が届く。感情の名前をつけて整理し、アドバイスシートを作ろう。",
+      "lesson_plan": "【習得】 カード「感情の理解」の将来のキャリアとのつながりを読んで確認し、情報ブロック「気持ちを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 下級生の「困ったくん」から「友だちとケンカしたけど、自分が怒ってる理由がわからない」と相談が届く。感情の名前をつけて整理し、アドバイスシートを作ろう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 157,
+      "title": "気持ちの伝え方",
+      "description": "言葉・絵・ジェスチャーで自分の気持ちを表す。",
+      "career_relevance": "進路面談や職場で本意を伝えられないと誤解がたまります。気持ちを適切に表現する力は、将来のコミュニケーションと信頼関係の基礎になります。",
+      "image": "careerimg/row157_気持ちの伝え方.png",
+      "perspective": "自己理解",
+      "blockId": "A",
+      "blockTitle": "気持ちを知る",
+      "unitType": "お助け隊",
+      "shutoku_plan": "カード「気持ちの伝え方」の将来のキャリアとのつながりを読んで確認し、情報ブロック「気持ちを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "「気持ちを言葉にできなくて誤解された」という相談に、具体的な伝え方のアイデアを3つ提案しよう。",
+      "lesson_plan": "【習得】 カード「気持ちの伝え方」の将来のキャリアとのつながりを読んで確認し、情報ブロック「気持ちを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 「気持ちを言葉にできなくて誤解された」という相談に、具体的な伝え方のアイデアを3つ提案しよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 158,
+      "title": "気持ちの切り替え",
+      "description": "深呼吸・休むなど、落ち着く工夫で気持ちを切り替える。",
+      "career_relevance": "部活・受験・仕事で不利な状況に面しても、気持ちを切り替える勞夫があれば立て直せます。長いキャリアを前向きに進むための力です。",
+      "image": "careerimg/row158_気持ちの切り替え.png",
+      "perspective": "自己理解",
+      "blockId": "A",
+      "blockTitle": "気持ちを知る",
+      "unitType": "トリセツ",
+      "shutoku_plan": "カード「気持ちの切り替え」の将来のキャリアとのつながりを読んで確認し、情報ブロック「気持ちを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "イライラしたときの自分専用の切り替え方法を2つ試し、うまくいった手順を『気持ち切り替えトリセツ』にまとめよう。",
+      "lesson_plan": "【習得】 カード「気持ちの切り替え」の将来のキャリアとのつながりを読んで確認し、情報ブロック「気持ちを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 イライラしたときの自分専用の切り替え方法を2つ試し、うまくいった手順を『気持ち切り替えトリセツ』にまとめよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 159,
+      "title": "ストレス",
+      "description": "プレッシャーや不安が心や体に与える影響を知る。",
+      "career_relevance": "受験・就職・仕事のプレッシャーは将来必ず訪れます。ストレスの意味を理解し対処できる人は、燃えつきや不調を防ぎ、続けられるキャリアを築けます。",
+      "image": "careerimg/row159_ストレス.png",
+      "perspective": "自己理解",
+      "blockId": "A",
+      "blockTitle": "気持ちを知る",
+      "unitType": "トリセツ",
+      "shutoku_plan": "カード「ストレス」の将来のキャリアとのつながりを読んで確認し、情報ブロック「気持ちを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "テスト前に眠れない友だちへ、ストレスのサインと対処のヒントをカードにして届けよう。",
+      "lesson_plan": "【習得】 カード「ストレス」の将来のキャリアとのつながりを読んで確認し、情報ブロック「気持ちを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 テスト前に眠れない友だちへ、ストレスのサインと対処のヒントをカードにして届けよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 160,
+      "title": "リラックス",
+      "description": "心と体を休めることの大切さを学ぶ。",
+      "career_relevance": "休み方を知らないと、学びも仕事も続きません。心と体を整える力は、将来の健康と仕事の両立（ワークライフバランス）に欠かせません。",
+      "image": "careerimg/row160_リラックス.png",
+      "perspective": "自己理解",
+      "blockId": "A",
+      "blockTitle": "気持ちを知る",
+      "unitType": "トリセツ",
+      "shutoku_plan": "カード「リラックス」の将来のキャリアとのつながりを読んで確認し、情報ブロック「気持ちを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "1週間のリラックス記録をつけ、自分に合う休み方を『リラックストリセツ』として共有しよう。",
+      "lesson_plan": "【習得】 カード「リラックス」の将来のキャリアとのつながりを読んで確認し、情報ブロック「気持ちを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 1週間のリラックス記録をつけ、自分に合う休み方を『リラックストリセツ』として共有しよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 161,
+      "title": "興味・関心",
+      "description": "わくわくする・もっと知りたいと思うことを見つける。",
+      "career_relevance": "進路選択の核心は「何に関心があるか」です。興味を見つけられる人は、学び継け、やりがいのある仕事に近づけます。",
+      "image": "careerimg/row161_興味・関心.png",
+      "perspective": "自己理解",
+      "blockId": "B",
+      "blockTitle": "好き・得意を知る",
+      "unitType": "トリセツ",
+      "shutoku_plan": "カード「興味・関心」の将来のキャリアとのつながりを読んで確認し、情報ブロック「好き・得意を知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "「何も好きなことがない」と悩む下級生に、最近わくわくした出来事を一緒に探し、興味マップを作ろう。",
+      "lesson_plan": "【習得】 カード「興味・関心」の将来のキャリアとのつながりを読んで確認し、情報ブロック「好き・得意を知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 「何も好きなことがない」と悩む下級生に、最近わくわくした出来事を一緒に探し、興味マップを作ろう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 162,
+      "title": "得意なこと",
+      "description": "自分がうまくできることを認識する。",
+      "career_relevance": "就職・進学では強みを活かせる道を選ぶことが大切です。得意なことを自覚することは、将来の仕事選びや自信の源になります。",
+      "image": "careerimg/row162_得意なこと.png",
+      "perspective": "自己理解",
+      "blockId": "B",
+      "blockTitle": "好き・得意を知る",
+      "unitType": "トリセツ",
+      "shutoku_plan": "カード「得意なこと」の将来のキャリアとのつながりを読んで確認し、情報ブロック「好き・得意を知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "得意なことを活かしてクラスの困りごとを1つ解決する「お助け隊ミッション」に挑戦しよう。",
+      "lesson_plan": "【習得】 カード「得意なこと」の将来のキャリアとのつながりを読んで確認し、情報ブロック「好き・得意を知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 得意なことを活かしてクラスの困りごとを1つ解決する「お助け隊ミッション」に挑戦しよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 163,
+      "title": "苦手なこと",
+      "description": "まだ難しいことに気づき、向き合う。",
+      "career_relevance": "苦手を認めずに進むと、将来の学びや仕事で行き詰まりやすくなります。苦手と向き合う力は、成長し続けるキャリアの前提です。",
+      "image": "careerimg/row163_苦手なこと.png",
+      "perspective": "自己理解",
+      "blockId": "B",
+      "blockTitle": "好き・得意を知る",
+      "unitType": "お助け隊",
+      "shutoku_plan": "カード「苦手なこと」の将来のキャリアとのつながりを読んで確認し、情報ブロック「好き・得意を知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "苦手なことに向き合う友だちへ、小さな一歩のアドバイスと励ましのメッセージを届けよう。",
+      "lesson_plan": "【習得】 カード「苦手なこと」の将来のキャリアとのつながりを読んで確認し、情報ブロック「好き・得意を知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 苦手なことに向き合う友だちへ、小さな一歩のアドバイスと励ましのメッセージを届けよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 164,
+      "title": "個性",
+      "description": "人それぞれちがうよいところがある。",
+      "career_relevance": "多様な人が働く社会では、自分の個性を活かすことが競争力になります。個性を認める力は、自己理解とチーム貢献の両方に必要です。",
+      "image": "careerimg/row164_個性.png",
+      "perspective": "自己理解",
+      "blockId": "B",
+      "blockTitle": "好き・得意を知る",
+      "unitType": "モヤモヤ会議",
+      "shutoku_plan": "カード「個性」の将来のキャリアとのつながりを読んで確認し、情報ブロック「好き・得意を知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "「個性が強いのは良い？悪い？」をテーマに、意見を出し合い、クラスの『個性尊重ルール』を決めよう。",
+      "lesson_plan": "【習得】 カード「個性」の将来のキャリアとのつながりを読んで確認し、情報ブロック「好き・得意を知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：モヤモヤ会議】 「個性が強いのは良い？悪い？」をテーマに、意見を出し合い、クラスの『個性尊重ルール』を決めよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 165,
+      "title": "挑戦",
+      "description": "苦手でもやってみる勇気をもつ。",
+      "career_relevance": "社会は変化し続け、新しいことへの挑戦が求められます。苦手でも試す勇気は、転職・再学習・未知の仕事に取り組む力になります。",
+      "image": "careerimg/row165_挑戦.png",
+      "perspective": "自己理解",
+      "blockId": "B",
+      "blockTitle": "好き・得意を知る",
+      "unitType": "お助け隊",
+      "shutoku_plan": "カード「挑戦」の将来のキャリアとのつながりを読んで確認し、情報ブロック「好き・得意を知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "苦手な泳ぎに挑戦する下級生の伴走役になり、挑戦の記録と応援カードを作ろう。",
+      "lesson_plan": "【習得】 カード「挑戦」の将来のキャリアとのつながりを読んで確認し、情報ブロック「好き・得意を知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 苦手な泳ぎに挑戦する下級生の伴走役になり、挑戦の記録と応援カードを作ろう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 166,
+      "title": "振り返り",
+      "description": "できたこと・学んだことを思い出す。",
+      "career_relevance": "就活・仕事・研修後に振り返る習慣がある人は、同じ失敗を繰り返しません。キャリアを自分で更新し続ける力です。",
+      "image": "careerimg/row166_振り返り.png",
+      "perspective": "自己理解",
+      "blockId": "C",
+      "blockTitle": "振り返って成長する",
+      "unitType": "トリセツ",
+      "shutoku_plan": "カード「振り返り」の将来のキャリアとのつながりを読んで確認し、情報ブロック「振り返って成長する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "今週のできたことを3つ書き出し、なぜできたかを振り返る『成長ログ』を作成しよう。",
+      "lesson_plan": "【習得】 カード「振り返り」の将来のキャリアとのつながりを読んで確認し、情報ブロック「振り返って成長する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 今週のできたことを3つ書き出し、なぜできたかを振り返る『成長ログ』を作成しよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 167,
+      "title": "目標",
+      "description": "これから達成したいことを決める。",
+      "career_relevance": "進路やキャリアにゴールがなければ、努力の方向が定まりません。目標を設定する力は、中長期の人生設計の出発点です。",
+      "image": "careerimg/row167_目標.png",
+      "perspective": "自己理解",
+      "blockId": "C",
+      "blockTitle": "振り返って成長する",
+      "unitType": "トリセツ",
+      "shutoku_plan": "カード「目標」の将来のキャリアとのつながりを読んで確認し、情報ブロック「振り返って成長する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "学期末までの小さな目標を1つ決め、達成のための3ステップを描こう。",
+      "lesson_plan": "【習得】 カード「目標」の将来のキャリアとのつながりを読んで確認し、情報ブロック「振り返って成長する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 学期末までの小さな目標を1つ決め、達成のための3ステップを描こう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 168,
+      "title": "できたこと",
+      "description": "努力の成果を認める。",
+      "career_relevance": "就活や職場で成果を認められないと、自信が失われます。できたことを捕える力は、自己肯定感と次の挑戦の燃料になります。",
+      "image": "careerimg/row168_できたこと.png",
+      "perspective": "自己理解",
+      "blockId": "C",
+      "blockTitle": "振り返って成長する",
+      "unitType": "トリセツ",
+      "shutoku_plan": "カード「できたこと」の将来のキャリアとのつながりを読んで確認し、情報ブロック「振り返って成長する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "グループで互いの『できたこと』を見つけ、称え合うシートを完成させよう。",
+      "lesson_plan": "【習得】 カード「できたこと」の将来のキャリアとのつながりを読んで確認し、情報ブロック「振り返って成長する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 グループで互いの『できたこと』を見つけ、称え合うシートを完成させよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 169,
+      "title": "失敗から学ぶ",
+      "description": "うまくいかなくても次につなげる。",
+      "career_relevance": "受験の失敗、仕事のミスは誰にでも起こります。失敗から学ぶ力があれば、挫折をキャリアの成長に変えられます。",
+      "image": "careerimg/row169_失敗から学ぶ.png",
+      "perspective": "自己理解",
+      "blockId": "C",
+      "blockTitle": "振り返って成長する",
+      "unitType": "トリセツ",
+      "shutoku_plan": "カード「失敗から学ぶ」の将来のキャリアとのつながりを読んで確認し、情報ブロック「振り返って成長する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "失敗体験を共有し、次につなげる教訓を『失敗から学ぶトリセツ』にまとめよう。",
+      "lesson_plan": "【習得】 カード「失敗から学ぶ」の将来のキャリアとのつながりを読んで確認し、情報ブロック「振り返って成長する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 失敗体験を共有し、次につなげる教訓を『失敗から学ぶトリセツ』にまとめよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 170,
+      "title": "粘り強さ",
+      "description": "あきらめずに続ける力。",
+      "career_relevance": "長期プロジェクトや資格取得、スキル習得には粘り強さが不可欠です。あきらめない力は、安定したキャリア形成の鍵となります。",
+      "image": "careerimg/row170_粘り強さ.png",
+      "perspective": "自己理解",
+      "blockId": "C",
+      "blockTitle": "振り返って成長する",
+      "unitType": "トリセツ",
+      "shutoku_plan": "カード「粘り強さ」の将来のキャリアとのつながりを読んで確認し、情報ブロック「振り返って成長する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "粘り強く取り組んだ経験を振り返り、あきらめそうになったときの自分の言葉をトリセツ化しよう。",
+      "lesson_plan": "【習得】 カード「粘り強さ」の将来のキャリアとのつながりを読んで確認し、情報ブロック「振り返って成長する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 粘り強く取り組んだ経験を振り返り、あきらめそうになったときの自分の言葉をトリセツ化しよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 171,
+      "title": "価値観",
+      "description": "自分にとって大切な考え方を知る。",
+      "career_relevance": "進路や仕事選びで「何を大切にするか」がブレると、後悔しやすくなります。価値観を知る力は、自分らしいキャリア選択の羅針盤です。",
+      "image": "careerimg/row171_価値観.png",
+      "perspective": "自己理解",
+      "blockId": "D",
+      "blockTitle": "大切にしていることを知る",
+      "unitType": "モヤモヤ会議",
+      "shutoku_plan": "カード「価値観」の将来のキャリアとのつながりを読んで確認し、情報ブロック「大切にしていることを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "「友だちと意見が違うとき、どちらが正しい？」をケースに、大切にしたい価値観を言語化しよう。",
+      "lesson_plan": "【習得】 カード「価値観」の将来のキャリアとのつながりを読んで確認し、情報ブロック「大切にしていることを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：モヤモヤ会議】 「友だちと意見が違うとき、どちらが正しい？」をケースに、大切にしたい価値観を言語化しよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 172,
+      "title": "やりがい",
+      "description": "がんばる意味・満たされる感じを見つける。",
+      "career_relevance": "給料だけでは続かない仕事もあります。やりがいを見つけられる力は、将来の仕事満足度とモチベーション維持に直結します。",
+      "image": "careerimg/row172_やりがい.png",
+      "perspective": "自己理解",
+      "blockId": "D",
+      "blockTitle": "大切にしていることを知る",
+      "unitType": "トリセツ",
+      "shutoku_plan": "カード「やりがい」の将来のキャリアとのつながりを読んで確認し、情報ブロック「大切にしていることを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "「やりがいを感じた瞬間」を3つ挙げ、自分のやりがいトリセツを作ろう。",
+      "lesson_plan": "【習得】 カード「やりがい」の将来のキャリアとのつながりを読んで確認し、情報ブロック「大切にしていることを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 「やりがいを感じた瞬間」を3つ挙げ、自分のやりがいトリセツを作ろう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 173,
+      "title": "将来の夢",
+      "description": "なりたい自分・やってみたいことを描く。",
+      "career_relevance": "漆然とした未来では行動が続きません。夢を描く力は、進路研究や志望理由の整理、長期目標設定の基礎になります。",
+      "image": "careerimg/row173_将来の夢.png",
+      "perspective": "自己理解",
+      "blockId": "D",
+      "blockTitle": "大切にしていることを知る",
+      "unitType": "トリセツ",
+      "shutoku_plan": "カード「将来の夢」の将来のキャリアとのつながりを読んで確認し、情報ブロック「大切にしていることを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "10年後の自分を描き、今からできる小さな行動を1つ決めよう。",
+      "lesson_plan": "【習得】 カード「将来の夢」の将来のキャリアとのつながりを読んで確認し、情報ブロック「大切にしていることを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 10年後の自分を描き、今からできる小さな行動を1つ決めよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 174,
+      "title": "理想の自分",
+      "description": "目指す姿を具体的に想像する。",
+      "career_relevance": "なりたい姿が具体的でないと、日々の努力の意味が見えにくくなります。理想の自分を想像する力は、キャリアプランニングの起点です。",
+      "image": "careerimg/row174_理想の自分.png",
+      "perspective": "自己理解",
+      "blockId": "D",
+      "blockTitle": "大切にしていることを知る",
+      "unitType": "トリセツ",
+      "shutoku_plan": "カード「理想の自分」の将来のキャリアとのつながりを読んで確認し、情報ブロック「大切にしていることを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "理想の自分像と現在の自分のギャップを整理し、近づくための一歩をトリセツにしよう。",
+      "lesson_plan": "【習得】 カード「理想の自分」の将来のキャリアとのつながりを読んで確認し、情報ブロック「大切にしていることを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 理想の自分像と現在の自分のギャップを整理し、近づくための一歩をトリセツにしよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 175,
+      "title": "自己肯定感",
+      "description": "自分を認め、認めてもらう感覚を大切にする。",
+      "career_relevance": "就活や配属・評価で落ち込みやすい場面は将来もあります。自分を認める力は、レジリエンス（回復力）と粘り強いキャリア形成を支えます。",
+      "image": "careerimg/row175_自己肯定感.png",
+      "perspective": "自己理解",
+      "blockId": "D",
+      "blockTitle": "大切にしていることを知る",
+      "unitType": "トリセツ",
+      "shutoku_plan": "カード「自己肯定感」の将来のキャリアとのつながりを読んで確認し、情報ブロック「大切にしていることを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "自分の良いところを友だちと相互に伝え合い、自己肯定感を高めるメッセージカードを作ろう。",
+      "lesson_plan": "【習得】 カード「自己肯定感」の将来のキャリアとのつながりを読んで確認し、情報ブロック「大切にしていることを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 自分の良いところを友だちと相互に伝え合い、自己肯定感を高めるメッセージカードを作ろう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 176,
+      "title": "共感",
+      "description": "相手の気持ちに寄りそう。",
+      "career_relevance": "職場・学校では異なる背景の人と協働します。共感力は、信頼関係・顧客対応・チームワークの基盤となる社会人基礎力です。",
+      "image": "careerimg/row176_共感.png",
+      "perspective": "共感的人間関係",
+      "blockId": "E",
+      "blockTitle": "相手の気持ちに気づく",
+      "unitType": "お助け隊",
+      "shutoku_plan": "カード「共感」の将来のキャリアとのつながりを読んで確認し、情報ブロック「相手の気持ちに気づく」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "落ち込む友だちの気持ちに寄り添う言葉と行動を、お助け隊として提案しよう。",
+      "lesson_plan": "【習得】 カード「共感」の将来のキャリアとのつながりを読んで確認し、情報ブロック「相手の気持ちに気づく」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 落ち込む友だちの気持ちに寄り添う言葉と行動を、お助け隊として提案しよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 177,
+      "title": "思いやり",
+      "description": "相手のために行動しようとする心。",
+      "career_relevance": "気配ができる人は、周囲から頼られ、機会を得やすくなります。思いやりは、看護・教育・サービス業をはじめあらゆる仕事で評価される力です。",
+      "image": "careerimg/row177_思いやり.png",
+      "perspective": "共感的人間関係",
+      "blockId": "E",
+      "blockTitle": "相手の気持ちに気づく",
+      "unitType": "お助け隊",
+      "shutoku_plan": "カード「思いやり」の将来のキャリアとのつながりを読んで確認し、情報ブロック「相手の気持ちに気づく」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "困っている人を見つけたら何をするか、クラスの『思いやり行動リスト』を作ろう。",
+      "lesson_plan": "【習得】 カード「思いやり」の将来のキャリアとのつながりを読んで確認し、情報ブロック「相手の気持ちに気づく」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 困っている人を見つけたら何をするか、クラスの『思いやり行動リスト』を作ろう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 178,
+      "title": "相手の立場",
+      "description": "自分とちがう状況・気持ちを想像する。",
+      "career_relevance": "クレーム対応、交渉、多様なチームでは相手の立場を想像できないと解決が遅れます。視点を広げる力は、課題解決とリーダーシップに必要です。",
+      "image": "careerimg/row178_相手の立場.png",
+      "perspective": "共感的人間関係",
+      "blockId": "E",
+      "blockTitle": "相手の気持ちに気づく",
+      "unitType": "お助け隊",
+      "shutoku_plan": "カード「相手の立場」の将来のキャリアとのつながりを読んで確認し、情報ブロック「相手の気持ちに気づく」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "相手の立場カードを使い、同じ出来事を異なる視点で語り合おう。",
+      "lesson_plan": "【習得】 カード「相手の立場」の将来のキャリアとのつながりを読んで確認し、情報ブロック「相手の気持ちに気づく」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 相手の立場カードを使い、同じ出来事を異なる視点で語り合おう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 179,
+      "title": "気持ちを想像する",
+      "description": "「もし自分だったら」と考える。",
+      "career_relevance": "ユーザー・同僚・取引先の気持ちを考えられないと、成果が出にくい仕事もあります。想像力は、対人スキルと商品・サービス開発に活きます。",
+      "image": "careerimg/row179_気持ちを想像する.png",
+      "perspective": "共感的人間関係",
+      "blockId": "E",
+      "blockTitle": "相手の気持ちに気づく",
+      "unitType": "お助け隊",
+      "shutoku_plan": "カード「気持ちを想像する」の将来のキャリアとのつながりを読んで確認し、情報ブロック「相手の気持ちに気づく」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "「もし自分が相手だったら」をテーマに、気持ち想像ワークシートを完成させよう。",
+      "lesson_plan": "【習得】 カード「気持ちを想像する」の将来のキャリアとのつながりを読んで確認し、情報ブロック「相手の気持ちに気づく」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 「もし自分が相手だったら」をテーマに、気持ち想像ワークシートを完成させよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 180,
+      "title": "傾聴",
+      "description": "相手の話を最後まで聞く。",
+      "career_relevance": "指示を誤る、相談を受けられないなど、聞く力不足は職場トラブルの原因になります。傾聴は報連相と課題解決の前提となる力です。",
+      "image": "careerimg/row180_傾聴.png",
+      "perspective": "共感的人間関係",
+      "blockId": "F",
+      "blockTitle": "伝える・聞く",
+      "unitType": "お助け隊",
+      "shutoku_plan": "カード「傾聴」の将来のキャリアとのつながりを読んで確認し、情報ブロック「伝える・聞く」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "話を遮らずに聞く練習をし、傾聴のコツを下級生向けアドバイスにまとめよう。",
+      "lesson_plan": "【習得】 カード「傾聴」の将来のキャリアとのつながりを読んで確認し、情報ブロック「伝える・聞く」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 話を遮らずに聞く練習をし、傾聴のコツを下級生向けアドバイスにまとめよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 181,
+      "title": "わかりやすく伝える",
+      "description": "相手に伝わる言葉・順序で話す。",
+      "career_relevance": "提案・報告・プレゼンで伝わらないと仕事が進みません。わかりやすく伝える力は、あらゆる職種で評価されるコミュニケーション力です。",
+      "image": "careerimg/row181_わかりやすく伝える.png",
+      "perspective": "共感的人間関係",
+      "blockId": "F",
+      "blockTitle": "伝える・聞く",
+      "unitType": "お助け隊",
+      "shutoku_plan": "カード「わかりやすく伝える」の将来のキャリアとのつながりを読んで確認し、情報ブロック「伝える・聞く」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "伝わりにくい説明を直す「わかりやすく伝えるお助け隊」として、ビフォーアフター例を作ろう。",
+      "lesson_plan": "【習得】 カード「わかりやすく伝える」の将来のキャリアとのつながりを読んで確認し、情報ブロック「伝える・聞く」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 伝わりにくい説明を直す「わかりやすく伝えるお助け隊」として、ビフォーアフター例を作ろう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 182,
+      "title": "感謝",
+      "description": "ありがとうを言葉や行動で示す。",
+      "career_relevance": "感謝を言える人は人間関係を良好に保てます。職場での協力関係・顧客満足・チームの雰囲づくりに、感謝の姿勢は欠かせません。",
+      "image": "careerimg/row182_感謝.png",
+      "perspective": "共感的人間関係",
+      "blockId": "F",
+      "blockTitle": "伝える・聞く",
+      "unitType": "お助け隊",
+      "shutoku_plan": "カード「感謝」の将来のキャリアとのつながりを読んで確認し、情報ブロック「伝える・聞く」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "日頃の感謝を言葉にする活動を行い、感謝カードをクラスで交換しよう。",
+      "lesson_plan": "【習得】 カード「感謝」の将来のキャリアとのつながりを読んで確認し、情報ブロック「伝える・聞く」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 日頃の感謝を言葉にする活動を行い、感謝カードをクラスで交換しよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 183,
+      "title": "謝る",
+      "description": "間違いを認め、気持ちを伝える。",
+      "career_relevance": "ミスを認められない人は、信頼を失い仕事の機会を狭めます。素直に謝る力は、責任感と信頼回復の基本であり、社会人として必須です。",
+      "image": "careerimg/row183_謝る.png",
+      "perspective": "共感的人間関係",
+      "blockId": "F",
+      "blockTitle": "伝える・聞く",
+      "unitType": "お助け隊",
+      "shutoku_plan": "カード「謝る」の将来のキャリアとのつながりを読んで確認し、情報ブロック「伝える・聞く」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "謝り方がうまくいかなかった事例を直し、心が通う謝罪の例文を共有しよう。",
+      "lesson_plan": "【習得】 カード「謝る」の将来のキャリアとのつながりを読んで確認し、情報ブロック「伝える・聞く」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 謝り方がうまくいかなかった事例を直し、心が通う謝罪の例文を共有しよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 184,
+      "title": "依頼する",
+      "description": "助けを求める言い方。",
+      "career_relevance": "一人で抱え込むと仕事が破紐しやすくなります。適切に依頼・相談できる力は、チームワークと効率的な業務遂行に必要です。",
+      "image": "careerimg/row184_依頼する.png",
+      "perspective": "共感的人間関係",
+      "blockId": "F",
+      "blockTitle": "伝える・聞く",
+      "unitType": "お助け隊",
+      "shutoku_plan": "カード「依頼する」の将来のキャリアとのつながりを読んで確認し、情報ブロック「伝える・聞く」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "助けを求めるのが苦手な友だちへ、依頼の言い方サンプルを一緒に考えよう。",
+      "lesson_plan": "【習得】 カード「依頼する」の将来のキャリアとのつながりを読んで確認し、情報ブロック「伝える・聞く」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 助けを求めるのが苦手な友だちへ、依頼の言い方サンプルを一緒に考えよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 185,
+      "title": "チームワーク",
+      "description": "共通の目標に向かって力を合わせる。",
+      "career_relevance": "多くの仕事はチームで行われます。協力して成果を出す力は、就労開始後すぐに求められる社会人基礎力の中心です。",
+      "image": "careerimg/row185_チームワーク.png",
+      "perspective": "共感的人間関係",
+      "blockId": "G",
+      "blockTitle": "みんなで協力する",
+      "unitType": "お助け隊",
+      "shutoku_plan": "カード「チームワーク」の将来のキャリアとのつながりを読んで確認し、情報ブロック「みんなで協力する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "学級活動の成功事例からチームワークの要素を抽出し、再現のヒントをまとめよう。",
+      "lesson_plan": "【習得】 カード「チームワーク」の将来のキャリアとのつながりを読んで確認し、情報ブロック「みんなで協力する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 学級活動の成功事例からチームワークの要素を抽出し、再現のヒントをまとめよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 186,
+      "title": "役割分担",
+      "description": "それぞれの役割を決めて取り組む。",
+      "career_relevance": "プロジェクト型の仕事では役割分担が成果を左右します。分担の考え方は、将来の就労現場・ボランティア・大学のグループ学習に直結します。",
+      "image": "careerimg/row186_役割分担.png",
+      "perspective": "共感的人間関係",
+      "blockId": "G",
+      "blockTitle": "みんなで協力する",
+      "unitType": "お助け隊",
+      "shutoku_plan": "カード「役割分担」の将来のキャリアとのつながりを読んで確認し、情報ブロック「みんなで協力する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "役割分担表を作成し、公平に分担するためのルールをグループで決めよう。",
+      "lesson_plan": "【習得】 カード「役割分担」の将来のキャリアとのつながりを読んで確認し、情報ブロック「みんなで協力する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 役割分担表を作成し、公平に分担するためのルールをグループで決めよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 187,
+      "title": "助け合い",
+      "description": "困っている人を支える。",
+      "career_relevance": "困っている人を助ける文化は、安全で生産的な職場につながります。助け合いの姿勢は、看護・福祉・教育など協力が求められる仕事に不可欠です。",
+      "image": "careerimg/row187_助け合い.png",
+      "perspective": "共感的人間関係",
+      "blockId": "G",
+      "blockTitle": "みんなで協力する",
+      "unitType": "お助け隊",
+      "shutoku_plan": "カード「助け合い」の将来のキャリアとのつながりを読んで確認し、情報ブロック「みんなで協力する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "困っている人を見つけたら助ける「助け合いチャレンジ」をクラスで実施しよう。",
+      "lesson_plan": "【習得】 カード「助け合い」の将来のキャリアとのつながりを読んで確認し、情報ブロック「みんなで協力する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 困っている人を見つけたら助ける「助け合いチャレンジ」をクラスで実施しよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 188,
+      "title": "約束を守る",
+      "description": "信頼関係の土台となる約束をまもる。",
+      "career_relevance": "締切・出勤・納期を守れないと信頼を失います。約束を守る力は、雇用継続とキャリア評価の基本的条件です。",
+      "image": "careerimg/row188_約束を守る.png",
+      "perspective": "共感的人間関係",
+      "blockId": "G",
+      "blockTitle": "みんなで協力する",
+      "unitType": "お助け隊",
+      "shutoku_plan": "カード「約束を守る」の将来のキャリアとのつながりを読んで確認し、情報ブロック「みんなで協力する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "約束を守れなかった場面を想定し、信頼を取り戻す方法を話し合おう。",
+      "lesson_plan": "【習得】 カード「約束を守る」の将来のキャリアとのつながりを読んで確認し、情報ブロック「みんなで協力する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 約束を守れなかった場面を想定し、信頼を取り戻す方法を話し合おう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 189,
+      "title": "責任感",
+      "description": "自分の役割をまっとうする。",
+      "career_relevance": "任された仕事を最後までやり遂げる力は、昇進・推薦・新しい役割に結びつきます。責任感は社会人基礎力の中核です。",
+      "image": "careerimg/row189_責任感.png",
+      "perspective": "共感的人間関係",
+      "blockId": "G",
+      "blockTitle": "みんなで協力する",
+      "unitType": "お助け隊",
+      "shutoku_plan": "カード「責任感」の将来のキャリアとのつながりを読んで確認し、情報ブロック「みんなで協力する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "役割を全うできなかった経験から、責任感を高める自分のルールを作ろう。",
+      "lesson_plan": "【習得】 カード「責任感」の将来のキャリアとのつながりを読んで確認し、情報ブロック「みんなで協力する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 役割を全うできなかった経験から、責任感を高める自分のルールを作ろう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 190,
+      "title": "多様性",
+      "description": "考え方・背景・個性のちがいを認める。",
+      "career_relevance": "グローバル化・多文化共生の社会では、多様性を尊重できないと協働が困難です。多様性への理解は、将来のあらゆる職場で必要な視点です。",
+      "image": "careerimg/row190_多様性.png",
+      "perspective": "共感的人間関係",
+      "blockId": "H",
+      "blockTitle": "ちがいを認め、話し合う",
+      "unitType": "モヤモヤ会議",
+      "shutoku_plan": "カード「多様性」の将来のキャリアとのつながりを読んで確認し、情報ブロック「ちがいを認め、話し合う」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "多様な背景を持つ架空のクラスメイトを想定し、尊重のための行動指針を議論しよう。",
+      "lesson_plan": "【習得】 カード「多様性」の将来のキャリアとのつながりを読んで確認し、情報ブロック「ちがいを認め、話し合う」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：モヤモヤ会議】 多様な背景を持つ架空のクラスメイトを想定し、尊重のための行動指針を議論しよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 191,
+      "title": "意見のちがい",
+      "description": "対立ではなく、異なる視点として受け止める。",
+      "career_relevance": "職場では意見対立は日常的に起こります。対立を建設的に扱う力は、合意形成とイノベーションの土台になります。",
+      "image": "careerimg/row191_意見のちがい.png",
+      "perspective": "共感的人間関係",
+      "blockId": "H",
+      "blockTitle": "ちがいを認め、話し合う",
+      "unitType": "モヤモヤ会議",
+      "shutoku_plan": "カード「意見のちがい」の将来のキャリアとのつながりを読んで確認し、情報ブロック「ちがいを認め、話し合う」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "意見のちがいからケンカした事例をもとに、対話で解決する手順を決めよう。",
+      "lesson_plan": "【習得】 カード「意見のちがい」の将来のキャリアとのつながりを読んで確認し、情報ブロック「ちがいを認め、話し合う」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：モヤモヤ会議】 意見のちがいからケンカした事例をもとに、対話で解決する手順を決めよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 192,
+      "title": "話し合い",
+      "description": "言い合いではなく、解決に向けて話す。",
+      "career_relevance": "問題を言い合いで終わらせず解決する力は、労働組合・会議・地域活動など、生涯を通じ必要です。",
+      "image": "careerimg/row192_話し合い.png",
+      "perspective": "共感的人間関係",
+      "blockId": "H",
+      "blockTitle": "ちがいを認め、話し合う",
+      "unitType": "モヤモヤ会議",
+      "shutoku_plan": "カード「話し合い」の将来のキャリアとのつながりを読んで確認し、情報ブロック「ちがいを認め、話し合う」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "クラスの困りごとを話し合いのルールに沿って解決する模擬会議を行おう。",
+      "lesson_plan": "【習得】 カード「話し合い」の将来のキャリアとのつながりを読んで確認し、情報ブロック「ちがいを認め、話し合う」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：モヤモヤ会議】 クラスの困りごとを話し合いのルールに沿って解決する模擬会議を行おう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 193,
+      "title": "公平・公正",
+      "description": "偏りなく、ルールにのっとる。",
+      "career_relevance": "リーダーや管理職では公平さが求められます。公正な判断力は、ルール作り・採用・評価など将来の社会的役割に関わります。",
+      "image": "careerimg/row193_公平・公正.png",
+      "perspective": "共感的人間関係",
+      "blockId": "H",
+      "blockTitle": "ちがいを認め、話し合う",
+      "unitType": "モヤモヤ会議",
+      "shutoku_plan": "カード「公平・公正」の将来のキャリアとのつながりを読んで確認し、情報ブロック「ちがいを認め、話し合う」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "「公平」と「平等」のちがいをケースで考え、納得できる基準を言語化しよう。",
+      "lesson_plan": "【習得】 カード「公平・公正」の将来のキャリアとのつながりを読んで確認し、情報ブロック「ちがいを認め、話し合う」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：モヤモヤ会議】 「公平」と「平等」のちがいをケースで考え、納得できる基準を言語化しよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 194,
+      "title": "相談する",
+      "description": "一人で抱え込まず、頼れる人に伝える。",
+      "career_relevance": "一人で抱え込むとメンタル不調や離職につながることも。相談できる力は、キャリアの危機を防ぐセルフケアの一つです。",
+      "image": "careerimg/row194_相談する.png",
+      "perspective": "共感的人間関係",
+      "blockId": "H",
+      "blockTitle": "ちがいを認め、話し合う",
+      "unitType": "お助け隊",
+      "shutoku_plan": "カード「相談する」の将来のキャリアとのつながりを読んで確認し、情報ブロック「ちがいを認め、話し合う」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "相談しにくい友だちに届ける「相談のしやすさ向上プラン」を作ろう。",
+      "lesson_plan": "【習得】 カード「相談する」の将来のキャリアとのつながりを読んで確認し、情報ブロック「ちがいを認め、話し合う」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 相談しにくい友だちに届ける「相談のしやすさ向上プラン」を作ろう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 195,
+      "title": "問題発見",
+      "description": "改善したい・解決したいことを見つける。",
+      "career_relevance": "業務改善・起業・研究では「何が問題か」を見つける力が出発点です。問題発見力は、これからの社会で特に求められる力です。",
+      "image": "careerimg/row195_問題発見.png",
+      "perspective": "課題解決",
+      "blockId": "I",
+      "blockTitle": "困りごとに気づく",
+      "unitType": "お助け隊",
+      "shutoku_plan": "カード「問題発見」の将来のキャリアとのつながりを読んで確認し、情報ブロック「困りごとに気づく」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "教室・廊下・休み時間の「困りごと」を見つけ、改善アイデアを1つ提案しよう。",
+      "lesson_plan": "【習得】 カード「問題発見」の将来のキャリアとのつながりを読んで確認し、情報ブロック「困りごとに気づく」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 教室・廊下・休み時間の「困りごと」を見つけ、改善アイデアを1つ提案しよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 196,
+      "title": "困りごと",
+      "description": "自分・仲間・地域の「困った」を見つける。",
+      "career_relevance": "顧客・利用者・地域の困りごとに気づける人は、新しい仕事やサービスを生み出します。困りごとを見つける力は起業・イノベーションの種です。",
+      "image": "careerimg/row196_困りごと.png",
+      "perspective": "課題解決",
+      "blockId": "I",
+      "blockTitle": "困りごとに気づく",
+      "unitType": "お助け隊",
+      "shutoku_plan": "カード「困りごと」の将来のキャリアとのつながりを読んで確認し、情報ブロック「困りごとに気づく」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "身近な困りごと解決のお助け隊として、原因と関係者を整理した解決シートを作ろう。",
+      "lesson_plan": "【習得】 カード「困りごと」の将来のキャリアとのつながりを読んで確認し、情報ブロック「困りごとに気づく」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 身近な困りごと解決のお助け隊として、原因と関係者を整理した解決シートを作ろう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 197,
+      "title": "現状把握",
+      "description": "今どうなっているかを整理する。",
+      "career_relevance": "データや事実なく改善案を出すと失敗しやすくなります。現状把握は、調査・企画・研究職など多くの仕事の出発点です。",
+      "image": "careerimg/row197_現状把握.png",
+      "perspective": "課題解決",
+      "blockId": "I",
+      "blockTitle": "困りごとに気づく",
+      "unitType": "お助け隊",
+      "shutoku_plan": "カード「現状把握」の将来のキャリアとのつながりを読んで確認し、情報ブロック「困りごとに気づく」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "選んだ困りごとの現状を調査し、事実と推測を分けて整理しよう。",
+      "lesson_plan": "【習得】 カード「現状把握」の将来のキャリアとのつながりを読んで確認し、情報ブロック「困りごとに気づく」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 選んだ困りごとの現状を調査し、事実と推測を分けて整理しよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 198,
+      "title": "関係する人",
+      "description": "誰に影響があるかを考える。",
+      "career_relevance": "課題解決では関係者（ステークホルダー）の整理が不可欠です。関係者を考える力は、プロジェクト管理や交渉に活きます。",
+      "image": "careerimg/row198_関係する人.png",
+      "perspective": "課題解決",
+      "blockId": "I",
+      "blockTitle": "困りごとに気づく",
+      "unitType": "お助け隊",
+      "shutoku_plan": "カード「関係する人」の将来のキャリアとのつながりを読んで確認し、情報ブロック「困りごとに気づく」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "困りごとに関わる人を洗い出し、それぞれの立場を整理したマップを作ろう。",
+      "lesson_plan": "【習得】 カード「関係する人」の将来のキャリアとのつながりを読んで確認し、情報ブロック「困りごとに気づく」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 困りごとに関わる人を洗い出し、それぞれの立場を整理したマップを作ろう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 199,
+      "title": "なぜなぜ",
+      "description": "原因を掘り下げて考える。",
+      "career_relevance": "表面の症状だけでは根本解決できません。なぜを掘る力は、品質管理・トラブル分析・科学技術の仕事で重要です。",
+      "image": "careerimg/row199_なぜなぜ.png",
+      "perspective": "課題解決",
+      "blockId": "J",
+      "blockTitle": "深く考える",
+      "unitType": "トリセツ",
+      "shutoku_plan": "カード「なぜなぜ」の将来のキャリアとのつながりを読んで確認し、情報ブロック「深く考える」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "「なぜ？」を5回繰り返し、困りごとの根本原因を探るワークに挑戦しよう。",
+      "lesson_plan": "【習得】 カード「なぜなぜ」の将来のキャリアとのつながりを読んで確認し、情報ブロック「深く考える」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 「なぜ？」を5回繰り返し、困りごとの根本原因を探るワークに挑戦しよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 200,
+      "title": "多面的に見る",
+      "description": "一つの見方だけにとらわれない。",
+      "career_relevance": "一つの情報源だけでは誤判断しやすくなります。多面的に見る力は、メディアリテラシーと意思決定の質を高めます。",
+      "image": "careerimg/row200_多面的に見る.png",
+      "perspective": "課題解決",
+      "blockId": "J",
+      "blockTitle": "深く考える",
+      "unitType": "モヤモヤ会議",
+      "shutoku_plan": "カード「多面的に見る」の将来のキャリアとのつながりを読んで確認し、情報ブロック「深く考える」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "同じ出来事を複数の視点から語り、見え方のちがいを整理しよう。",
+      "lesson_plan": "【習得】 カード「多面的に見る」の将来のキャリアとのつながりを読んで確認し、情報ブロック「深く考える」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：モヤモヤ会議】 同じ出来事を複数の視点から語り、見え方のちがいを整理しよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 201,
+      "title": "仮説",
+      "description": "「こうすればよくなるかも」という予想を立てる。",
+      "career_relevance": "研究・開発・企画では「こうだろう」という假説を立てて検証します。假説思考は、大学進学後の学びや多くの専門職で必要です。",
+      "image": "careerimg/row201_仮説.png",
+      "perspective": "課題解決",
+      "blockId": "J",
+      "blockTitle": "深く考える",
+      "unitType": "トリセツ",
+      "shutoku_plan": "カード「仮説」の将来のキャリアとのつながりを読んで確認し、情報ブロック「深く考える」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "假説を立てて小さく試し、結果を記録するミニ実験を行おう。",
+      "lesson_plan": "【習得】 カード「仮説」の将来のキャリアとのつながりを読んで確認し、情報ブロック「深く考える」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 假説を立てて小さく試し、結果を記録するミニ実験を行おう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 202,
+      "title": "理由づけ",
+      "description": "考えに根拠をもたせる。",
+      "career_relevance": "主張だけでは説得できません。理由づけは、小論文・提案書・就活の志望理由など、将来の説明の場面すべてで必要です。",
+      "image": "careerimg/row202_理由づけ.png",
+      "perspective": "課題解決",
+      "blockId": "J",
+      "blockTitle": "深く考える",
+      "unitType": "トリセツ",
+      "shutoku_plan": "カード「理由づけ」の将来のキャリアとのつながりを読んで確認し、情報ブロック「深く考える」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "自分の考えに理由と根拠を添えて、説得力のある提案文を書こう。",
+      "lesson_plan": "【習得】 カード「理由づけ」の将来のキャリアとのつながりを読んで確認し、情報ブロック「深く考える」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 自分の考えに理由と根拠を添えて、説得力のある提案文を書こう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 203,
+      "title": "比較する",
+      "description": "複数の案・情報をくらべる。",
+      "career_relevance": "進路・商品・政策を選ぶには比較が必要です。比較検討する力は、情報化社会での理性ある選択の基礎です。",
+      "image": "careerimg/row203_比較する.png",
+      "perspective": "課題解決",
+      "blockId": "J",
+      "blockTitle": "深く考える",
+      "unitType": "トリセツ",
+      "shutoku_plan": "カード「比較する」の将来のキャリアとのつながりを読んで確認し、情報ブロック「深く考える」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "複数の解決案を比較表にし、選んだ理由を発表しよう。",
+      "lesson_plan": "【習得】 カード「比較する」の将来のキャリアとのつながりを読んで確認し、情報ブロック「深く考える」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 複数の解決案を比較表にし、選んだ理由を発表しよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 204,
+      "title": "計画",
+      "description": "何を・いつ・どうするかを決める。",
+      "career_relevance": "試験勉強・就活・プロジェクトは計画なく進みません。計画力は、目標達成と時間管理の基本スキルです。",
+      "image": "careerimg/row204_計画.png",
+      "perspective": "課題解決",
+      "blockId": "K",
+      "blockTitle": "動いて、振り返る",
+      "unitType": "トリセツ",
+      "shutoku_plan": "カード「計画」の将来のキャリアとのつながりを読んで確認し、情報ブロック「動いて、振り返る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "学級の改善活動の計画書（目的・手順・役割・期日）を作成しよう。",
+      "lesson_plan": "【習得】 カード「計画」の将来のキャリアとのつながりを読んで確認し、情報ブロック「動いて、振り返る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 学級の改善活動の計画書（目的・手順・役割・期日）を作成しよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 205,
+      "title": "実行",
+      "description": "決めたことを実際に行う。",
+      "career_relevance": "計画しても実行しなければ成果は出ません。実行力は、どの職種でも最初に問われる力です。",
+      "image": "careerimg/row205_実行.png",
+      "perspective": "課題解決",
+      "blockId": "K",
+      "blockTitle": "動いて、振り返る",
+      "unitType": "お助け隊",
+      "shutoku_plan": "カード「実行」の将来のキャリアとのつながりを読んで確認し、情報ブロック「動いて、振り返る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "計画した活動を実行し、途中で起きた問題への対応を記録しよう。",
+      "lesson_plan": "【習得】 カード「実行」の将来のキャリアとのつながりを読んで確認し、情報ブロック「動いて、振り返る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 計画した活動を実行し、途中で起きた問題への対応を記録しよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 206,
+      "title": "試行錯誤",
+      "description": "うまくいかなくても直して再挑戦する。",
+      "career_relevance": "初めから成功することは稀です。試行錯誤する力は、研究・開発・クリエイティブ職・起業に不可欠です。",
+      "image": "careerimg/row206_試行錯誤.png",
+      "perspective": "課題解決",
+      "blockId": "K",
+      "blockTitle": "動いて、振り返る",
+      "unitType": "トリセツ",
+      "shutoku_plan": "カード「試行錯誤」の将来のキャリアとのつながりを読んで確認し、情報ブロック「動いて、振り返る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "うまくいかなかった点を変えて再挑戦する「試行錯誤ログ」を作ろう。",
+      "lesson_plan": "【習得】 カード「試行錯誤」の将来のキャリアとのつながりを読んで確認し、情報ブロック「動いて、振り返る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 うまくいかなかった点を変えて再挑戦する「試行錯誤ログ」を作ろう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 207,
+      "title": "振り返り（改善）",
+      "description": "結果を評価し、次につなげる。",
+      "career_relevance": "PDCAのC（Check）とA（Action）に相当します。改善の振り返りは、キャリアの質を上げ続ける習慣になります。",
+      "image": "careerimg/row207_振り返り（改善）.png",
+      "perspective": "課題解決",
+      "blockId": "K",
+      "blockTitle": "動いて、振り返る",
+      "unitType": "トリセツ",
+      "shutoku_plan": "カード「振り返り（改善）」の将来のキャリアとのつながりを読んで確認し、情報ブロック「動いて、振り返る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "活動結果を振り返り、次回への改善点を3つ挙げよう。",
+      "lesson_plan": "【習得】 カード「振り返り（改善）」の将来のキャリアとのつながりを読んで確認し、情報ブロック「動いて、振り返る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 活動結果を振り返り、次回への改善点を3つ挙げよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 208,
+      "title": "PDCA",
+      "description": "計画→実行→振り返り→改善のくり返し。",
+      "career_relevance": "多くの企業・組織で使われる改善サイクルです。PDCAを理解することは、社会人として組織に適応し貢献するための共通言です。",
+      "image": "careerimg/row208_PDCA.png",
+      "perspective": "課題解決",
+      "blockId": "K",
+      "blockTitle": "動いて、振り返る",
+      "unitType": "トリセツ",
+      "shutoku_plan": "カード「PDCA」の将来のキャリアとのつながりを読んで確認し、情報ブロック「動いて、振り返る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "PDCAの一連の流れを自分の活動に当てはめ、サイクル図を完成させよう。",
+      "lesson_plan": "【習得】 カード「PDCA」の将来のキャリアとのつながりを読んで確認し、情報ブロック「動いて、振り返る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 PDCAの一連の流れを自分の活動に当てはめ、サイクル図を完成させよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 209,
+      "title": "社会課題",
+      "description": "社会全体に関わる問題に目を向ける。",
+      "career_relevance": "SDGsや地方創生など、社会課題に関心がある人は、新しい仕事のフィールドを見つけやすくなります。将来の就労領域は社会課題解決と深く結びついています。",
+      "image": "careerimg/row209_社会課題.png",
+      "perspective": "課題解決",
+      "blockId": "L",
+      "blockTitle": "社会の課題と向き合う",
+      "unitType": "モヤモヤ会議",
+      "shutoku_plan": "カード「社会課題」の将来のキャリアとのつながりを読んで確認し、情報ブロック「社会の課題と向き合う」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "SDGsやニュースの社会課題を1つ選び、「自分にできることは？」を議論しよう。",
+      "lesson_plan": "【習得】 カード「社会課題」の将来のキャリアとのつながりを読んで確認し、情報ブロック「社会の課題と向き合う」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：モヤモヤ会議】 SDGsやニュースの社会課題を1つ選び、「自分にできることは？」を議論しよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 210,
+      "title": "地域課題",
+      "description": "身近なまち・学校の課題を考える。",
+      "career_relevance": "地方創生・まちづくり・公共サービスでは地域課題への理解が鍵です。身近な課題に目を向ける力は、地域貢献型のキャリアにつながります。",
+      "image": "careerimg/row210_地域課題.png",
+      "perspective": "課題解決",
+      "blockId": "L",
+      "blockTitle": "社会の課題と向き合う",
+      "unitType": "お助け隊",
+      "shutoku_plan": "カード「地域課題」の将来のキャリアとのつながりを読んで確認し、情報ブロック「社会の課題と向き合う」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "地域の困りごとを調査し、解決に向けた小さなアクションを提案しよう。",
+      "lesson_plan": "【習得】 カード「地域課題」の将来のキャリアとのつながりを読んで確認し、情報ブロック「社会の課題と向き合う」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 地域の困りごとを調査し、解決に向けた小さなアクションを提案しよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 211,
+      "title": "当事者意識",
+      "description": "「自分ごと」として考える。",
+      "career_relevance": "「自分ごと」として考えられないと、社会参加や投票・ボランティア・起業の動機が弱まります。当事者意識は、社会で生きる力の核心です。",
+      "image": "careerimg/row211_当事者意識.png",
+      "perspective": "課題解決",
+      "blockId": "L",
+      "blockTitle": "社会の課題と向き合う",
+      "unitType": "モヤモヤ会議",
+      "shutoku_plan": "カード「当事者意識」の将来のキャリアとのつながりを読んで確認し、情報ブロック「社会の課題と向き合う」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "「他人ごと」と「自分ごと」の違いをケースで考え、当事者意識チェックリストを作ろう。",
+      "lesson_plan": "【習得】 カード「当事者意識」の将来のキャリアとのつながりを読んで確認し、情報ブロック「社会の課題と向き合う」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：モヤモヤ会議】 「他人ごと」と「自分ごと」の違いをケースで考え、当事者意識チェックリストを作ろう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 212,
+      "title": "持続可能性",
+      "description": "未来も大切にする考え方（SDGs）。",
+      "career_relevance": "環境・資源・世代間公平など、持続可能性はこれからのすべての産業の前提です。SDGsの視点は、将来の仕事選び・消費・生活設計に必須です。",
+      "image": "careerimg/row212_持続可能性.png",
+      "perspective": "課題解決",
+      "blockId": "L",
+      "blockTitle": "社会の課題と向き合う",
+      "unitType": "モヤモヤ会議",
+      "shutoku_plan": "カード「持続可能性」の将来のキャリアとのつながりを読んで確認し、情報ブロック「社会の課題と向き合う」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "持続可能な未来のために、学校でできる行動を3つ決め、宣言しよう。",
+      "lesson_plan": "【習得】 カード「持続可能性」の将来のキャリアとのつながりを読んで確認し、情報ブロック「社会の課題と向き合う」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：モヤモヤ会議】 持続可能な未来のために、学校でできる行動を3つ決め、宣言しよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 213,
+      "title": "仕事の意味",
+      "description": "社会の役に立ち、生活を支えること。",
+      "career_relevance": "働く目的を考えられないと、就職後にやりがいの喪失や早期離職につながります。仕事の意味を考える力は、キャリアの軸になります。",
+      "image": "careerimg/row213_仕事の意味.png",
+      "perspective": "キャリアプランニング",
+      "blockId": "M",
+      "blockTitle": "仕事と働くこと",
+      "unitType": "お助け隊",
+      "shutoku_plan": "カード「仕事の意味」の将来のキャリアとのつながりを読んで確認し、情報ブロック「仕事と働くこと」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "身近な仕事人へのインタビュー動画（または紙）をもとに、仕事の意味を紹介しよう。",
+      "lesson_plan": "【習得】 カード「仕事の意味」の将来のキャリアとのつながりを読んで確認し、情報ブロック「仕事と働くこと」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 身近な仕事人へのインタビュー動画（または紙）をもとに、仕事の意味を紹介しよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 214,
+      "title": "職業の種類",
+      "description": "いろいろな仕事があることを知る。",
+      "career_relevance": "知らない仕事は選べません。職業の幅を知ることは、進路の選択肢を広げ、偏見のないキャリア観を育てます。",
+      "image": "careerimg/row214_職業の種類.png",
+      "perspective": "キャリアプランニング",
+      "blockId": "M",
+      "blockTitle": "仕事と働くこと",
+      "unitType": "お助け隊",
+      "shutoku_plan": "カード「職業の種類」の将来のキャリアとのつながりを読んで確認し、情報ブロック「仕事と働くこと」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "知らなかった職業を調べ、クラス向け職業紹介カードを作ろう。",
+      "lesson_plan": "【習得】 カード「職業の種類」の将来のキャリアとのつながりを読んで確認し、情報ブロック「仕事と働くこと」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 知らなかった職業を調べ、クラス向け職業紹介カードを作ろう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 215,
+      "title": "働く人",
+      "description": "地域・社会で活躍する人を知る。",
+      "career_relevance": "身近な働く人を知ることは、理想化や偏見を防ぎます。リアルな仕事観は、進路研究・職場見学・インターンの土台です。",
+      "image": "careerimg/row215_働く人.png",
+      "perspective": "キャリアプランニング",
+      "blockId": "M",
+      "blockTitle": "仕事と働くこと",
+      "unitType": "お助け隊",
+      "shutoku_plan": "カード「働く人」の将来のキャリアとのつながりを読んで確認し、情報ブロック「仕事と働くこと」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "働く人の一日を調べ、感謝のメッセージを届ける活動を企画しよう。",
+      "lesson_plan": "【習得】 カード「働く人」の将来のキャリアとのつながりを読んで確認し、情報ブロック「仕事と働くこと」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 働く人の一日を調べ、感謝のメッセージを届ける活動を企画しよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 216,
+      "title": "仕事のやりがい",
+      "description": "がんばる価値・満足感を理解する。",
+      "career_relevance": "やりがいの泉を理解していると、仕事選びや転職の判断がしやすくなります。将来のキャリア満足度に直結する視点です。",
+      "image": "careerimg/row216_仕事のやりがい.png",
+      "perspective": "キャリアプランニング",
+      "blockId": "M",
+      "blockTitle": "仕事と働くこと",
+      "unitType": "トリセツ",
+      "shutoku_plan": "カード「仕事のやりがい」の将来のキャリアとのつながりを読んで確認し、情報ブロック「仕事と働くこと」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "やりがいを感じる瞬間を振り返り、自分の将来の仕事観トリセツを作ろう。",
+      "lesson_plan": "【習得】 カード「仕事のやりがい」の将来のキャリアとのつながりを読んで確認し、情報ブロック「仕事と働くこと」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 やりがいを感じる瞬間を振り返り、自分の将来の仕事観トリセツを作ろう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 217,
+      "title": "仕事の大変さ",
+      "description": "責任・時間・人間関係の難しさを知る。",
+      "career_relevance": "大変さを知らずに進路を選ぶとギャップで悩みやすくなります。困難も含めて理解する力は、現実的なキャリアプランに必要です。",
+      "image": "careerimg/row217_仕事の大変さ.png",
+      "perspective": "キャリアプランニング",
+      "blockId": "M",
+      "blockTitle": "仕事と働くこと",
+      "unitType": "モヤモヤ会議",
+      "shutoku_plan": "カード「仕事の大変さ」の将来のキャリアとのつながりを読んで確認し、情報ブロック「仕事と働くこと」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "仕事の大変さとやりがいの両面をケースで議論し、バランスの取れた見方を言語化しよう。",
+      "lesson_plan": "【習得】 カード「仕事の大変さ」の将来のキャリアとのつながりを読んで確認し、情報ブロック「仕事と働くこと」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：モヤモヤ会議】 仕事の大変さとやりがいの両面をケースで議論し、バランスの取れた見方を言語化しよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 218,
+      "title": "職業研究",
+      "description": "仕事の内容・必要な力を調べる。",
+      "career_relevance": "就活・進路選択では調査力が問われます。職業研究の方法は、生涯にわたるキャリア情報リテラシーの出発点です。",
+      "image": "careerimg/row218_職業研究.png",
+      "perspective": "キャリアプランニング",
+      "blockId": "N",
+      "blockTitle": "仕事を調べる",
+      "unitType": "お助け隊",
+      "shutoku_plan": "カード「職業研究」の将来のキャリアとのつながりを読んで確認し、情報ブロック「仕事を調べる」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "気になる職業を調べ、必要な力・1日の流れ・魅力をまとめた調査票を作ろう。",
+      "lesson_plan": "【習得】 カード「職業研究」の将来のキャリアとのつながりを読んで確認し、情報ブロック「仕事を調べる」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 気になる職業を調べ、必要な力・1日の流れ・魅力をまとめた調査票を作ろう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 219,
+      "title": "インタビュー",
+      "description": "働く人に直接聞く。",
+      "career_relevance": "聞く・質問する・記録する力は、就活面接や現場調査・営業など多方面で使えます。人から学ぶキャリア形成の技法です。",
+      "image": "careerimg/row219_インタビュー.png",
+      "perspective": "キャリアプランニング",
+      "blockId": "N",
+      "blockTitle": "仕事を調べる",
+      "unitType": "お助け隊",
+      "shutoku_plan": "カード「インタビュー」の将来のキャリアとのつながりを読んで確認し、情報ブロック「仕事を調べる」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "働く人へのインタビュー質問を作成し、聞き取り結果をクラスで共有しよう。",
+      "lesson_plan": "【習得】 カード「インタビュー」の将来のキャリアとのつながりを読んで確認し、情報ブロック「仕事を調べる」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 働く人へのインタビュー質問を作成し、聞き取り結果をクラスで共有しよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 220,
+      "title": "職場見学",
+      "description": "現場を見て体感する。",
+      "career_relevance": "現場を見る経験は、ネット情報だけでは得られないリアルな仕事理解につながります。進路選択の精度を高めます。",
+      "image": "careerimg/row220_職場見学.png",
+      "perspective": "キャリアプランニング",
+      "blockId": "N",
+      "blockTitle": "仕事を調べる",
+      "unitType": "お助け隊",
+      "shutoku_plan": "カード「職場見学」の将来のキャリアとのつながりを読んで確認し、情報ブロック「仕事を調べる」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "職場見学（または動画見学）の感想から、仕事のリアルを整理しよう。",
+      "lesson_plan": "【習得】 カード「職場見学」の将来のキャリアとのつながりを読んで確認し、情報ブロック「仕事を調べる」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 職場見学（または動画見学）の感想から、仕事のリアルを整理しよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 221,
+      "title": "ロールモデル",
+      "description": "目標にする先輩・大人を見つける。",
+      "career_relevance": "目標とする先輩・大人がいると、努力の方向が定まります。ロールモデルを見つける力は、キャリアの指南役を得る第一歩です。",
+      "image": "careerimg/row221_ロールモデル.png",
+      "perspective": "キャリアプランニング",
+      "blockId": "N",
+      "blockTitle": "仕事を調べる",
+      "unitType": "トリセツ",
+      "shutoku_plan": "カード「ロールモデル」の将来のキャリアとのつながりを読んで確認し、情報ブロック「仕事を調べる」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "ロールモデルから学びたいことを3つ挙げ、自分への応用メモを作ろう。",
+      "lesson_plan": "【習得】 カード「ロールモデル」の将来のキャリアとのつながりを読んで確認し、情報ブロック「仕事を調べる」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 ロールモデルから学びたいことを3つ挙げ、自分への応用メモを作ろう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 222,
+      "title": "適性",
+      "description": "自分に合いやすいことを考える。",
+      "career_relevance": "自分に合う道を知ることは、過重労働や不適合による離職を防ぎます。適性の考え方は、進路・配属・転職すべてに関わります。",
+      "image": "careerimg/row222_適性.png",
+      "perspective": "キャリアプランニング",
+      "blockId": "O",
+      "blockTitle": "自分と進路",
+      "unitType": "トリセツ",
+      "shutoku_plan": "カード「適性」の将来のキャリアとのつながりを読んで確認し、情報ブロック「自分と進路」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "自分の強み・興味と職業を結びつけ、適性マップを作成しよう。",
+      "lesson_plan": "【習得】 カード「適性」の将来のキャリアとのつながりを読んで確認し、情報ブロック「自分と進路」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 自分の強み・興味と職業を結びつけ、適性マップを作成しよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 223,
+      "title": "進路の選択肢",
+      "description": "進学・就職など、いくつもの道がある。",
+      "career_relevance": "一つの正解だけではありません。進路の幅を知る力は、学歴・就職・再学習など多様な人生設計の基礎です。",
+      "image": "careerimg/row223_進路の選択肢.png",
+      "perspective": "キャリアプランニング",
+      "blockId": "O",
+      "blockTitle": "自分と進路",
+      "unitType": "モヤモヤ会議",
+      "shutoku_plan": "カード「進路の選択肢」の将来のキャリアとのつながりを読んで確認し、情報ブロック「自分と進路」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "進路の選択肢（進学・仕事・その他）を整理し、それぞれの特徴を比較しよう。",
+      "lesson_plan": "【習得】 カード「進路の選択肢」の将来のキャリアとのつながりを読んで確認し、情報ブロック「自分と進路」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：モヤモヤ会議】 進路の選択肢（進学・仕事・その他）を整理し、それぞれの特徴を比較しよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 224,
+      "title": "強みの活かし方",
+      "description": "得意を将来につなげる。",
+      "career_relevance": "就活・配属面接で「強み」を語れないと不利になります。強みを活かす考え方は、キャリアの差別化戦略になります。",
+      "image": "careerimg/row224_強みの活かし方.png",
+      "perspective": "キャリアプランニング",
+      "blockId": "O",
+      "blockTitle": "自分と進路",
+      "unitType": "トリセツ",
+      "shutoku_plan": "カード「強みの活かし方」の将来のキャリアとのつながりを読んで確認し、情報ブロック「自分と進路」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "自分の強みを将来の活かし方に結びつけた『強み活用法』を書こう。",
+      "lesson_plan": "【習得】 カード「強みの活かし方」の将来のキャリアとのつながりを読んで確認し、情報ブロック「自分と進路」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 自分の強みを将来の活かし方に結びつけた『強み活用法』を書こう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 225,
+      "title": "目標設定",
+      "description": "具体的で達成可能な目標を決める。",
+      "career_relevance": "SMARTな目標とは、S（具体的）・M（測れる）・A（達成可能）・R（自分に意味がある）・T（期限がある）の5つをそろえた目標のことです。資格取得・就活・スキルアップの共通ツールであり、将来の自律的な学び続けに不可欠です。",
+      "image": "careerimg/row225_目標設定.png",
+      "perspective": "キャリアプランニング",
+      "blockId": "O",
+      "blockTitle": "自分と進路",
+      "unitType": "トリセツ",
+      "shutoku_plan": "カード「目標設定」の将来のキャリアとのつながりを読んで確認し、情報ブロック「自分と進路」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "SMARTな目標を1つ設定し、達成のための行動計画を立てよう。",
+      "lesson_plan": "【習得】 カード「目標設定」の将来のキャリアとのつながりを読んで確認し、情報ブロック「自分と進路」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 SMARTな目標を1つ設定し、達成のための行動計画を立てよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 226,
+      "title": "行動計画",
+      "description": "目標に向けたステップを立てる。",
+      "career_relevance": "目標を行動に落とせないと達成できません。行動計画は、大学受験・就活・プロジェクトなど実現の橋渡しになります。",
+      "image": "careerimg/row226_行動計画.png",
+      "perspective": "キャリアプランニング",
+      "blockId": "O",
+      "blockTitle": "自分と進路",
+      "unitType": "トリセツ",
+      "shutoku_plan": "カード「行動計画」の将来のキャリアとのつながりを読んで確認し、情報ブロック「自分と進路」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "目標達成までの行動計画を週単位で分解し、実行チェックリストを作ろう。",
+      "lesson_plan": "【習得】 カード「行動計画」の将来のキャリアとのつながりを読んで確認し、情報ブロック「自分と進路」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 目標達成までの行動計画を週単位で分解し、実行チェックリストを作ろう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 227,
+      "title": "社会人基礎力",
+      "description": "働くうえで大切な力の総称。",
+      "career_relevance": "経済産業省が提唱する「前に踏み出す力・考え抜く力・チームで働く力」は、多くの企業が採用・評価の基準にしています。就労の共通語です。",
+      "image": "careerimg/row227_社会人基礎力.png",
+      "perspective": "キャリアプランニング",
+      "blockId": "P",
+      "blockTitle": "社会で生きる力",
+      "unitType": "トリセツ",
+      "shutoku_plan": "カード「社会人基礎力」の将来のキャリアとのつながりを読んで確認し、情報ブロック「社会で生きる力」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "社会人基礎力の3要素を自分の学校生活の例と結びつけて整理しよう。",
+      "lesson_plan": "【習得】 カード「社会人基礎力」の将来のキャリアとのつながりを読んで確認し、情報ブロック「社会で生きる力」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 社会人基礎力の3要素を自分の学校生活の例と結びつけて整理しよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 228,
+      "title": "主体性",
+      "description": "自分から進んで動く。",
+      "career_relevance": "指示待ちだけでは評価が上がりにくい社会です。自分から動く力は、起業・リーダー・専門職すべてで求められます。",
+      "image": "careerimg/row228_主体性.png",
+      "perspective": "キャリアプランニング",
+      "blockId": "P",
+      "blockTitle": "社会で生きる力",
+      "unitType": "トリセツ",
+      "shutoku_plan": "カード「主体性」の将来のキャリアとのつながりを読んで確認し、情報ブロック「社会で生きる力」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "「待っていても変わらない」と気づいた場面を振り返り、主体性トリセツを作ろう。",
+      "lesson_plan": "【習得】 カード「主体性」の将来のキャリアとのつながりを読んで確認し、情報ブロック「社会で生きる力」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 「待っていても変わらない」と気づいた場面を振り返り、主体性トリセツを作ろう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 229,
+      "title": "報告・連絡・相談",
+      "description": "職場・学校での基本コミュニケーション。",
+      "career_relevance": "報連相は日本の職場文化の基本中の基本です。就労初日から必要なスキルであり、社会人基礎力の具体例です。",
+      "image": "careerimg/row229_報告・連絡・相談.png",
+      "perspective": "キャリアプランニング",
+      "blockId": "P",
+      "blockTitle": "社会で生きる力",
+      "unitType": "お助け隊",
+      "shutoku_plan": "カード「報告・連絡・相談」の将来のキャリアとのつながりを読んで確認し、情報ブロック「社会で生きる力」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "報連相が必要な場面をロールプレイし、うまくいく言い方例集を作ろう。",
+      "lesson_plan": "【習得】 カード「報告・連絡・相談」の将来のキャリアとのつながりを読んで確認し、情報ブロック「社会で生きる力」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 報連相が必要な場面をロールプレイし、うまくいく言い方例集を作ろう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 230,
+      "title": "時間厳守",
+      "description": "約束の時間を守る。",
+      "career_relevance": "遅刻・納期遅れは信頼失堕につながります。時間を守る力は、あらゆる仕事での基本的なプロフェッショナリズムです。",
+      "image": "careerimg/row230_時間厳守.png",
+      "perspective": "キャリアプランニング",
+      "blockId": "P",
+      "blockTitle": "社会で生きる力",
+      "unitType": "お助け隊",
+      "shutoku_plan": "カード「時間厳守」の将来のキャリアとのつながりを読んで確認し、情報ブロック「社会で生きる力」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "時間を守れなかった経験から、遅刻・延長を防ぐ自分のルールを決めよう。",
+      "lesson_plan": "【習得】 カード「時間厳守」の将来のキャリアとのつながりを読んで確認し、情報ブロック「社会で生きる力」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 時間を守れなかった経験から、遅刻・延長を防ぐ自分のルールを決めよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    },
+    {
+      "row": 231,
+      "title": "経済的自立",
+      "description": "自分の生活を支えるお金の基礎を学ぶ。",
+      "career_relevance": "将来、自分の生活を支える収入・支出・资産の考え方は、キャリア選択（給与・安定・地域）と密接です。経済的自立は社会人としての前提知識です。",
+      "image": "careerimg/row231_経済的自立.png",
+      "perspective": "キャリアプランニング",
+      "blockId": "P",
+      "blockTitle": "社会で生きる力",
+      "unitType": "モヤモヤ会議",
+      "shutoku_plan": "カード「経済的自立」の将来のキャリアとのつながりを読んで確認し、情報ブロック「社会で生きる力」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
+      "practice_plan": "お金と仕事・生活の関係をケースで考え、将来の経済的自立に向けた考えを言語化しよう。",
+      "lesson_plan": "【習得】 カード「経済的自立」の将来のキャリアとのつながりを読んで確認し、情報ブロック「社会で生きる力」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：モヤモヤ会議】 お金と仕事・生活の関係をケースで考え、将来の経済的自立に向けた考えを言語化しよう。",
+      "duration": "45分（習得15分＋実践30分）"
+    }
+  ]
+}
+</script>
+<!-- EMBED:lessons:END -->
+</head>
+<body>
+  <div id="export-area">
+    <div class="page-header">
+      <div class="page-header-title-wrap">
+        <h1 id="page-title"></h1>
+      </div>
+      <div class="page-header-banner">
+        <img src="careerimg/overview_banner.png" alt="" class="page-header-banner-img" id="page-header-banner-img">
+      </div>
+      <div class="page-header-text">
+        <p id="page-desc"></p>
+      </div>
+    </div>
+    <div id="overview"></div>
+  </div>
+  <div id="print-area" class="print-area" aria-hidden="true"></div>
+  <div class="toolbar toolbar--collapsed" id="toolbar">
+    <button type="button" id="toolbar-toggle" class="toolbar-toggle" aria-expanded="false" aria-controls="toolbar-panel">印刷・書き出し</button>
+    <div id="toolbar-panel" class="toolbar-panel">
+      <fieldset class="toolbar-print-mode">
+        <legend>印刷内容</legend>
+        <label><input type="radio" name="print-mode" value="card" checked> 学習カード</label>
+        <label><input type="radio" name="print-mode" value="lesson"> 学習案</label>
+      </fieldset>
+      <label class="toolbar-select-all"><input type="checkbox" id="print-select-all"> 印刷用に全選択</label>
+      <button type="button" id="btn-print-all" class="btn-print">すべて印刷</button>
+      <button type="button" id="btn-print-selected" class="btn-print" disabled>選択して印刷（0件）</button>
+      <button type="button" id="btn-export-overview"></button>
+      <span class="status" id="export-status"></span>
+    </div>
+  </div>
+  <div id="card-popup" class="card-popup" aria-hidden="true">
+    <div class="card-popup-backdrop" id="card-popup-backdrop"></div>
+    <div class="card-popup-sheet" role="dialog" aria-modal="true" aria-labelledby="card-popup-title">
+      <article class="study-card" id="card-popup-card">
+        <button type="button" class="card-popup-close" id="card-popup-close" aria-label="close">&times;</button>
+        <p id="card-popup-perspective" class="study-card-perspective"></p>
+        <figure class="study-card-figure">
+          <div class="study-card-img-wrap" id="card-popup-img-wrap"></div>
+        </figure>
+        <div class="study-card-body">
+          <h2 id="card-popup-title" class="study-card-title"></h2>
+          <p id="card-popup-section-label" class="study-card-section-label"></p>
+          <p id="card-popup-career" class="study-card-text"></p>
+        </div>
+        <p id="card-popup-block" class="study-card-block"></p>
+      </article>
+    </div>
+  </div>
+  <div id="lesson-popup" class="lesson-popup" aria-hidden="true">
+    <div class="lesson-popup-backdrop" id="lesson-popup-backdrop"></div>
+    <div class="lesson-popup-content" role="dialog" aria-modal="true" aria-labelledby="lesson-popup-title">
+      <button type="button" class="lesson-popup-close" id="lesson-popup-close" aria-label="close">&times;</button>
+      <div class="lesson-popup-inner">
+        <div class="lesson-popup-text">
+          <h2 id="lesson-popup-title" class="lesson-popup-title"></h2>
+          <div id="lesson-popup-meta" class="lesson-popup-meta"></div>
+          <div class="lesson-popup-block">
+            <p class="lesson-popup-label" id="lesson-popup-concept-label"></p>
+            <p id="lesson-popup-desc" class="lesson-popup-body"></p>
+          </div>
+          <div class="lesson-popup-block">
+            <p class="lesson-popup-label" id="lesson-popup-shutoku-label"></p>
+            <p id="lesson-popup-shutoku" class="lesson-popup-body"></p>
+          </div>
+          <div class="lesson-popup-block">
+            <p class="lesson-popup-label" id="lesson-popup-practice-label"></p>
+            <p id="lesson-popup-practice" class="lesson-popup-body"></p>
+          </div>
+        </div>
+        <div class="lesson-popup-image-wrap">
+          <img id="lesson-popup-image" class="lesson-popup-image" src="" alt="">
+          <div class="lesson-popup-block lesson-popup-career-block">
+            <p class="lesson-popup-label" id="lesson-popup-career-label"></p>
+            <p id="lesson-popup-career" class="lesson-popup-body"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- EMBED:js:START -->
+<script id="overview-js-embed">
+(function() {
+  var PERSPECTIVE_DEFS = [
+    {
+      key: "self",
+      legacy: ["自己理解"],
+      short: "自己理解",
+      official: "自己理解・自己管理能力",
+      color: "var(--col-self)"
+    },
+    {
+      key: "relation",
+      legacy: ["共感的人間関係"],
+      short: "共感的人間関係",
+      official: "人間関係形成・社会形成能力",
+      color: "var(--col-relation)"
+    },
+    {
+      key: "problem",
+      legacy: ["課題解決", "課題解決力"],
+      short: "課題解決",
+      official: "課題対応能力",
+      color: "var(--col-problem)"
+    },
+    {
+      key: "career",
+      legacy: ["キャリアプランニング", "キャリアプライニング"],
+      short: "キャリアプランニング",
+      official: "キャリアプランニング能力",
+      color: "var(--col-career)"
+    }
+  ];
+
+  var PERSPECTIVES = PERSPECTIVE_DEFS.map(function(d) {
+    return { key: d.key, short: d.short, official: d.official, color: d.color };
+  });
+
+  var LEGACY_TO_PERSP_KEY = {};
+  PERSPECTIVE_DEFS.forEach(function(d) {
+    LEGACY_TO_PERSP_KEY[d.short] = d.key;
+    LEGACY_TO_PERSP_KEY[d.official] = d.key;
+    d.legacy.forEach(function(label) {
+      LEGACY_TO_PERSP_KEY[label] = d.key;
+    });
+  });
+
+  var PERSP_CLASS = {
+    self: "persp-self",
+    relation: "persp-relation",
+    problem: "persp-problem",
+    career: "persp-career"
+  };
+
+  function resolvePerspectiveKey(name) {
+    if (!name) return "";
+    if (LEGACY_TO_PERSP_KEY[name]) return LEGACY_TO_PERSP_KEY[name];
+    return "";
+  }
+
+  function getPerspectiveDef(nameOrKey) {
+    var key = resolvePerspectiveKey(nameOrKey);
+    if (!key && PERSP_CLASS[nameOrKey]) key = nameOrKey;
+    for (var i = 0; i < PERSPECTIVE_DEFS.length; i++) {
+      if (PERSPECTIVE_DEFS[i].key === key) return PERSPECTIVE_DEFS[i];
+    }
+    return null;
+  }
+
+  function getPerspectiveShortLabel(nameOrKey) {
+    var def = getPerspectiveDef(nameOrKey);
+    if (def) return def.short;
+    return nameOrKey || "";
+  }
+
+  function getPerspectiveOfficialLabel(nameOrKey) {
+    var def = getPerspectiveDef(nameOrKey);
+    if (def) return def.official;
+    return "";
+  }
+
+  function getPerspectiveLabel(nameOrKey) {
+    var short = getPerspectiveShortLabel(nameOrKey);
+    var official = getPerspectiveOfficialLabel(nameOrKey);
+    if (official) return short + "\uff08" + official + "\uff09";
+    return short;
+  }
+
+  function fillPerspectiveLabel(el, nameOrKey) {
+    if (!el) return;
+    var short = getPerspectiveShortLabel(nameOrKey);
+    var official = getPerspectiveOfficialLabel(nameOrKey);
+    el.textContent = "";
+    el.appendChild(document.createTextNode(short));
+    if (official) {
+      var sub = document.createElement("span");
+      sub.className = "perspective-official";
+      sub.textContent = "\uff08" + official + "\uff09";
+      el.appendChild(sub);
+    }
+  }
+
+  function getPerspClass(nameOrKey) {
+    var key = resolvePerspectiveKey(nameOrKey);
+    if (!key && PERSP_CLASS[nameOrKey]) key = nameOrKey;
+    return PERSP_CLASS[key] || "";
+  }
+
+  var THUMB_SIZE = (function() {
+    var v = getComputedStyle(document.documentElement).getPropertyValue("--thumb-size");
+    var n = parseInt(v, 10);
+    return n > 0 ? n : 128;
+  })();
+  var INDEX_DISPLAY_SIZE = 220;
+  var DEFAULT_FONT_SIZE = 36;
+  var DEFAULT_LABEL_LEFT = 18;
+  var DEFAULT_LABEL_TOP = 40;
+  var DEFAULT_MAX_WIDTH = 70;
+  var FONT_FAMILY = '"Hiragino Maru Gothic ProN", "Hiragino Maru Gothic Pro", "UD Digi Kyokasho", "BIZ UDGothic", "M+ 1p", "Hiragino Sans", "Yu Gothic", sans-serif';
+  var CAREER_IMG_DIR = "careerimg/";
+
+  var lessonsByRow = {};
+  var cardPopupEl = document.getElementById("card-popup");
+  var cardPopupBackdrop = document.getElementById("card-popup-backdrop");
+  var cardPopupClose = document.getElementById("card-popup-close");
+  var cardPopupTitle = document.getElementById("card-popup-title");
+  var cardPopupPerspective = document.getElementById("card-popup-perspective");
+  var cardPopupSectionLabel = document.getElementById("card-popup-section-label");
+  var cardPopupCareer = document.getElementById("card-popup-career");
+  var cardPopupBlock = document.getElementById("card-popup-block");
+  var cardPopupImgWrap = document.getElementById("card-popup-img-wrap");
+  var cardPopupCard = document.getElementById("card-popup-card");
+  var cardPopupSheet = cardPopupEl ? cardPopupEl.querySelector(".card-popup-sheet") : null;
+  var TC_MIN_WIDTH = 320;
+  var TC_HEIGHT_RATIO = 7 / 5;
+  var CARD_FONT_SCALE_MIN = 0.38;
+  var popupEl = document.getElementById("lesson-popup");
+  var popupBackdrop = document.getElementById("lesson-popup-backdrop");
+  var popupClose = document.getElementById("lesson-popup-close");
+  var popupTitle = document.getElementById("lesson-popup-title");
+  var popupDesc = document.getElementById("lesson-popup-desc");
+  var popupConceptLabel = document.getElementById("lesson-popup-concept-label");
+  var popupMeta = document.getElementById("lesson-popup-meta");
+  var popupCareerLabel = document.getElementById("lesson-popup-career-label");
+  var popupCareer = document.getElementById("lesson-popup-career");
+  var popupShutokuLabel = document.getElementById("lesson-popup-shutoku-label");
+  var popupShutoku = document.getElementById("lesson-popup-shutoku");
+  var popupPracticeLabel = document.getElementById("lesson-popup-practice-label");
+  var popupPractice = document.getElementById("lesson-popup-practice");
+  var popupImage = document.getElementById("lesson-popup-image");
+  var popupContent = popupEl ? popupEl.querySelector(".lesson-popup-content") : null;
+
+  function careerImgSrc(file) {
+    var name = (file || "").replace(/^careerimg\//, "");
+    return CAREER_IMG_DIR + name;
+  }
+
+  var overviewEl = document.getElementById("overview");
+  var btnExport = document.getElementById("btn-export-overview");
+  var btnPrintAll = document.getElementById("btn-print-all");
+  var btnPrintSelected = document.getElementById("btn-print-selected");
+  var printSelectAll = document.getElementById("print-select-all");
+  var printAreaEl = document.getElementById("print-area");
+  var statusEl = document.getElementById("export-status");
+  var toolbarEl = document.getElementById("toolbar");
+  var toolbarToggle = document.getElementById("toolbar-toggle");
+  var PRINT_CARDS_PER_PAGE = 9;
+  var PRINT_LESSONS_PER_PAGE = 2;
+  var isPrinting = false;
+
+  document.title = "\u30ad\u30e3\u30ea\u30a2\u6559\u80b2\u60c5\u5831\u30d6\u30ed\u30c3\u30af";
+  var pageTitle = document.getElementById("page-title");
+  var pageDesc = document.getElementById("page-desc");
+  if (pageTitle) {
+    pageTitle.textContent = "\u30ad\u30e3\u30ea\u30a2\u6559\u80b2\u60c5\u5831\u30d6\u30ed\u30c3\u30af";
+  }
+  if (pageDesc) {
+    pageDesc.textContent = "\u300c\u81ea\u5206\u7406\u89e3\u300d\u300c\u5171\u611f\u7684\u4eba\u9593\u95a2\u4fc2\u300d\u300c\u8ab2\u984c\u89e3\u6c7a\u300d\u300c\u30ad\u30e3\u30ea\u30a2\u30d7\u30e9\u30f3\u30cb\u30f3\u30b0\u300d\u306e4\u8996\u70b9\u306b\u5206\u3051\u3066\u3001\u30ad\u30e3\u30ea\u30a2\u6559\u80b2\u3067\u5b66\u3076\u8981\u7d20\u3092\u4e00\u89a7\u3057\u305f\u30da\u30fc\u30b8\u3067\u3059\u3002\u53d6\u308a\u7d44\u307f\u305f\u3044\u30c6\u30fc\u30de\u3092\u9078\u3073\u3001\u5b66\u7fd2\u8a08\u753b\u306e\u53c2\u8003\u306b\u3057\u3066\u304f\u3060\u3055\u3044\u3002\u753b\u50cf\u3092\u30bf\u30c3\u30d7\u3059\u308b\u3068\u5b66\u7fd2\u30ab\u30fc\u30c9\u304c\u8868\u793a\u3055\u308c\u3001\u300c\u5b66\u7fd2\u6848\u300d\u30dc\u30bf\u30f3\u304b\u3089\u306f\u5b66\u7fd2\u306e\u9032\u3081\u65b9\u306e\u4f8b\u3092\u78ba\u8a8d\u3067\u304d\u307e\u3059\u3002";
+  }
+  if (cardPopupSectionLabel) {
+    cardPopupSectionLabel.textContent = "\u2728 \u5c06\u6765\u306e\u30ad\u30e3\u30ea\u30a2\u3068\u306e\u3064\u306a\u304c\u308a";
+  }
+  if (cardPopupClose) {
+    cardPopupClose.setAttribute("aria-label", "\u9589\u3058\u308b");
+  }
+  if (btnExport) {
+    btnExport.textContent = "\u4e00\u89a7\u8868\u3092PNG\u66f8\u304d\u51fa\u3057";
+  }
+
+  function assertCanExport() {
+    if (location.protocol === "file:") {
+      throw new Error("PNG\u66f8\u304d\u51fa\u3057\u306b\u306f\u30ed\u30fc\u30ab\u30eb\u30b5\u30fc\u30d0\u30fc\u304c\u5fc5\u8981\u3067\u3059\u3002\n\n\u30d5\u30a9\u30eb\u30c0\u5185\u306e serve.bat \u3092\u30c0\u30d6\u30eb\u30af\u30ea\u30c3\u30af\u3057\u3001\u958b\u3044\u305f\u30da\u30fc\u30b8\u304b\u3089\u66f8\u304d\u51fa\u3057\u3066\u304f\u3060\u3055\u3044\u3002");
+    }
+  }
+
+  function getSettings(file) {
+    var defaults = {
+      label: null,
+      fontSize: DEFAULT_FONT_SIZE,
+      left: DEFAULT_LABEL_LEFT,
+      top: DEFAULT_LABEL_TOP,
+      maxWidth: DEFAULT_MAX_WIDTH
+    };
+    try {
+      var raw = localStorage.getItem("illust_" + file);
+      if (raw) {
+        var parsed = JSON.parse(raw);
+        for (var k in parsed) {
+          if (Object.prototype.hasOwnProperty.call(parsed, k)) defaults[k] = parsed[k];
+        }
+      }
+    } catch (e) {}
+    return defaults;
+  }
+
+  function parseCategory(category) {
+    var m = category.match(/^(.+?)\s*\/\s*\u60c5\u5831\u30d6\u30ed\u30c3\u30af([A-P])\u300c(.+?)\u300d/);
+    if (!m) {
+      return {
+        perspective: getPerspectiveLabel(category),
+        legacyPerspective: category,
+        perspectiveKey: resolvePerspectiveKey(category),
+        blockId: "",
+        blockTitle: ""
+      };
+    }
+    return {
+      perspective: getPerspectiveLabel(m[1]),
+      legacyPerspective: m[1],
+      perspectiveKey: resolvePerspectiveKey(m[1]),
+      blockId: m[2],
+      blockTitle: m[3]
+    };
+  }
+
+  function groupData(items) {
+    var map = {};
+    PERSPECTIVE_DEFS.forEach(function(d) {
+      map[d.key] = { blocks: [], blockMap: {} };
+    });
+    items.forEach(function(item) {
+      var parsed = parseCategory(item.category);
+      var col = map[parsed.perspectiveKey];
+      if (!col) return;
+      var blockKey = parsed.blockId + parsed.blockTitle;
+      if (!col.blockMap[blockKey]) {
+        col.blockMap[blockKey] = {
+          blockId: parsed.blockId,
+          blockTitle: parsed.blockTitle,
+          items: []
+        };
+        col.blocks.push(col.blockMap[blockKey]);
+      }
+      col.blockMap[blockKey].items.push(item);
+    });
+    return map;
+  }
+
+  function renderLabeledCanvas(img, item, settings) {
+    var label = settings.label || item.label;
+    var fontSize = parseInt(settings.fontSize, 10) || DEFAULT_FONT_SIZE;
+    var left = parseInt(settings.left, 10) || DEFAULT_LABEL_LEFT;
+    var top = parseInt(settings.top, 10) || DEFAULT_LABEL_TOP;
+    var maxWidth = parseFloat(settings.maxWidth) || DEFAULT_MAX_WIDTH;
+
+    var c = document.createElement("canvas");
+    c.width = img.naturalWidth;
+    c.height = img.naturalHeight;
+    var ctx = c.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+
+    var scale = img.naturalWidth / INDEX_DISPLAY_SIZE;
+    var actualFontSize = Math.round(fontSize * scale);
+    ctx.font = "bold " + actualFontSize + "px " + FONT_FAMILY;
+    ctx.fillStyle = "#000";
+    ctx.strokeStyle = "#fff";
+    ctx.lineWidth = Math.max(2, Math.round(actualFontSize / 12));
+    ctx.textBaseline = "top";
+    ctx.textAlign = "left";
+
+    var lines = label.split("\n");
+    var lineHeight = actualFontSize * 1.4;
+    var scaledLeft = left * scale;
+    var scaledTop = top * scale;
+    var scaledMaxWidth = (INDEX_DISPLAY_SIZE * maxWidth / 100) * scale;
+    var currentY = scaledTop;
+
+    lines.forEach(function(line) {
+      if (line.trim() === "") {
+        currentY += lineHeight;
+        return;
+      }
+      var currentLine = "";
+      for (var i = 0; i < line.length; i++) {
+        var char = line[i];
+        var testLine = currentLine + char;
+        if (ctx.measureText(testLine).width > scaledMaxWidth && currentLine.length > 0) {
+          ctx.strokeText(currentLine, scaledLeft, currentY);
+          ctx.fillText(currentLine, scaledLeft, currentY);
+          currentLine = char;
+          currentY += lineHeight;
+        } else {
+          currentLine = testLine;
+        }
+      }
+      if (currentLine) {
+        ctx.strokeText(currentLine, scaledLeft, currentY);
+        ctx.fillText(currentLine, scaledLeft, currentY);
+        currentY += lineHeight;
+      }
+    });
+
+    return c;
+  }
+
+  function makeCell(item) {
+    var cell = document.createElement("div");
+    cell.className = "cell";
+    cell.dataset.row = String(item.row);
+
+    var printLabel = document.createElement("label");
+    printLabel.className = "cell-print-label";
+    var printCheck = document.createElement("input");
+    printCheck.type = "checkbox";
+    printCheck.className = "cell-print-check";
+    printCheck.dataset.row = String(item.row);
+    printLabel.appendChild(printCheck);
+    printLabel.appendChild(document.createTextNode("\u5370\u5237"));
+
+    var thumbBtn = document.createElement("button");
+    thumbBtn.type = "button";
+    thumbBtn.className = "cell-thumb";
+    thumbBtn.setAttribute("aria-label", item.label + " \u306e\u5b66\u7fd2\u30ab\u30fc\u30c9\u3092\u8868\u793a");
+
+    var canvas = document.createElement("canvas");
+    canvas.width = THUMB_SIZE;
+    canvas.height = THUMB_SIZE;
+    canvas.title = item.label;
+
+    var caption = document.createElement("div");
+    caption.className = "cell-caption";
+    caption.textContent = item.label;
+
+    var lessonBtn = document.createElement("button");
+    lessonBtn.type = "button";
+    lessonBtn.className = "cell-lesson-btn";
+    lessonBtn.textContent = "\u5b66\u7fd2\u6848";
+
+    thumbBtn.appendChild(canvas);
+    cell.appendChild(printLabel);
+    cell.appendChild(thumbBtn);
+    cell.appendChild(caption);
+    cell.appendChild(lessonBtn);
+
+    var img = new Image();
+    img.onload = function() {
+      var ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0, THUMB_SIZE, THUMB_SIZE);
+    };
+    img.onerror = function() {
+      var ctx = canvas.getContext("2d");
+      ctx.fillStyle = "#e8e8e8";
+      ctx.fillRect(0, 0, THUMB_SIZE, THUMB_SIZE);
+      ctx.fillStyle = "#888";
+      ctx.font = "12px sans-serif";
+      ctx.textAlign = "center";
+      ctx.fillText("\u753b\u50cf\u306a\u3057", THUMB_SIZE / 2, THUMB_SIZE / 2);
+    };
+    img.src = careerImgSrc(item.file);
+
+    function openItemCard() {
+      var lesson = lessonsByRow[item.row];
+      openCardPopup(getLessonForItem(item), item);
+    }
+    function openItemLesson(e) {
+      e.stopPropagation();
+      openLessonPopup(getLessonForItem(item), item);
+    }
+    thumbBtn.addEventListener("click", openItemCard);
+    lessonBtn.addEventListener("click", openItemLesson);
+    printCheck.addEventListener("change", updatePrintSelectionUI);
+
+    return cell;
+  }
+
+  function extractPracticeFromPlan(text, unitType) {
+    if (!text) return "";
+    var m = text.match(/\u3010\u5b9f\u8df5\uff1a[^\u3011]+\u3011\s*([\s\S]*)$/);
+    return m ? m[1].trim() : text;
+  }
+
+  function extractShutokuFromPlan(text) {
+    if (!text) return "";
+    var m = text.match(/\u3010\u7fd2\u5f97\u3011\s*([\s\S]*?)\u3010\u5b9f\u8df5\uff1a/);
+    return m ? m[1].trim() : text;
+  }
+
+  function resetStudyCardSize() {
+    if (!cardPopupCard) return;
+    cardPopupCard.style.width = "";
+    cardPopupCard.style.height = "";
+    cardPopupCard.style.setProperty("--card-font-scale", "1");
+    cardPopupCard.style.removeProperty("--tc-art-share");
+    if (cardPopupSheet) {
+      cardPopupSheet.style.width = "";
+      cardPopupSheet.style.transform = "";
+    }
+  }
+
+  function elementOverflows(el) {
+    if (!el) return false;
+    return el.scrollHeight > el.clientHeight + 1;
+  }
+
+  function studyCardOverflows(card) {
+    if (!card) return false;
+    var cardRect = card.getBoundingClientRect();
+    var blockEl = card.querySelector(".study-card-block");
+    var careerEl = card.querySelector(".study-card-text");
+    if (blockEl) {
+      var blockRect = blockEl.getBoundingClientRect();
+      if (blockRect.bottom > cardRect.bottom + 1) return true;
+    }
+    if (careerEl) {
+      var textRect = careerEl.getBoundingClientRect();
+      if (textRect.bottom > cardRect.bottom + 1) return true;
+    }
+    var body = card.querySelector(".study-card-body");
+    if (elementOverflows(body)) return true;
+    return elementOverflows(card);
+  }
+
+  function setCardFontScale(card, scale) {
+    if (!card) return;
+    scale = Math.max(CARD_FONT_SCALE_MIN, Math.min(1, scale));
+    card.style.setProperty("--card-font-scale", scale.toFixed(3));
+    void card.offsetHeight;
+  }
+
+  function shrinkCardFontsUntilFit(card) {
+    if (!studyCardOverflows(card)) {
+      setCardFontScale(card, 1);
+      return 1;
+    }
+    var lo = CARD_FONT_SCALE_MIN;
+    var hi = 1;
+    var best = CARD_FONT_SCALE_MIN;
+    for (var i = 0; i < 14; i++) {
+      var mid = (lo + hi) / 2;
+      setCardFontScale(card, mid);
+      if (studyCardOverflows(card)) {
+        hi = mid;
+      } else {
+        best = mid;
+        lo = mid;
+      }
+    }
+    setCardFontScale(card, best);
+    return best;
+  }
+
+  function setCardSize(card, w, sheet) {
+    if (!card) return;
+    w = Math.round(w);
+    card.style.width = w + "px";
+    card.style.height = Math.round(w * TC_HEIGHT_RATIO) + "px";
+    if (sheet) sheet.style.width = w + "px";
+    void card.offsetHeight;
+  }
+
+  function setCardArtShare(card, pct) {
+    if (!card) return;
+    card.style.setProperty("--tc-art-share", pct + "%");
+    void card.offsetHeight;
+  }
+
+  function resetCardLayout(card) {
+    if (!card) return;
+    card.style.width = "";
+    card.style.height = "";
+    card.style.setProperty("--card-font-scale", "1");
+    card.style.removeProperty("--tc-art-share");
+  }
+
+  function shrinkCardLayoutUntilFit(card) {
+    if (!card) return 1;
+    setCardArtShare(card, 55);
+    var scale = shrinkCardFontsUntilFit(card);
+    if (!studyCardOverflows(card)) return scale;
+    setCardArtShare(card, 50);
+    return shrinkCardFontsUntilFit(card);
+  }
+
+  function fitStudyCardSize() {
+    if (!cardPopupCard) return;
+    resetStudyCardSize();
+    var pad = 24;
+    var maxW = Math.floor(Math.min(window.innerWidth - pad, (window.innerHeight - pad) * 5 / 7));
+    maxW = Math.max(maxW, TC_MIN_WIDTH);
+
+    setCardSize(cardPopupCard, maxW, cardPopupSheet);
+    shrinkCardLayoutUntilFit(cardPopupCard);
+    if (!studyCardOverflows(cardPopupCard)) return;
+
+    var w = maxW;
+    while (studyCardOverflows(cardPopupCard) && w < 960) {
+      w += 16;
+      setCardSize(cardPopupCard, w, cardPopupSheet);
+      shrinkCardLayoutUntilFit(cardPopupCard);
+    }
+    var finalW = cardPopupCard.offsetWidth;
+    var finalH = cardPopupCard.offsetHeight;
+    var scale = Math.min(
+      1,
+      (window.innerWidth - pad) / finalW,
+      (window.innerHeight - pad) / finalH
+    );
+    if (cardPopupSheet && scale < 0.999) {
+      cardPopupSheet.style.transform = "scale(" + scale + ")";
+    }
+  }
+
+  function scheduleFitStudyCardSize() {
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() {
+        fitStudyCardSize();
+        requestAnimationFrame(fitStudyCardSize);
+      });
+    });
+  }
+
+  function getCardMeta(lesson, item) {
+    var parsed = parseCategory(item.category || "");
+    var rawPersp = lesson.perspective || parsed.legacyPerspective || "";
+    var blockId = lesson.blockId || parsed.blockId || "";
+    var blockTitle = lesson.blockTitle || parsed.blockTitle || "";
+    var blockLabel = blockTitle
+      ? "\u30d6\u30ed\u30c3\u30af" + blockId + "\u300c" + blockTitle + "\u300d"
+      : "";
+    return {
+      rawPersp: rawPersp,
+      perspClass: getPerspClass(rawPersp),
+      blockLabel: blockLabel
+    };
+  }
+
+  function buildStudyCardElement(lesson, item, forPrint) {
+    var meta = getCardMeta(lesson, item);
+    var article = document.createElement("article");
+    article.className = "study-card " + (forPrint ? "print-study-card " : "") + (meta.perspClass || "");
+
+    var perspectiveEl = document.createElement("p");
+    perspectiveEl.className = "study-card-perspective";
+    fillPerspectiveLabel(perspectiveEl, meta.rawPersp);
+
+    var figure = document.createElement("figure");
+    figure.className = "study-card-figure";
+    var imgWrap = document.createElement("div");
+    imgWrap.className = "study-card-img-wrap";
+
+    var body = document.createElement("div");
+    body.className = "study-card-body";
+
+    var titleEl = document.createElement("h2");
+    titleEl.className = "study-card-title";
+    titleEl.textContent = lesson.title || item.label;
+
+    var sectionLabel = document.createElement("p");
+    sectionLabel.className = "study-card-section-label";
+    sectionLabel.textContent = "\u2728 \u5c06\u6765\u306e\u30ad\u30e3\u30ea\u30a2\u3068\u306e\u3064\u306a\u304c\u308a";
+
+    var careerEl = document.createElement("p");
+    careerEl.className = "study-card-text";
+    var careerText = lesson.career_relevance || "";
+    if (!careerText && lessonsByRow[item.row]) {
+      careerText = lessonsByRow[item.row].career_relevance || "";
+    }
+    careerEl.textContent = careerText;
+
+    var blockEl = document.createElement("p");
+    blockEl.className = "study-card-block";
+    blockEl.textContent = meta.blockLabel;
+
+    figure.appendChild(imgWrap);
+    body.appendChild(titleEl);
+    body.appendChild(sectionLabel);
+    body.appendChild(careerEl);
+    article.appendChild(perspectiveEl);
+    article.appendChild(figure);
+    article.appendChild(body);
+    article.appendChild(blockEl);
+
+    return { article: article, imgWrap: imgWrap };
+  }
+
+  function loadStudyCardImage(imgWrap, lesson, item) {
+    return new Promise(function(resolve) {
+      var img = new Image();
+      var settled = false;
+      function done(success) {
+        if (settled) return;
+        settled = true;
+        imgWrap.innerHTML = "";
+        if (success) {
+          imgWrap.appendChild(img);
+        } else {
+          imgWrap.innerHTML = '<div class="study-card-img study-card-img--missing">\u753b\u50cf\u304c\u3042\u308a\u307e\u305b\u3093</div>';
+        }
+        resolve();
+      }
+      img.alt = lesson.title || item.label;
+      img.className = "study-card-img";
+      img.onload = function() { done(true); };
+      img.onerror = function() { done(false); };
+      img.src = lesson.image || careerImgSrc(item.file);
+    });
+  }
+
+  function getOrderedItems(filterFn) {
+    var grouped = groupData(window.CAREER_DATA);
+    var items = [];
+    PERSPECTIVES.forEach(function(p) {
+      grouped[p.key].blocks.forEach(function(block) {
+        block.items.forEach(function(item) {
+          if (!filterFn || filterFn(item)) items.push(item);
+        });
+      });
+    });
+    return items;
+  }
+
+  function getPrintCheckboxes() {
+    return Array.prototype.slice.call(document.querySelectorAll(".cell-print-check"));
+  }
+
+  function getSelectedPrintItems() {
+    var selectedRows = {};
+    getPrintCheckboxes().forEach(function(cb) {
+      if (cb.checked) selectedRows[cb.dataset.row] = true;
+    });
+    return getOrderedItems(function(item) {
+      return !!selectedRows[String(item.row)];
+    });
+  }
+
+  function updatePrintSelectionUI() {
+    var boxes = getPrintCheckboxes();
+    var selectedCount = boxes.filter(function(cb) { return cb.checked; }).length;
+    if (btnPrintSelected) {
+      btnPrintSelected.disabled = selectedCount === 0;
+      btnPrintSelected.textContent = "\u9078\u629e\u3057\u3066\u5370\u5237\uff08" + selectedCount + "\u4ef6\uff09";
+    }
+    if (printSelectAll) {
+      printSelectAll.checked = boxes.length > 0 && selectedCount === boxes.length;
+      printSelectAll.indeterminate = selectedCount > 0 && selectedCount < boxes.length;
+    }
+    boxes.forEach(function(cb) {
+      var cell = cb.closest(".cell");
+      if (cell) cell.classList.toggle("is-print-selected", cb.checked);
+    });
+  }
+
+  function chunkItems(items, size) {
+    var chunks = [];
+    for (var i = 0; i < items.length; i += size) {
+      chunks.push(items.slice(i, i + size));
+    }
+    return chunks;
+  }
+
+  function fitPrintCardInSlot(card, slot) {
+    if (!card || !slot) return;
+    resetCardLayout(card);
+    var w = slot.clientWidth;
+    var h = slot.clientHeight;
+    if (w < 1) w = 228;
+    if (h < 1) h = Math.round(w * TC_HEIGHT_RATIO);
+    var cardH = w * TC_HEIGHT_RATIO;
+    if (cardH > h) {
+      w = Math.floor(h / TC_HEIGHT_RATIO);
+    }
+    setCardSize(card, w);
+    shrinkCardLayoutUntilFit(card);
+  }
+
+  function fitAllPrintCards() {
+    if (!printAreaEl) return;
+    var slots = printAreaEl.querySelectorAll(".print-card-slot");
+    for (var i = 0; i < slots.length; i++) {
+      fitPrintCardInSlot(slots[i].querySelector(".study-card"), slots[i]);
+    }
+  }
+
+  function waitForPrintLayout() {
+    return new Promise(function(resolve) {
+      if (printAreaEl) printAreaEl.classList.add("print-area--layout");
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          resolve();
+        });
+      });
+    });
+  }
+
+  function getPrintMode() {
+    var checked = document.querySelector('input[name="print-mode"]:checked');
+    return checked && checked.value === "lesson" ? "lesson" : "card";
+  }
+
+  function getLessonForItem(item) {
+    var lesson = lessonsByRow[item.row];
+    if (lesson) return lesson;
+    var parsed = parseCategory(item.category || "");
+    return {
+      title: item.label,
+      description: item.desc || "",
+      career_relevance: "",
+      perspective: parsed.perspective,
+      blockId: parsed.blockId,
+      blockTitle: parsed.blockTitle,
+      unitType: "",
+      duration: "",
+      shutoku_plan: "",
+      practice_plan: "",
+      lesson_plan: ""
+    };
+  }
+
+  function appendLessonPopupBlock(parent, label, text, extraClass) {
+    var block = document.createElement("div");
+    block.className = "lesson-popup-block" + (extraClass ? " " + extraClass : "");
+    var labelEl = document.createElement("p");
+    labelEl.className = "lesson-popup-label";
+    labelEl.textContent = label;
+    var bodyEl = document.createElement("p");
+    bodyEl.className = "lesson-popup-body";
+    bodyEl.textContent = text || "";
+    block.appendChild(labelEl);
+    block.appendChild(bodyEl);
+    parent.appendChild(block);
+  }
+
+  function loadLessonPopupImage(container, lesson, item) {
+    return new Promise(function(resolve) {
+      var settled = false;
+      var img = document.createElement("img");
+      function done(success) {
+        if (settled) return;
+        settled = true;
+        container.innerHTML = "";
+        if (success) {
+          container.appendChild(img);
+        } else {
+          var missing = document.createElement("div");
+          missing.className = "lesson-popup-image lesson-popup-image--missing";
+          missing.textContent = "\u753b\u50cf\u304c\u3042\u308a\u307e\u305b\u3093";
+          container.appendChild(missing);
+        }
+        resolve();
+      }
+      img.className = "lesson-popup-image";
+      img.alt = lesson.title || item.label;
+      img.onload = function() { done(true); };
+      img.onerror = function() { done(false); };
+      img.src = lesson.image || careerImgSrc(item.file);
+    });
+  }
+
+  function buildLessonPrintSheet(lesson, item) {
+    var parsed = parseCategory(item.category || "");
+    var rawPersp = lesson.perspective || parsed.legacyPerspective || "";
+    var sheet = document.createElement("article");
+    sheet.className = "print-lesson-sheet lesson-popup-content " + getPerspClass(rawPersp);
+
+    var inner = document.createElement("div");
+    inner.className = "lesson-popup-inner print-lesson-inner";
+
+    var textCol = document.createElement("div");
+    textCol.className = "lesson-popup-text";
+
+    var titleEl = document.createElement("h2");
+    titleEl.className = "lesson-popup-title";
+    titleEl.textContent = lesson.title || item.label;
+
+    var metaEl = document.createElement("div");
+    metaEl.className = "lesson-popup-meta";
+    fillMeta(metaEl, lesson);
+
+    textCol.appendChild(titleEl);
+    textCol.appendChild(metaEl);
+    appendLessonPopupBlock(
+      textCol,
+      "\u5b66\u7fd2\u5185\u5bb9\uff08\u6982\u5ff5\uff09",
+      lesson.description || item.desc || ""
+    );
+    appendLessonPopupBlock(
+      textCol,
+      "\u7fd2\u5f9715\u5206\uff1a\u5fc5\u8981\u6027\u3092\u77e5\u308b",
+      lesson.shutoku_plan || extractShutokuFromPlan(lesson.lesson_plan || "")
+    );
+    appendLessonPopupBlock(
+      textCol,
+      "\u5b9f\u8df530\u5206\uff1a" + (lesson.unitType || ""),
+      lesson.practice_plan || extractPracticeFromPlan(lesson.lesson_plan || "", lesson.unitType)
+    );
+
+    var imageCol = document.createElement("div");
+    imageCol.className = "lesson-popup-image-wrap";
+    var imgHost = document.createElement("div");
+    imgHost.className = "print-lesson-img-host";
+    imageCol.appendChild(imgHost);
+    appendLessonPopupBlock(
+      imageCol,
+      "\u5c06\u6765\u306e\u30ad\u30e3\u30ea\u30a2\u3068\u306e\u3064\u306a\u304c\u308a",
+      lesson.career_relevance || "",
+      "lesson-popup-career-block"
+    );
+
+    inner.appendChild(textCol);
+    inner.appendChild(imageCol);
+    sheet.appendChild(inner);
+
+    return { sheet: sheet, imgHost: imgHost, lesson: lesson, item: item };
+  }
+
+  async function buildCardPrintArea(items) {
+    if (!printAreaEl) return;
+    printAreaEl.className = "print-area print-area--card";
+    printAreaEl.innerHTML = "";
+    var pages = chunkItems(items, PRINT_CARDS_PER_PAGE);
+    for (var pi = 0; pi < pages.length; pi++) {
+      var pageEl = document.createElement("div");
+      pageEl.className = "print-page";
+      var grid = document.createElement("div");
+      grid.className = "print-grid";
+      var loadTasks = [];
+      pages[pi].forEach(function(item) {
+        var lesson = getLessonForItem(item);
+        var built = buildStudyCardElement(lesson, item, true);
+        var slot = document.createElement("div");
+        slot.className = "print-card-slot";
+        slot.appendChild(built.article);
+        grid.appendChild(slot);
+        loadTasks.push(loadStudyCardImage(built.imgWrap, lesson, item));
+      });
+      await Promise.all(loadTasks);
+      pageEl.appendChild(grid);
+      printAreaEl.appendChild(pageEl);
+    }
+    await waitForPrintLayout();
+    fitAllPrintCards();
+    await waitForPrintLayout();
+    printAreaEl.setAttribute("aria-hidden", "false");
+  }
+
+  async function buildLessonPrintArea(items) {
+    if (!printAreaEl) return;
+    printAreaEl.className = "print-area print-area--lesson";
+    printAreaEl.innerHTML = "";
+    var pages = chunkItems(items, PRINT_LESSONS_PER_PAGE);
+    var loadTasks = [];
+    for (var pi = 0; pi < pages.length; pi++) {
+      var a4Sheet = document.createElement("div");
+      a4Sheet.className = "print-a4-sheet";
+      pages[pi].forEach(function(item) {
+        var lesson = getLessonForItem(item);
+        var built = buildLessonPrintSheet(lesson, item);
+        a4Sheet.appendChild(built.sheet);
+        loadTasks.push(loadLessonPopupImage(built.imgHost, built.lesson, built.item));
+      });
+      printAreaEl.appendChild(a4Sheet);
+    }
+    await Promise.all(loadTasks);
+    await waitForPrintLayout();
+    printAreaEl.setAttribute("aria-hidden", "false");
+  }
+
+  async function buildPrintArea(items, mode) {
+    if (mode === "lesson") {
+      await buildLessonPrintArea(items);
+    } else {
+      await buildCardPrintArea(items);
+    }
+  }
+
+  function clearPrintArea() {
+    if (!printAreaEl) return;
+    printAreaEl.innerHTML = "";
+    printAreaEl.className = "print-area";
+    printAreaEl.classList.remove("print-area--layout");
+    printAreaEl.setAttribute("aria-hidden", "true");
+  }
+
+  async function runPrint(items) {
+    var mode = getPrintMode();
+    var emptyMsg = mode === "lesson"
+      ? "\u5370\u5237\u3059\u308b\u5b66\u7fd2\u6848\u3092\u9078\u3093\u3067\u304f\u3060\u3055\u3044\u3002"
+      : "\u5370\u5237\u3059\u308b\u30ab\u30fc\u30c9\u3092\u9078\u3093\u3067\u304f\u3060\u3055\u3044\u3002";
+    if (!items.length) {
+      alert(emptyMsg);
+      return;
+    }
+    if (isPrinting) return;
+    isPrinting = true;
+    if (statusEl) {
+      statusEl.textContent = mode === "lesson" ? "\u5b66\u7fd2\u6848\u5370\u5237\u6e96\u5099\u4e2d\u2026" : "\u30ab\u30fc\u30c9\u5370\u5237\u6e96\u5099\u4e2d\u2026";
+    }
+    try {
+      await buildPrintArea(items, mode);
+      if (printAreaEl) printAreaEl.classList.add("print-area--layout");
+      await waitForPrintLayout();
+      if (mode === "card") fitAllPrintCards();
+      await new Promise(function(resolve) {
+        var done = false;
+        function finish() {
+          if (done) return;
+          done = true;
+          clearPrintArea();
+          if (statusEl) statusEl.textContent = "";
+          isPrinting = false;
+          resolve();
+        }
+        window.addEventListener("afterprint", finish, { once: true });
+        setTimeout(function() { window.print(); }, 50);
+        setTimeout(finish, 60000);
+      });
+    } catch (e) {
+      clearPrintArea();
+      if (statusEl) statusEl.textContent = "";
+      isPrinting = false;
+      alert(e.message || "\u5370\u5237\u306b\u5931\u6557\u3057\u307e\u3057\u305f\u3002");
+    }
+  }
+
+  function fillMeta(el, lesson) {
+    if (!el) return;
+    el.textContent = "";
+    fillPerspectiveLabel(el, lesson.perspective || "");
+    el.appendChild(document.createTextNode(
+      " / \u60c5\u5831\u30d6\u30ed\u30c3\u30af" + (lesson.blockId || "") + "\u300c" + (lesson.blockTitle || "") + "\u300d" +
+      " \u30fb " + (lesson.unitType || "") + " \u30fb " + (lesson.duration || "")
+    ));
+  }
+
+  function openCardPopup(lesson, item) {
+    if (!cardPopupEl) return;
+    closeLessonPopup();
+    var meta = getCardMeta(lesson, item);
+    cardPopupTitle.textContent = lesson.title || item.label;
+    if (cardPopupPerspective) {
+      fillPerspectiveLabel(cardPopupPerspective, meta.rawPersp);
+    }
+    if (cardPopupBlock) {
+      cardPopupBlock.textContent = meta.blockLabel;
+    }
+    var careerText = lesson.career_relevance || "";
+    if (!careerText && lessonsByRow[item.row]) {
+      careerText = lessonsByRow[item.row].career_relevance || "";
+    }
+    cardPopupCareer.textContent = careerText;
+    if (cardPopupCard) {
+      cardPopupCard.className = "study-card " + (meta.perspClass || "");
+    }
+    if (cardPopupImgWrap) {
+      cardPopupImgWrap.innerHTML = "";
+      loadStudyCardImage(cardPopupImgWrap, lesson, item).then(function() {
+        scheduleFitStudyCardSize();
+      });
+    } else {
+      scheduleFitStudyCardSize();
+    }
+    cardPopupEl.classList.add("is-open");
+    cardPopupEl.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+    if (cardPopupClose) cardPopupClose.focus();
+  }
+
+  function closeCardPopup() {
+    if (!cardPopupEl) return;
+    cardPopupEl.classList.remove("is-open");
+    cardPopupEl.setAttribute("aria-hidden", "true");
+    resetStudyCardSize();
+    document.body.style.overflow = "";
+    document.documentElement.style.overflow = "";
+  }
+
+  function openLessonPopup(lesson, item) {
+    if (!popupEl) return;
+    closeCardPopup();
+    popupTitle.textContent = lesson.title || item.label;
+    if (popupConceptLabel) {
+      popupConceptLabel.textContent = "\u5b66\u7fd2\u5185\u5bb9\uff08\u6982\u5ff5\uff09";
+    }
+    popupDesc.textContent = lesson.description || item.desc || "";
+    fillMeta(popupMeta, lesson);
+    popupCareerLabel.textContent = "\u5c06\u6765\u306e\u30ad\u30e3\u30ea\u30a2\u3068\u306e\u3064\u306a\u304c\u308a";
+    popupCareer.textContent = lesson.career_relevance || "";
+    popupShutokuLabel.textContent = "\u7fd2\u5f9715\u5206\uff1a\u5fc5\u8981\u6027\u3092\u77e5\u308b";
+    popupShutoku.textContent =
+      lesson.shutoku_plan ||
+      extractShutokuFromPlan(lesson.lesson_plan || "");
+    popupPracticeLabel.textContent =
+      "\u5b9f\u8df530\u5206\uff1a" + (lesson.unitType || "");
+    popupPractice.textContent =
+      lesson.practice_plan ||
+      extractPracticeFromPlan(lesson.lesson_plan || "", lesson.unitType);
+    popupImage.src = lesson.image || careerImgSrc(item.file);
+    popupImage.alt = lesson.title || item.label;
+    if (popupContent) {
+      popupContent.className = "lesson-popup-content " + getPerspClass(lesson.perspective || "");
+    }
+    popupEl.classList.add("is-open");
+    popupEl.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    if (popupClose) popupClose.focus();
+  }
+
+  function closeLessonPopup() {
+    if (!popupEl) return;
+    popupEl.classList.remove("is-open");
+    popupEl.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+
+  if (cardPopupBackdrop) cardPopupBackdrop.addEventListener("click", closeCardPopup);
+  if (cardPopupClose) cardPopupClose.addEventListener("click", closeCardPopup);
+  if (popupBackdrop) popupBackdrop.addEventListener("click", closeLessonPopup);
+  if (popupClose) popupClose.addEventListener("click", closeLessonPopup);
+  document.addEventListener("keydown", function(e) {
+    if (e.key !== "Escape") return;
+    if (cardPopupEl && cardPopupEl.classList.contains("is-open")) {
+      closeCardPopup();
+    } else if (popupEl && popupEl.classList.contains("is-open")) {
+      closeLessonPopup();
+    }
+  });
+
+  function buildOverview() {
+    var grouped = groupData(window.CAREER_DATA);
+    PERSPECTIVES.forEach(function(p) {
+      var col = document.createElement("section");
+      col.className = "perspective-col";
+
+      var head = document.createElement("div");
+      head.className = "perspective-head";
+      head.style.background = p.color;
+      fillPerspectiveLabel(head, p.key);
+
+      var body = document.createElement("div");
+      body.className = "perspective-body";
+
+      grouped[p.key].blocks.forEach(function(block) {
+        var section = document.createElement("div");
+        section.className = "block-section";
+
+        var title = document.createElement("div");
+        title.className = "block-title";
+        title.textContent = "\u30d6\u30ed\u30c3\u30af" + block.blockId + "\u300c" + block.blockTitle + "\u300d";
+
+        var grid = document.createElement("div");
+        grid.className = "items-grid";
+        block.items.forEach(function(item) {
+          grid.appendChild(makeCell(item));
+        });
+
+        section.appendChild(title);
+        section.appendChild(grid);
+        body.appendChild(section);
+      });
+
+      col.appendChild(head);
+      col.appendChild(body);
+      overviewEl.appendChild(col);
+    });
+  }
+
+  btnExport.addEventListener("click", function() {
+    if (!window.CAREER_DATA || !window.CAREER_DATA.length) {
+      alert("\u30c7\u30fc\u30bf\u306e\u8aad\u307f\u8fbc\u307f\u306b\u5931\u6557\u3057\u307e\u3057\u305f\u3002");
+      return;
+    }
+    btnExport.disabled = true;
+    statusEl.textContent = "\u751f\u6210\u4e2d\u2026";
+    exportOverviewPng().then(function() {
+      statusEl.textContent = "\u66f8\u304d\u51fa\u3057\u5b8c\u4e86";
+      btnExport.disabled = false;
+    }).catch(function(e) {
+      statusEl.textContent = "\u5931\u6557";
+      alert(e.message || "\u66f8\u304d\u51fa\u3057\u306b\u5931\u6557\u3057\u307e\u3057\u305f\u3002");
+      btnExport.disabled = false;
+    });
+  });
+
+  if (btnPrintAll) {
+    btnPrintAll.addEventListener("click", function() {
+      runPrint(getOrderedItems());
+    });
+  }
+  if (btnPrintSelected) {
+    btnPrintSelected.addEventListener("click", function() {
+      runPrint(getSelectedPrintItems());
+    });
+  }
+  if (printSelectAll) {
+    printSelectAll.addEventListener("change", function() {
+      var checked = printSelectAll.checked;
+      getPrintCheckboxes().forEach(function(cb) {
+        cb.checked = checked;
+      });
+      updatePrintSelectionUI();
+    });
+  }
+  if (toolbarToggle && toolbarEl) {
+    toolbarToggle.addEventListener("click", function() {
+      var collapsed = toolbarEl.classList.toggle("toolbar--collapsed");
+      toolbarToggle.setAttribute("aria-expanded", collapsed ? "false" : "true");
+      toolbarToggle.textContent = collapsed ? "\u5370\u5237\u30fb\u66f8\u304d\u51fa\u3057" : "\u9589\u3058\u308b";
+    });
+  }
+
+  function loadImage(src) {
+    return new Promise(function(resolve, reject) {
+      var img = new Image();
+      img.onload = function() { resolve(img); };
+      img.onerror = function() { reject(new Error(src)); };
+      img.src = src;
+    });
+  }
+
+  function downloadBlob(blob, filename) {
+    return new Promise(function(resolve, reject) {
+      if (!blob) {
+        reject(new Error("\u753b\u50cf\u30c7\u30fc\u30bf\u3092\u751f\u6210\u3067\u304d\u307e\u305b\u3093\u3067\u3057\u305f\u3002"));
+        return;
+      }
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      a.style.display = "none";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(function() { URL.revokeObjectURL(url); resolve(); }, 500);
+    });
+  }
+
+  function measureColumn(grouped, perspectiveKey) {
+    var COL_W = 360;
+    var HEADER_H = 64;
+    var BLOCK_TITLE_H = 24;
+    var THUMB = 100;
+    var CELL_H = 118;
+    var BLOCK_GAP = 12;
+    var y = HEADER_H;
+    grouped[perspectiveKey].blocks.forEach(function(block) {
+      y += BLOCK_TITLE_H;
+      var rows = Math.ceil(block.items.length / 2);
+      y += rows * CELL_H + BLOCK_GAP;
+    });
+    return y + 16;
+  }
+
+  function fillPerspectiveHeader(ctx, short, official, centerX, topY, maxWidth) {
+    ctx.textAlign = "center";
+    ctx.font = "bold 13px sans-serif";
+    if (!official) {
+      ctx.fillText(short, centerX, topY + 8);
+      return;
+    }
+    var officialText = "\uff08" + official + "\uff09";
+    ctx.font = "10px sans-serif";
+    var officialW = ctx.measureText(officialText).width;
+    ctx.font = "bold 13px sans-serif";
+    var shortW = ctx.measureText(short).width;
+    if (shortW + officialW <= maxWidth) {
+      var x = centerX - (shortW + officialW) / 2;
+      ctx.textAlign = "left";
+      ctx.fillText(short, x, topY + 8);
+      ctx.font = "10px sans-serif";
+      ctx.fillText(officialText, x + shortW, topY + 8);
+      return;
+    }
+    ctx.textAlign = "center";
+    ctx.font = "bold 13px sans-serif";
+    ctx.fillText(short, centerX, topY);
+    ctx.font = "10px sans-serif";
+    ctx.fillText(officialText, centerX, topY + 14);
+  }
+
+  async function exportOverviewPng() {
+    assertCanExport();
+    var grouped = groupData(window.CAREER_DATA);
+    var COL_W = 360;
+    var GAP = 12;
+    var PAD = 20;
+    var HEADER_H = 64;
+    var BLOCK_TITLE_H = 24;
+    var THUMB = 100;
+    var CELL_H = 118;
+    var BLOCK_GAP = 12;
+    var colors = ["#5b9bd5", "#70ad47", "#ffc000", "#ed7d31"];
+    var heights = PERSPECTIVES.map(function(p) { return measureColumn(grouped, p.key); });
+    var totalH = Math.max.apply(null, heights) + PAD * 2 + 60;
+    var totalW = PAD * 2 + COL_W * 4 + GAP * 3;
+
+    var canvas = document.createElement("canvas");
+    canvas.width = totalW;
+    canvas.height = totalH;
+    var ctx = canvas.getContext("2d");
+    ctx.fillStyle = "#eeeeee";
+    ctx.fillRect(0, 0, totalW, totalH);
+
+    ctx.fillStyle = "#333";
+    ctx.font = "bold 22px " + FONT_FAMILY.replace(/"/g, "");
+    ctx.textAlign = "center";
+    ctx.fillText("\u30ad\u30e3\u30ea\u30a2\u6559\u80b2 \u5b66\u7fd2\u5185\u5bb9\u30a4\u30e9\u30b9\u30c8 \u4e00\u89a7\u8868\uff084\u8996\u70b9\uff09", totalW / 2, PAD + 18);
+
+    for (var pi = 0; pi < PERSPECTIVES.length; pi++) {
+      var p = PERSPECTIVES[pi];
+      var x0 = PAD + pi * (COL_W + GAP);
+      var y = PAD + 40;
+
+      ctx.fillStyle = colors[pi];
+      ctx.fillRect(x0, y, COL_W, HEADER_H);
+      ctx.fillStyle = "#fff";
+      fillPerspectiveHeader(ctx, p.short, p.official, x0 + COL_W / 2, y + 14, COL_W - 16);
+      y += HEADER_H;
+
+      ctx.fillStyle = "#fff";
+      ctx.fillRect(x0, y, COL_W, heights[pi] - HEADER_H - 40);
+
+      for (var bi = 0; bi < grouped[p.key].blocks.length; bi++) {
+        var block = grouped[p.key].blocks[bi];
+        ctx.fillStyle = "#f5f5f5";
+        ctx.fillRect(x0 + 8, y + 4, COL_W - 16, BLOCK_TITLE_H);
+        ctx.fillStyle = "#444";
+        ctx.font = "bold 11px sans-serif";
+        ctx.textAlign = "left";
+        ctx.fillText("\u30d6\u30ed\u30c3\u30af" + block.blockId + "\u300c" + block.blockTitle + "\u300d", x0 + 14, y + 20);
+        y += BLOCK_TITLE_H;
+
+        for (var ii = 0; ii < block.items.length; ii++) {
+          var item = block.items[ii];
+          var col = ii % 2;
+          var row = Math.floor(ii / 2);
+          var cx = x0 + 10 + col * ((COL_W - 20) / 2);
+          var cy = y + row * CELL_H;
+
+          try {
+            var img = await loadImage(careerImgSrc(item.file));
+            ctx.drawImage(img, cx, cy, THUMB, THUMB);
+          } catch (e) {
+            ctx.fillStyle = "#e8e8e8";
+            ctx.fillRect(cx, cy, THUMB, THUMB);
+          }
+
+          ctx.strokeStyle = "#ddd";
+          ctx.strokeRect(cx, cy, THUMB, THUMB);
+          ctx.fillStyle = "#333";
+          ctx.font = "10px sans-serif";
+          ctx.textAlign = "center";
+          ctx.fillText(item.label, cx + THUMB / 2, cy + THUMB + 14);
+        }
+        var rows = Math.ceil(block.items.length / 2);
+        y += rows * CELL_H + BLOCK_GAP;
+      }
+    }
+
+    return new Promise(function(resolve, reject) {
+      try {
+        canvas.toBlob(function(blob) {
+          if (!blob) {
+            reject(new Error("serve.bat \u304b\u3089 http://localhost:8765/ \u3067\u958b\u304d\u76f4\u3057\u3066\u304f\u3060\u3055\u3044\u3002"));
+            return;
+          }
+          downloadBlob(blob, "career_illust_overview.png").then(resolve).catch(reject);
+        }, "image/png");
+      } catch (e) {
+        reject(new Error("PNG\u66f8\u304d\u51fa\u3057\u306b\u306f serve.bat \u304c\u5fc5\u8981\u3067\u3059\u3002"));
+      }
+    });
+  }
+
+  function applyLessonsData(data) {
+    if (!data || !data.lessons) return null;
+    data.lessons.forEach(function(lesson) {
+      lessonsByRow[lesson.row] = lesson;
+    });
+    return data;
+  }
+
+  var JSON_SCRIPT_IDS = {
+    data: "career-data-json",
+    lessons: "career-lessons-json"
+  };
+  var JSON_PATHS = {
+    data: "career-data.json",
+    lessons: "career-lessons.json"
+  };
+
+  function parseJsonText(text) {
+    if (!text || !String(text).trim()) return null;
+    try {
+      return JSON.parse(text);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function loadJsonViaXhr(path) {
+    if (!path) return null;
+    try {
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", path, false);
+      xhr.overrideMimeType("application/json;charset=utf-8");
+      xhr.send(null);
+      if (xhr.responseText) {
+        return parseJsonText(xhr.responseText);
+      }
+    } catch (e) {}
+    return null;
+  }
+
+  function loadJsonViaFetch(path) {
+    return fetch(path)
+      .then(function(res) {
+        if (!res.ok) throw new Error(path);
+        return res.json();
+      })
+      .catch(function() {
+        return null;
+      });
+  }
+
+  function waitForJsonScript(id, path) {
+    return new Promise(function(resolve) {
+      var el = document.getElementById(id);
+      function finish(data) {
+        resolve(data || null);
+      }
+      function tryElement() {
+        return parseJsonText(el && el.textContent);
+      }
+      if (el) {
+        var immediate = tryElement();
+        if (immediate) {
+          finish(immediate);
+          return;
+        }
+        el.addEventListener("load", function() {
+          finish(tryElement() || loadJsonViaXhr(path));
+        });
+        el.addEventListener("error", function() {
+          finish(loadJsonViaXhr(path));
+        });
+        setTimeout(function() {
+          finish(tryElement() || loadJsonViaXhr(path));
+        }, 120);
+        return;
+      }
+      if (location.protocol === "file:") {
+        finish(loadJsonViaXhr(path));
+        return;
+      }
+      loadJsonViaFetch(path).then(finish);
+    });
+  }
+
+  function loadJsonFromScript(id) {
+    var el = document.getElementById(id);
+    return parseJsonText(el && el.textContent);
+  }
+
+  function loadCareerData() {
+    if (window.CAREER_DATA && window.CAREER_DATA.length) {
+      return Promise.resolve(window.CAREER_DATA);
+    }
+    var inline = loadJsonFromScript(JSON_SCRIPT_IDS.data);
+    if (Array.isArray(inline) && inline.length) {
+      window.CAREER_DATA = inline;
+      return Promise.resolve(inline);
+    }
+    return waitForJsonScript(JSON_SCRIPT_IDS.data, JSON_PATHS.data).then(function(data) {
+      if (Array.isArray(data) && data.length) {
+        window.CAREER_DATA = data;
+        return data;
+      }
+      return null;
+    });
+  }
+
+  function loadLessons() {
+    if (window.CAREER_LESSONS) {
+      return Promise.resolve(applyLessonsData(window.CAREER_LESSONS));
+    }
+    var inline = loadJsonFromScript(JSON_SCRIPT_IDS.lessons);
+    if (inline) {
+      return Promise.resolve(applyLessonsData(inline));
+    }
+    return waitForJsonScript(JSON_SCRIPT_IDS.lessons, JSON_PATHS.lessons).then(function(data) {
+      return applyLessonsData(data);
+    });
+  }
+
+  function initOverview() {
+    Promise.all([loadCareerData(), loadLessons()]).then(function(results) {
+      var data = results[0];
+      if (!data || !data.length) {
+        if (overviewEl) {
+          overviewEl.innerHTML =
+            "<p style=\"padding:16px;color:#c00;\">データが読み込めません。career-data.json と career-lessons.json を確認してください。</p>";
+        }
+        return;
+      }
+      buildOverview();
+      updatePrintSelectionUI();
+    });
+  }
+
+  initOverview();
+})();
+</script>
+<!-- EMBED:js:END -->
+</body>
+</html>
