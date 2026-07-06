@@ -12,6 +12,26 @@
   --col-relation: #70ad47;
   --col-problem: #ffc000;
   --col-career: #ed7d31;
+  --lesson-concept-bg: #f3f8fc;
+  --lesson-concept-border: #6ba3c8;
+  --lesson-concept-label-bg: #dceef8;
+  --lesson-concept-label-text: #1e4a66;
+  --lesson-concept-body: #1a3344;
+  --lesson-shutoku-bg: #f4faf2;
+  --lesson-shutoku-border: #6faa6a;
+  --lesson-shutoku-label-bg: #e0f0dc;
+  --lesson-shutoku-label-text: #2a5228;
+  --lesson-shutoku-body: #1f3a1e;
+  --lesson-practice-bg: #fffbf2;
+  --lesson-practice-border: #c9a045;
+  --lesson-practice-label-bg: #f8ecd0;
+  --lesson-practice-label-text: #5c4208;
+  --lesson-practice-body: #3d2e08;
+  --lesson-career-bg: #faf5fc;
+  --lesson-career-border: #b088c0;
+  --lesson-career-label-bg: #f0e4f5;
+  --lesson-career-label-text: #5c3068;
+  --lesson-career-body: #331a3d;
   --tc-card-w: 320px;
   --tc-card-ratio: 5 / 7;
   --tc-art-share: 55%;
@@ -547,6 +567,7 @@ body {
   font-size: 1.25rem;
   line-height: 1.35;
   color: #0f172a;
+  font-weight: bold;
 }
 .lesson-popup-desc {
   margin: 0 0 0.75rem;
@@ -561,10 +582,14 @@ body {
   color: #64748b;
 }
 .lesson-popup-meta {
-  margin: 0 0 0.75rem;
+  margin: 0 0 0.85rem;
+  padding: 0 0 0.65rem;
   font-size: 0.78rem;
   line-height: 1.5;
   color: #64748b;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #e2e8f0;
 }
 .lesson-popup-meta .perspective-official {
   font-size: 0.85em;
@@ -572,30 +597,89 @@ body {
 }
 .lesson-popup-block {
   margin-bottom: 0.75rem;
-  padding-left: 0.75rem;
-  border-left: 3px solid #e2e8f0;
+  padding: 0.65rem 0.75rem 0.7rem;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  border-left-width: 4px;
+}
+.lesson-block--concept {
+  background: var(--lesson-concept-bg);
+  border-color: rgba(107, 163, 200, 0.35);
+  border-left-color: var(--lesson-concept-border);
+}
+.lesson-block--shutoku {
+  background: var(--lesson-shutoku-bg);
+  border-color: rgba(111, 170, 106, 0.35);
+  border-left-color: var(--lesson-shutoku-border);
+}
+.lesson-block--practice {
+  background: var(--lesson-practice-bg);
+  border-color: rgba(201, 160, 69, 0.35);
+  border-left-color: var(--lesson-practice-border);
+}
+.lesson-block--career {
+  background: transparent;
+  border: none;
+  border-left: none;
+  padding: 0.75rem 0 0;
+  margin-top: 0.25rem;
+  border-top: 1px solid #e2e8f0;
 }
 .lesson-popup-label {
-  margin: 0 0 0.35rem;
+  margin: 0 0 0.4rem;
   font-size: 0.72rem;
   font-weight: bold;
   color: #334155;
 }
+.lesson-block--concept .lesson-popup-label {
+  display: inline-block;
+  padding: 0.12rem 0.5rem;
+  border-radius: 4px;
+  background: var(--lesson-concept-label-bg);
+  color: var(--lesson-concept-label-text);
+}
+.lesson-block--shutoku .lesson-popup-label {
+  display: inline-block;
+  padding: 0.12rem 0.5rem;
+  border-radius: 4px;
+  background: var(--lesson-shutoku-label-bg);
+  color: var(--lesson-shutoku-label-text);
+}
+.lesson-block--practice .lesson-popup-label {
+  display: inline-block;
+  padding: 0.12rem 0.5rem;
+  border-radius: 4px;
+  background: var(--lesson-practice-label-bg);
+  color: var(--lesson-practice-label-text);
+}
+.lesson-block--career .lesson-popup-label {
+  display: inline-block;
+  padding: 0.12rem 0.5rem;
+  border-radius: 4px;
+  background: #ffe4f0;
+  color: #be185d;
+  border: 1px solid #fbcfe8;
+}
 .lesson-popup-body {
   margin: 0;
-  font-size: 0.82rem;
+  font-size: 0.86rem;
   line-height: 1.65;
   color: #1e293b;
   white-space: pre-wrap;
 }
+.lesson-block--concept .lesson-popup-body { color: var(--lesson-concept-body); }
+.lesson-block--shutoku .lesson-popup-body { color: var(--lesson-shutoku-body); }
+.lesson-block--practice .lesson-popup-body { color: var(--lesson-practice-body); }
+.lesson-block--career .lesson-popup-body { color: #374151; }
 .lesson-popup-image-wrap { text-align: center; }
 .lesson-popup-image {
   width: 100%;
   max-width: 280px;
   height: auto;
   border-radius: 8px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #d8e2ec;
   background: #f8fafc;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
 }
 .lesson-popup-career-block {
   margin-top: 0.75rem;
@@ -699,8 +783,16 @@ body {
 .print-area--lesson .lesson-popup-label,
 .print-area--lesson .lesson-popup-title,
 .print-area--lesson .lesson-popup-meta {
-  color: #1e293b !important;
+  color: inherit;
 }
+.print-lesson-sheet.lesson-popup-content {
+  background: #fff !important;
+  border-left: 2.5mm solid #cbd5e1;
+}
+.print-lesson-sheet.persp-self { border-left-color: var(--col-self) !important; }
+.print-lesson-sheet.persp-relation { border-left-color: var(--col-relation) !important; }
+.print-lesson-sheet.persp-problem { border-left-color: var(--col-problem) !important; }
+.print-lesson-sheet.persp-career { border-left-color: var(--col-career) !important; }
 .print-study-card.persp-self { border-color: #5b9bd5 !important; }
 .print-study-card.persp-relation { border-color: #70ad47 !important; }
 .print-study-card.persp-problem { border-color: #ffc000 !important; }
@@ -728,13 +820,13 @@ body {
   border-color: #fbcfe8 !important;
 }
 
-/* print lesson plans (A4, two per page) */
+/* print lesson plans (A4, three per page) */
 .print-a4-sheet {
   page-break-after: always;
   break-after: page;
   display: flex;
   flex-direction: column;
-  gap: 4mm;
+  gap: 3mm;
   height: 277mm;
   box-sizing: border-box;
 }
@@ -743,84 +835,259 @@ body {
   break-after: auto;
 }
 .print-lesson-sheet {
-  flex: 0 0 calc((277mm - 4mm) / 2);
-  height: calc((277mm - 4mm) / 2);
+  flex: 0 0 calc((277mm - 6mm) / 3);
+  height: calc((277mm - 6mm) / 3);
   min-height: 0;
-  max-height: calc((277mm - 4mm) / 2);
+  max-height: calc((277mm - 6mm) / 3);
   overflow: hidden;
   box-sizing: border-box;
   border-radius: 0;
   box-shadow: none;
   max-width: none;
+  border-bottom: 0.3mm solid #cbd5e1;
+  --lesson-print-scale: 1;
+  --lesson-print-img: 52mm;
+  --lesson-flex-shutoku: 1.05;
+  --lesson-flex-practice: 0.68;
+  --lesson-shutoku-line-clamp: 3;
+  --lesson-practice-line-clamp: 5;
+  --lesson-block-concept-scale: 1;
+  --lesson-block-shutoku-scale: 1;
+  --lesson-block-practice-scale: 1;
+  --lesson-block-career-scale: 0.94;
+}
+.print-lesson-sheet:last-child {
+  border-bottom: none;
 }
 .print-area--lesson .print-lesson-inner {
-  padding: 3mm 4mm;
-  gap: 3mm;
+  display: grid;
+  grid-template-columns: 1fr var(--lesson-print-img, 52mm);
+  grid-template-rows: auto minmax(0, 1fr);
+  grid-template-areas:
+    "text img"
+    "text career";
+  padding: calc(1.5mm * var(--lesson-print-scale)) calc(2.5mm * var(--lesson-print-scale));
+  column-gap: calc(2mm * var(--lesson-print-scale));
+  row-gap: calc(0.8mm * var(--lesson-print-scale));
   height: 100%;
   box-sizing: border-box;
-  grid-template-columns: 1fr 1fr;
-  align-items: stretch;
 }
-.print-area--lesson .lesson-popup-title {
-  margin: 0 0 1.5mm;
-  font-size: 11pt;
-  line-height: 1.35;
-}
-.print-area--lesson .lesson-popup-meta {
-  margin: 0 0 2mm;
-  font-size: 7pt;
-  line-height: 1.45;
-}
-.print-area--lesson .lesson-popup-block {
-  margin-bottom: 2mm;
-  padding-left: 2mm;
-}
-.print-area--lesson .lesson-popup-label {
-  margin: 0 0 0.5mm;
-  font-size: 7pt;
-}
-.print-area--lesson .lesson-popup-body {
-  margin: 0;
-  font-size: 7.5pt;
-  line-height: 1.5;
-  white-space: pre-wrap;
-  word-break: break-word;
-}
-.print-area--lesson .lesson-popup-image-wrap {
+.print-area--lesson .print-lesson-text-col {
+  grid-area: text;
+  min-height: 0;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  min-height: 0;
+  gap: calc(0.8mm * var(--lesson-print-scale));
+}
+.print-area--lesson .print-lesson-text-col > .lesson-popup-title {
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0 0 calc(0.4mm * var(--lesson-print-scale));
+  border-bottom: 0.3mm solid #e2e8f0;
+}
+.print-area--lesson .print-lesson-text-col > .lesson-popup-meta {
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0 0 calc(0.3mm * var(--lesson-print-scale));
+  font-size: 9pt;
+  line-height: 1.32;
+  background: transparent !important;
+  border: none !important;
 }
 .print-area--lesson .print-lesson-img-host {
-  flex-shrink: 0;
-  text-align: center;
-}
-.print-area--lesson .lesson-popup-image {
-  width: auto;
-  max-width: 100%;
-  max-height: 32mm;
-  height: auto;
-}
-.print-area--lesson .lesson-popup-image--missing {
+  grid-area: img;
+  width: var(--lesson-print-img, 52mm);
+  height: var(--lesson-print-img, 52mm);
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  max-width: 42mm;
-  height: 32mm;
-  margin: 0 auto;
-  font-size: 7pt;
-  color: #94a3b8;
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 4px;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  align-self: start;
+  justify-self: center;
 }
-.print-area--lesson .lesson-popup-career-block {
-  margin-top: 2mm;
-  margin-bottom: 0;
-  flex: 1 1 auto;
+.print-area--lesson .print-lesson-career-col {
+  grid-area: career;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   min-height: 0;
   overflow: hidden;
+}
+.print-area--lesson .print-lesson-career-block {
+  margin: 0;
+  width: var(--lesson-print-img, 52mm);
+  box-sizing: border-box;
+  padding: calc(0.8mm * var(--lesson-print-scale)) 0 0;
+  border: none;
+  border-top: 0.3mm solid #e2e8f0;
+  background: transparent !important;
+  flex: 1 1 0;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+  text-align: left;
+}
+.print-area--lesson .print-lesson-text-col .lesson-popup-block {
+  margin-bottom: 0;
+  padding: calc(0.7mm * var(--lesson-print-scale)) calc(1mm * var(--lesson-print-scale));
+  border-radius: calc(1.2mm * var(--lesson-print-scale));
+  border: 0.3mm solid transparent;
+  border-left-width: calc(0.8mm * var(--lesson-print-scale));
+  min-height: 0;
+  overflow: hidden;
+}
+.print-area--lesson .lesson-block--concept {
+  flex: 0 0 auto;
+  background: var(--lesson-concept-bg) !important;
+  border-color: rgba(107, 163, 200, 0.4) !important;
+  border-left-color: var(--lesson-concept-border) !important;
+}
+.print-area--lesson .lesson-block--shutoku {
+  flex: var(--lesson-flex-shutoku, 1.05) 1 1;
+  background: var(--lesson-shutoku-bg) !important;
+  border-color: rgba(111, 170, 106, 0.4) !important;
+  border-left-color: var(--lesson-shutoku-border) !important;
+}
+.print-area--lesson .lesson-block--practice {
+  flex: 0 0 auto;
+  background: var(--lesson-practice-bg) !important;
+  border-color: rgba(201, 160, 69, 0.4) !important;
+  border-left-color: var(--lesson-practice-border) !important;
+}
+.print-area--lesson .lesson-block--career {
+  background: transparent !important;
+  border: none !important;
+  border-top: 0.3mm solid #e2e8f0 !important;
+  padding: calc(0.8mm * var(--lesson-print-scale)) 0 0 !important;
+}
+.print-area--lesson .lesson-popup-title {
+  margin: 0 0 calc(0.5mm * var(--lesson-print-scale));
+  font-size: 11pt;
+  line-height: 1.28;
+  font-weight: bold;
+  color: #0f172a !important;
+}
+.print-area--lesson .lesson-popup-meta {
+  margin: 0;
+  font-size: 9pt;
+  line-height: 1.32;
+  padding: 0;
+  background: transparent !important;
+  border: none !important;
+}
+.print-area--lesson .lesson-popup-label {
+  margin: 0 0 calc(0.25mm * var(--lesson-print-scale));
+  font-weight: bold;
+}
+.print-area--lesson .lesson-block--concept .lesson-popup-label,
+.print-area--lesson .lesson-block--shutoku .lesson-popup-label,
+.print-area--lesson .lesson-block--practice .lesson-popup-label {
+  font-size: 11pt;
+}
+.print-area--lesson .lesson-block--career .lesson-popup-label {
+  font-size: calc(8.5pt * var(--lesson-block-career-scale));
+}
+.print-area--lesson .lesson-block--concept .lesson-popup-label,
+.print-area--lesson .lesson-block--shutoku .lesson-popup-label,
+.print-area--lesson .lesson-block--practice .lesson-popup-label {
+  display: inline-block;
+  padding: calc(0.25mm * var(--lesson-print-scale)) calc(1mm * var(--lesson-print-scale));
+  border-radius: calc(0.8mm * var(--lesson-print-scale));
+}
+.print-area--lesson .lesson-block--career .lesson-popup-label {
+  display: inline-block;
+  padding: calc(0.25mm * var(--lesson-print-scale)) calc(1mm * var(--lesson-print-scale));
+  border-radius: calc(0.8mm * var(--lesson-print-scale));
+  background: #ffe4f0 !important;
+  color: #be185d !important;
+  border: 0.3mm solid #fbcfe8;
+}
+.print-area--lesson .lesson-block--concept .lesson-popup-label {
+  background: var(--lesson-concept-label-bg) !important;
+  color: var(--lesson-concept-label-text) !important;
+}
+.print-area--lesson .lesson-block--shutoku .lesson-popup-label {
+  background: var(--lesson-shutoku-label-bg) !important;
+  color: var(--lesson-shutoku-label-text) !important;
+}
+.print-area--lesson .lesson-block--practice .lesson-popup-label {
+  background: var(--lesson-practice-label-bg) !important;
+  color: var(--lesson-practice-label-text) !important;
+}
+.print-area--lesson .lesson-block--concept .lesson-popup-body {
+  font-size: 11pt;
+  line-height: 1.38;
+  color: var(--lesson-concept-body) !important;
+}
+.print-area--lesson .lesson-block--shutoku .lesson-popup-body {
+  font-size: 11pt;
+  line-height: 1.36;
+  color: var(--lesson-shutoku-body) !important;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--lesson-shutoku-line-clamp, 3);
+  line-clamp: var(--lesson-shutoku-line-clamp, 3);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+.print-area--lesson .lesson-block--practice .lesson-popup-body {
+  font-size: 11pt;
+  line-height: 1.36;
+  color: var(--lesson-practice-body) !important;
+}
+.print-area--lesson .lesson-popup-body {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.print-area--lesson .lesson-block--career .lesson-popup-body {
+  font-size: calc(9.5pt * var(--lesson-block-career-scale));
+  line-height: 1.36;
+  color: #374151 !important;
+}
+.print-area--lesson .lesson-block--concept .lesson-popup-body {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+.print-area--lesson .lesson-block--practice .lesson-popup-body {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--lesson-practice-line-clamp, 5);
+  line-clamp: var(--lesson-practice-line-clamp, 5);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+.print-area--lesson .print-lesson-img-host .lesson-popup-image {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 3px;
+  border: 0.3mm solid #e2e8f0;
+  background: #f8fafc;
+}
+.print-area--lesson .print-lesson-img-host .lesson-popup-image--missing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--lesson-print-img, 52mm);
+  height: var(--lesson-print-img, 52mm);
+  margin: 0;
+  font-size: calc(12pt * var(--lesson-print-scale));
+  color: #94a3b8;
+  background: #f8fafc;
+  border: 0.3mm solid #e2e8f0;
+  border-radius: 3px;
 }
 
 @media print {
@@ -1507,9 +1774,9 @@ body {
       "blockId": "A",
       "blockTitle": "気持ちを知る",
       "unitType": "お助け隊",
-      "shutoku_plan": "カード「感情の理解」の将来のキャリアとのつながりを読んで確認し、情報ブロック「気持ちを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "下級生の「困ったくん」から「友だちとケンカしたけど、自分が怒ってる理由がわからない」と相談が届く。感情の名前をつけて整理し、アドバイスシートを作ろう。",
-      "lesson_plan": "【習得】 カード「感情の理解」の将来のキャリアとのつながりを読んで確認し、情報ブロック「気持ちを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 下級生の「困ったくん」から「友だちとケンカしたけど、自分が怒ってる理由がわからない」と相談が届く。感情の名前をつけて整理し、アドバイスシートを作ろう。",
+      "shutoku_plan": "喜怒哀楽など感情の種類を確認し、先週感じた気持ちを3つ選んで名前ときっかけをメモする。",
+      "practice_plan": "下級生の「困ったくん」から「友だちとケンカしたが、自分が怒っている理由がわからない」と相談が届く。3人1組で相談を聞き取り、感情カードで当てはまる気持ちを選び、きっかけと一緒に整理する。最後に「感情の名前」と「次にとれる行動」を書いたアドバイスシートを作成して提出する。",
+      "lesson_plan": "【習得】 喜怒哀楽など感情の種類を確認し、先週感じた気持ちを3つ選んで名前ときっかけをメモする。【実践：お助け隊】 下級生の「困ったくん」から「友だちとケンカしたが、自分が怒っている理由がわからない」と相談が届く。3人1組で相談を聞き取り、感情カードで当てはまる気持ちを選び、きっかけと一緒に整理する。最後に「感情の名前」と「次にとれる行動」を書いたアドバイスシートを作成して提出する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -1522,9 +1789,9 @@ body {
       "blockId": "A",
       "blockTitle": "気持ちを知る",
       "unitType": "お助け隊",
-      "shutoku_plan": "カード「気持ちの伝え方」の将来のキャリアとのつながりを読んで確認し、情報ブロック「気持ちを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "「気持ちを言葉にできなくて誤解された」という相談に、具体的な伝え方のアイデアを3つ提案しよう。",
-      "lesson_plan": "【習得】 カード「気持ちの伝え方」の将来のキャリアとのつながりを読んで確認し、情報ブロック「気持ちを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 「気持ちを言葉にできなくて誤解された」という相談に、具体的な伝え方のアイデアを3つ提案しよう。",
+      "shutoku_plan": "言葉・表情・行動など伝え方の種類を整理し、自分が得意な方法と苦手な方法を書き出す。",
+      "practice_plan": "「気持ちを言葉にできず誤解された」という相談を受け取る。ペアで相談の場面を再現し、言葉・表情・メモなど伝え方の案を3つ考える。それぞれのメリットと使い方を添えた「伝え方アイデアカード」を作り、クラスで1組発表する。",
+      "lesson_plan": "【習得】 言葉・表情・行動など伝え方の種類を整理し、自分が得意な方法と苦手な方法を書き出す。【実践：お助け隊】 「気持ちを言葉にできず誤解された」という相談を受け取る。ペアで相談の場面を再現し、言葉・表情・メモなど伝え方の案を3つ考える。それぞれのメリットと使い方を添えた「伝え方アイデアカード」を作り、クラスで1組発表する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -1537,9 +1804,9 @@ body {
       "blockId": "A",
       "blockTitle": "気持ちを知る",
       "unitType": "トリセツ",
-      "shutoku_plan": "カード「気持ちの切り替え」の将来のキャリアとのつながりを読んで確認し、情報ブロック「気持ちを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "イライラしたときの自分専用の切り替え方法を2つ試し、うまくいった手順を『気持ち切り替えトリセツ』にまとめよう。",
-      "lesson_plan": "【習得】 カード「気持ちの切り替え」の将来のキャリアとのつながりを読んで確認し、情報ブロック「気持ちを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 イライラしたときの自分専用の切り替え方法を2つ試し、うまくいった手順を『気持ち切り替えトリセツ』にまとめよう。",
+      "shutoku_plan": "気分が変わった経験を1つ思い出し、きっかけとなった出来事とその変化を整理する。",
+      "practice_plan": "イライラ・落ち込み・緊張など、自分が切り替えたい場面を1つ選ぶ。深呼吸・休む・音楽など方法を2つ実際に試し、効果と手順を記録する。うまくいった方法を『気持ち切り替えトリセツ』（きっかけ・やること・注意点）にまとめて共有する。",
+      "lesson_plan": "【習得】 気分が変わった経験を1つ思い出し、きっかけとなった出来事とその変化を整理する。【実践：トリセツ】 イライラ・落ち込み・緊張など、自分が切り替えたい場面を1つ選ぶ。深呼吸・休む・音楽など方法を2つ実際に試し、効果と手順を記録する。うまくいった方法を『気持ち切り替えトリセツ』（きっかけ・やること・注意点）にまとめて共有する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -1552,9 +1819,9 @@ body {
       "blockId": "A",
       "blockTitle": "気持ちを知る",
       "unitType": "トリセツ",
-      "shutoku_plan": "カード「ストレス」の将来のキャリアとのつながりを読んで確認し、情報ブロック「気持ちを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "テスト前に眠れない友だちへ、ストレスのサインと対処のヒントをカードにして届けよう。",
-      "lesson_plan": "【習得】 カード「ストレス」の将来のキャリアとのつながりを読んで確認し、情報ブロック「気持ちを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 テスト前に眠れない友だちへ、ストレスのサインと対処のヒントをカードにして届けよう。",
+      "shutoku_plan": "ストレスの心と体のサインを読み、自分に当てはまるものに印をつけて意味を確認する。",
+      "practice_plan": "テスト前に眠れない友だちを想定し、ストレスの心身サイン（眠気・イライラ・肩こりなど）をリスト化する。サインごとの対処法を2つずつ考え、見やすい「ストレス対処カード」（表：サイン、裏：対処）を作って届ける。",
+      "lesson_plan": "【習得】 ストレスの心と体のサインを読み、自分に当てはまるものに印をつけて意味を確認する。【実践：トリセツ】 テスト前に眠れない友だちを想定し、ストレスの心身サイン（眠気・イライラ・肩こりなど）をリスト化する。サインごとの対処法を2つずつ考え、見やすい「ストレス対処カード」（表：サイン、裏：対処）を作って届ける。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -1567,9 +1834,9 @@ body {
       "blockId": "A",
       "blockTitle": "気持ちを知る",
       "unitType": "トリセツ",
-      "shutoku_plan": "カード「リラックス」の将来のキャリアとのつながりを読んで確認し、情報ブロック「気持ちを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "1週間のリラックス記録をつけ、自分に合う休み方を『リラックストリセツ』として共有しよう。",
-      "lesson_plan": "【習得】 カード「リラックス」の将来のキャリアとのつながりを読んで確認し、情報ブロック「気持ちを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 1週間のリラックス記録をつけ、自分に合う休み方を『リラックストリセツ』として共有しよう。",
+      "shutoku_plan": "休むことの大切さを学び、いま自分が一番疲れているのは心か体かを言葉にする。",
+      "practice_plan": "1週間分のリラックス記録表を配布し、休み方（睡眠・散歩・趣味など）を記入する。自分に合った方法を2つ選び、いつ・どこで・何分休むかを決めた『リラックストリセツ』を作成し、ペアで内容を確認し合う。",
+      "lesson_plan": "【習得】 休むことの大切さを学び、いま自分が一番疲れているのは心か体かを言葉にする。【実践：トリセツ】 1週間分のリラックス記録表を配布し、休み方（睡眠・散歩・趣味など）を記入する。自分に合った方法を2つ選び、いつ・どこで・何分休むかを決めた『リラックストリセツ』を作成し、ペアで内容を確認し合う。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -1582,9 +1849,9 @@ body {
       "blockId": "B",
       "blockTitle": "好き・得意を知る",
       "unitType": "トリセツ",
-      "shutoku_plan": "カード「興味・関心」の将来のキャリアとのつながりを読んで確認し、情報ブロック「好き・得意を知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "「何も好きなことがない」と悩む下級生に、最近わくわくした出来事を一緒に探し、興味マップを作ろう。",
-      "lesson_plan": "【習得】 カード「興味・関心」の将来のキャリアとのつながりを読んで確認し、情報ブロック「好き・得意を知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 「何も好きなことがない」と悩む下級生に、最近わくわくした出来事を一緒に探し、興味マップを作ろう。",
+      "shutoku_plan": "「わくわくした瞬間」シートに、最近の出来事を時間順に3つ書き出す。",
+      "practice_plan": "「好きなことがない」と悩む下級生を想定し、最近わくわくした出来事を質問カードで掘り下げる。興味のキーワードを集めてマインドマップ化し、「これから試してみたいこと」を3つ書いた興味マップを完成させる。",
+      "lesson_plan": "【習得】 「わくわくした瞬間」シートに、最近の出来事を時間順に3つ書き出す。【実践：トリセツ】 「好きなことがない」と悩む下級生を想定し、最近わくわくした出来事を質問カードで掘り下げる。興味のキーワードを集めてマインドマップ化し、「これから試してみたいこと」を3つ書いた興味マップを完成させる。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -1597,9 +1864,9 @@ body {
       "blockId": "B",
       "blockTitle": "好き・得意を知る",
       "unitType": "トリセツ",
-      "shutoku_plan": "カード「得意なこと」の将来のキャリアとのつながりを読んで確認し、情報ブロック「好き・得意を知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "得意なことを活かしてクラスの困りごとを1つ解決する「お助け隊ミッション」に挑戦しよう。",
-      "lesson_plan": "【習得】 カード「得意なこと」の将来のキャリアとのつながりを読んで確認し、情報ブロック「好き・得意を知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 得意なことを活かしてクラスの困りごとを1つ解決する「お助け隊ミッション」に挑戦しよう。",
+      "shutoku_plan": "褒められた経験を思い出し、自分の得意なことリストを3つ作る。",
+      "practice_plan": "クラスの困りごと（掃除・勉強・行事など）を1つ選び、メンバーの得意なことを洗い出す。得意を活かした解決案を役割分担表とセットでまとめ、10分間の「お助け隊ミッション」として実行し、結果を振り返る。",
+      "lesson_plan": "【習得】 褒められた経験を思い出し、自分の得意なことリストを3つ作る。【実践：トリセツ】 クラスの困りごと（掃除・勉強・行事など）を1つ選び、メンバーの得意なことを洗い出す。得意を活かした解決案を役割分担表とセットでまとめ、10分間の「お助け隊ミッション」として実行し、結果を振り返る。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -1612,9 +1879,9 @@ body {
       "blockId": "B",
       "blockTitle": "好き・得意を知る",
       "unitType": "お助け隊",
-      "shutoku_plan": "カード「苦手なこと」の将来のキャリアとのつながりを読んで確認し、情報ブロック「好き・得意を知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "苦手なことに向き合う友だちへ、小さな一歩のアドバイスと励ましのメッセージを届けよう。",
-      "lesson_plan": "【習得】 カード「苦手なこと」の将来のキャリアとのつながりを読んで確認し、情報ブロック「好き・得意を知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 苦手なことに向き合う友だちへ、小さな一歩のアドバイスと励ましのメッセージを届けよう。",
+      "shutoku_plan": "苦手だと感じることを書き出し、なぜ難しいと感じるか理由をひとことずつ添える。",
+      "practice_plan": "苦手に向き合う友だちへの応援メッセージを考える。小さな一歩（5分だけ・誰かと一緒に・道具を使うなど）のアドバイスを3つ書き、励ましの言葉とセットにした応援カードを作って渡す。",
+      "lesson_plan": "【習得】 苦手だと感じることを書き出し、なぜ難しいと感じるか理由をひとことずつ添える。【実践：お助け隊】 苦手に向き合う友だちへの応援メッセージを考える。小さな一歩（5分だけ・誰かと一緒に・道具を使うなど）のアドバイスを3つ書き、励ましの言葉とセットにした応援カードを作って渡す。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -1627,9 +1894,9 @@ body {
       "blockId": "B",
       "blockTitle": "好き・得意を知る",
       "unitType": "モヤモヤ会議",
-      "shutoku_plan": "カード「個性」の将来のキャリアとのつながりを読んで確認し、情報ブロック「好き・得意を知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "「個性が強いのは良い？悪い？」をテーマに、意見を出し合い、クラスの『個性尊重ルール』を決めよう。",
-      "lesson_plan": "【習得】 カード「個性」の将来のキャリアとのつながりを読んで確認し、情報ブロック「好き・得意を知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：モヤモヤ会議】 「個性が強いのは良い？悪い？」をテーマに、意見を出し合い、クラスの『個性尊重ルール』を決めよう。",
+      "shutoku_plan": "クラスメイトのいいところを考え、人それぞれの個性のちがいを表にまとめる。",
+      "practice_plan": "「個性が強いのは良い？悪い？」をテーマにモヤモヤ会議を行う。意見出し→整理→ルール案作成の順で進め、発言のルール・尊重の言葉・困ったときの相談先を含む『個性尊重ルール』をクラスで決める。",
+      "lesson_plan": "【習得】 クラスメイトのいいところを考え、人それぞれの個性のちがいを表にまとめる。【実践：モヤモヤ会議】 「個性が強いのは良い？悪い？」をテーマにモヤモヤ会議を行う。意見出し→整理→ルール案作成の順で進め、発言のルール・尊重の言葉・困ったときの相談先を含む『個性尊重ルール』をクラスで決める。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -1642,9 +1909,9 @@ body {
       "blockId": "B",
       "blockTitle": "好き・得意を知る",
       "unitType": "お助け隊",
-      "shutoku_plan": "カード「挑戦」の将来のキャリアとのつながりを読んで確認し、情報ブロック「好き・得意を知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "苦手な泳ぎに挑戦する下級生の伴走役になり、挑戦の記録と応援カードを作ろう。",
-      "lesson_plan": "【習得】 カード「挑戦」の将来のキャリアとのつながりを読んで確認し、情報ブロック「好き・得意を知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 苦手な泳ぎに挑戦する下級生の伴走役になり、挑戦の記録と応援カードを作ろう。",
+      "shutoku_plan": "挑戦してうまくいったこと・いかなかったことを比べ、挑戦のコツをメモする。",
+      "practice_plan": "苦手な泳ぎに挑戦する下級生の伴走役になる。挑戦前・挑戦中・挑戦後の気持ちを記録し、うまくいった点と次の一歩を書いた応援カードと挑戦ログをセットで作成する。",
+      "lesson_plan": "【習得】 挑戦してうまくいったこと・いかなかったことを比べ、挑戦のコツをメモする。【実践：お助け隊】 苦手な泳ぎに挑戦する下級生の伴走役になる。挑戦前・挑戦中・挑戦後の気持ちを記録し、うまくいった点と次の一歩を書いた応援カードと挑戦ログをセットで作成する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -1657,9 +1924,9 @@ body {
       "blockId": "C",
       "blockTitle": "振り返って成長する",
       "unitType": "トリセツ",
-      "shutoku_plan": "カード「振り返り」の将来のキャリアとのつながりを読んで確認し、情報ブロック「振り返って成長する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "今週のできたことを3つ書き出し、なぜできたかを振り返る『成長ログ』を作成しよう。",
-      "lesson_plan": "【習得】 カード「振り返り」の将来のキャリアとのつながりを読んで確認し、情報ブロック「振り返って成長する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 今週のできたことを3つ書き出し、なぜできたかを振り返る『成長ログ』を作成しよう。",
+      "shutoku_plan": "最近うまくいったことを2つ振り返り、なぜできたのか理由を書き出す。",
+      "practice_plan": "今週のできたことを3つ書き出し、それぞれ「なぜできたか」「誰の助けがあったか」を振り返る。週ごとに追記できる『成長ログ』の1ページ目を作成し、継続のコツをメモする。",
+      "lesson_plan": "【習得】 最近うまくいったことを2つ振り返り、なぜできたのか理由を書き出す。【実践：トリセツ】 今週のできたことを3つ書き出し、それぞれ「なぜできたか」「誰の助けがあったか」を振り返る。週ごとに追記できる『成長ログ』の1ページ目を作成し、継続のコツをメモする。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -1672,9 +1939,9 @@ body {
       "blockId": "C",
       "blockTitle": "振り返って成長する",
       "unitType": "トリセツ",
-      "shutoku_plan": "カード「目標」の将来のキャリアとのつながりを読んで確認し、情報ブロック「振り返って成長する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "学期末までの小さな目標を1つ決め、達成のための3ステップを描こう。",
-      "lesson_plan": "【習得】 カード「目標」の将来のキャリアとのつながりを読んで確認し、情報ブロック「振り返って成長する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 学期末までの小さな目標を1つ決め、達成のための3ステップを描こう。",
+      "shutoku_plan": "短期・中期・長期の目標のちがいを学び、今月の小さな目標を1つ書く。",
+      "practice_plan": "学期末までの小さな目標を1つ決め、達成のための3ステップ（いつ・何を・どこまで）を描く。目標・期限・確認方法を書いた目標シートを作り、ペアで実現可能性を確認する。",
+      "lesson_plan": "【習得】 短期・中期・長期の目標のちがいを学び、今月の小さな目標を1つ書く。【実践：トリセツ】 学期末までの小さな目標を1つ決め、達成のための3ステップ（いつ・何を・どこまで）を描く。目標・期限・確認方法を書いた目標シートを作り、ペアで実現可能性を確認する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -1687,9 +1954,9 @@ body {
       "blockId": "C",
       "blockTitle": "振り返って成長する",
       "unitType": "トリセツ",
-      "shutoku_plan": "カード「できたこと」の将来のキャリアとのつながりを読んで確認し、情報ブロック「振り返って成長する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "グループで互いの『できたこと』を見つけ、称え合うシートを完成させよう。",
-      "lesson_plan": "【習得】 カード「できたこと」の将来のキャリアとのつながりを読んで確認し、情報ブロック「振り返って成長する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 グループで互いの『できたこと』を見つけ、称え合うシートを完成させよう。",
+      "shutoku_plan": "最近「できた！」と思えたことを3つ挙げ、どんな努力があったか振り返る。",
+      "practice_plan": "グループで互いの「できたこと」を1人1つずつ共有する。努力のポイントを聞き取り、称え合いの言葉を集めた「称え合いシート」を全員の名前入りで完成させる。",
+      "lesson_plan": "【習得】 最近「できた！」と思えたことを3つ挙げ、どんな努力があったか振り返る。【実践：トリセツ】 グループで互いの「できたこと」を1人1つずつ共有する。努力のポイントを聞き取り、称え合いの言葉を集めた「称え合いシート」を全員の名前入りで完成させる。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -1702,9 +1969,9 @@ body {
       "blockId": "C",
       "blockTitle": "振り返って成長する",
       "unitType": "トリセツ",
-      "shutoku_plan": "カード「失敗から学ぶ」の将来のキャリアとのつながりを読んで確認し、情報ブロック「振り返って成長する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "失敗体験を共有し、次につなげる教訓を『失敗から学ぶトリセツ』にまとめよう。",
-      "lesson_plan": "【習得】 カード「失敗から学ぶ」の将来のキャリアとのつながりを読んで確認し、情報ブロック「振り返って成長する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 失敗体験を共有し、次につなげる教訓を『失敗から学ぶトリセツ』にまとめよう。",
+      "shutoku_plan": "失敗した経験から学んだことを1つ選び、次に活かせる教訓をメモする。",
+      "practice_plan": "失敗体験を1つ共有し、そこから学んだことを話し合う。次に同じ場面で試すことを「失敗から学ぶトリセツ」（状況・学び・次の行動）にまとめ、グループで発表する。",
+      "lesson_plan": "【習得】 失敗した経験から学んだことを1つ選び、次に活かせる教訓をメモする。【実践：トリセツ】 失敗体験を1つ共有し、そこから学んだことを話し合う。次に同じ場面で試すことを「失敗から学ぶトリセツ」（状況・学び・次の行動）にまとめ、グループで発表する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -1717,9 +1984,9 @@ body {
       "blockId": "C",
       "blockTitle": "振り返って成長する",
       "unitType": "トリセツ",
-      "shutoku_plan": "カード「粘り強さ」の将来のキャリアとのつながりを読んで確認し、情報ブロック「振り返って成長する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "粘り強く取り組んだ経験を振り返り、あきらめそうになったときの自分の言葉をトリセツ化しよう。",
-      "lesson_plan": "【習得】 カード「粘り強さ」の将来のキャリアとのつながりを読んで確認し、情報ブロック「振り返って成長する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 粘り強く取り組んだ経験を振り返り、あきらめそうになったときの自分の言葉をトリセツ化しよう。",
+      "shutoku_plan": "あきらめずに続けた経験を思い出し、続けられた理由を文章にまとめる。",
+      "practice_plan": "あきらめそうになった経験を振り返り、続けられた理由や自分を励ました言葉を書き出す。『粘り強さトリセツ』（きついときのサイン・自分への言葉・頼れる人）を作成する。",
+      "lesson_plan": "【習得】 あきらめずに続けた経験を思い出し、続けられた理由を文章にまとめる。【実践：トリセツ】 あきらめそうになった経験を振り返り、続けられた理由や自分を励ました言葉を書き出す。『粘り強さトリセツ』（きついときのサイン・自分への言葉・頼れる人）を作成する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -1732,9 +1999,9 @@ body {
       "blockId": "D",
       "blockTitle": "大切にしていることを知る",
       "unitType": "モヤモヤ会議",
-      "shutoku_plan": "カード「価値観」の将来のキャリアとのつながりを読んで確認し、情報ブロック「大切にしていることを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "「友だちと意見が違うとき、どちらが正しい？」をケースに、大切にしたい価値観を言語化しよう。",
-      "lesson_plan": "【習得】 カード「価値観」の将来のキャリアとのつながりを読んで確認し、情報ブロック「大切にしていることを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：モヤモヤ会議】 「友だちと意見が違うとき、どちらが正しい？」をケースに、大切にしたい価値観を言語化しよう。",
+      "shutoku_plan": "大切にしているものを5つ書き出し、優先順位をつけて理由を添える。",
+      "practice_plan": "「友だちと意見が違うとき、どちらが正しい？」をケースで考える。大切にしたい価値観を言葉にし、意見が分かれたときの話し合いのしかたを含む価値観シートを作る。",
+      "lesson_plan": "【習得】 大切にしているものを5つ書き出し、優先順位をつけて理由を添える。【実践：モヤモヤ会議】 「友だちと意見が違うとき、どちらが正しい？」をケースで考える。大切にしたい価値観を言葉にし、意見が分かれたときの話し合いのしかたを含む価値観シートを作る。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -1747,9 +2014,9 @@ body {
       "blockId": "D",
       "blockTitle": "大切にしていることを知る",
       "unitType": "トリセツ",
-      "shutoku_plan": "カード「やりがい」の将来のキャリアとのつながりを読んで確認し、情報ブロック「大切にしていることを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "「やりがいを感じた瞬間」を3つ挙げ、自分のやりがいトリセツを作ろう。",
-      "lesson_plan": "【習得】 カード「やりがい」の将来のキャリアとのつながりを読んで確認し、情報ブロック「大切にしていることを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 「やりがいを感じた瞬間」を3つ挙げ、自分のやりがいトリセツを作ろう。",
+      "shutoku_plan": "夢中になった活動を思い出し、そのとき感じたやりがいの言葉を書く。",
+      "practice_plan": "やりがいを感じた瞬間を3つ挙げ、共通点（誰のため・何が楽しい・何が達成感）を分析する。自分のやりがいパターンをまとめた『やりがいトリセツ』を作成する。",
+      "lesson_plan": "【習得】 夢中になった活動を思い出し、そのとき感じたやりがいの言葉を書く。【実践：トリセツ】 やりがいを感じた瞬間を3つ挙げ、共通点（誰のため・何が楽しい・何が達成感）を分析する。自分のやりがいパターンをまとめた『やりがいトリセツ』を作成する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -1762,9 +2029,9 @@ body {
       "blockId": "D",
       "blockTitle": "大切にしていることを知る",
       "unitType": "トリセツ",
-      "shutoku_plan": "カード「将来の夢」の将来のキャリアとのつながりを読んで確認し、情報ブロック「大切にしていることを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "10年後の自分を描き、今からできる小さな行動を1つ決めよう。",
-      "lesson_plan": "【習得】 カード「将来の夢」の将来のキャリアとのつながりを読んで確認し、情報ブロック「大切にしていることを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 10年後の自分を描き、今からできる小さな行動を1つ決めよう。",
+      "shutoku_plan": "10年後なりたい自分を自由に描き、必要そうな力を3つリストアップする。",
+      "practice_plan": "10年後の自分を文章や絵で描き、そこに必要な力・経験を3つ書き出す。今からできる小さな行動を1つ決め、夢メモ（将来像・行動・期限）にまとめる。",
+      "lesson_plan": "【習得】 10年後なりたい自分を自由に描き、必要そうな力を3つリストアップする。【実践：トリセツ】 10年後の自分を文章や絵で描き、そこに必要な力・経験を3つ書き出す。今からできる小さな行動を1つ決め、夢メモ（将来像・行動・期限）にまとめる。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -1777,9 +2044,9 @@ body {
       "blockId": "D",
       "blockTitle": "大切にしていることを知る",
       "unitType": "トリセツ",
-      "shutoku_plan": "カード「理想の自分」の将来のキャリアとのつながりを読んで確認し、情報ブロック「大切にしていることを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "理想の自分像と現在の自分のギャップを整理し、近づくための一歩をトリセツにしよう。",
-      "lesson_plan": "【習得】 カード「理想の自分」の将来のキャリアとのつながりを読んで確認し、情報ブロック「大切にしていることを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 理想の自分像と現在の自分のギャップを整理し、近づくための一歩をトリセツにしよう。",
+      "shutoku_plan": "理想の自分と今の自分のちがいを2つ書き、近づくための一歩を考える。",
+      "practice_plan": "理想の自分と今の自分のギャップを整理し、性格・習慣・スキルの観点で比較する。近づくための具体的な一歩を『理想の自分に近づくトリセツ』に書く。",
+      "lesson_plan": "【習得】 理想の自分と今の自分のちがいを2つ書き、近づくための一歩を考える。【実践：トリセツ】 理想の自分と今の自分のギャップを整理し、性格・習慣・スキルの観点で比較する。近づくための具体的な一歩を『理想の自分に近づくトリセツ』に書く。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -1792,9 +2059,9 @@ body {
       "blockId": "D",
       "blockTitle": "大切にしていることを知る",
       "unitType": "トリセツ",
-      "shutoku_plan": "カード「自己肯定感」の将来のキャリアとのつながりを読んで確認し、情報ブロック「大切にしていることを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "自分の良いところを友だちと相互に伝え合い、自己肯定感を高めるメッセージカードを作ろう。",
-      "lesson_plan": "【習得】 カード「自己肯定感」の将来のキャリアとのつながりを読んで確認し、情報ブロック「大切にしていることを知る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 自分の良いところを友だちと相互に伝え合い、自己肯定感を高めるメッセージカードを作ろう。",
+      "shutoku_plan": "自分のいいところを3つ書き、根拠となる出来事をひとこと添える。",
+      "practice_plan": "ペアで互いのいいところを3つずつ伝え合い、根拠となる出来事を添える。もらった言葉をデザインした自己肯定感メッセージカードを交換し、大切に保管する。",
+      "lesson_plan": "【習得】 自分のいいところを3つ書き、根拠となる出来事をひとこと添える。【実践：トリセツ】 ペアで互いのいいところを3つずつ伝え合い、根拠となる出来事を添える。もらった言葉をデザインした自己肯定感メッセージカードを交換し、大切に保管する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -1807,9 +2074,9 @@ body {
       "blockId": "E",
       "blockTitle": "相手の気持ちに気づく",
       "unitType": "お助け隊",
-      "shutoku_plan": "カード「共感」の将来のキャリアとのつながりを読んで確認し、情報ブロック「相手の気持ちに気づく」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "落ち込む友だちの気持ちに寄り添う言葉と行動を、お助け隊として提案しよう。",
-      "lesson_plan": "【習得】 カード「共感」の将来のキャリアとのつながりを読んで確認し、情報ブロック「相手の気持ちに気づく」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 落ち込む友だちの気持ちに寄り添う言葉と行動を、お助け隊として提案しよう。",
+      "shutoku_plan": "物語やニュースの登場人物の気持ちを想像し、共感した場面を共有する。",
+      "practice_plan": "落ち込む友だちを想定し、寄り添う言葉（否定しない・共感する・そばにいる）と行動（話を聞く・一緒にいる・先生に相談）をリスト化する。お助け隊として使える共感アドバイス集を作成する。",
+      "lesson_plan": "【習得】 物語やニュースの登場人物の気持ちを想像し、共感した場面を共有する。【実践：お助け隊】 落ち込む友だちを想定し、寄り添う言葉（否定しない・共感する・そばにいる）と行動（話を聞く・一緒にいる・先生に相談）をリスト化する。お助け隊として使える共感アドバイス集を作成する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -1822,9 +2089,9 @@ body {
       "blockId": "E",
       "blockTitle": "相手の気持ちに気づく",
       "unitType": "お助け隊",
-      "shutoku_plan": "カード「思いやり」の将来のキャリアとのつながりを読んで確認し、情報ブロック「相手の気持ちに気づく」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "困っている人を見つけたら何をするか、クラスの『思いやり行動リスト』を作ろう。",
-      "lesson_plan": "【習得】 カード「思いやり」の将来のキャリアとのつながりを読んで確認し、情報ブロック「相手の気持ちに気づく」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 困っている人を見つけたら何をするか、クラスの『思いやり行動リスト』を作ろう。",
+      "shutoku_plan": "誰かのためにした行動を思い出し、思いやりが伝わった瞬間をメモする。",
+      "practice_plan": "校内で困っている人を見つけたときの行動リストをクラスで作成する。「気づく→声をかける→助ける→報告する」の流れと具体例を書いた『思いやり行動リスト』を完成させる。",
+      "lesson_plan": "【習得】 誰かのためにした行動を思い出し、思いやりが伝わった瞬間をメモする。【実践：お助け隊】 校内で困っている人を見つけたときの行動リストをクラスで作成する。「気づく→声をかける→助ける→報告する」の流れと具体例を書いた『思いやり行動リスト』を完成させる。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -1837,9 +2104,9 @@ body {
       "blockId": "E",
       "blockTitle": "相手の気持ちに気づく",
       "unitType": "お助け隊",
-      "shutoku_plan": "カード「相手の立場」の将来のキャリアとのつながりを読んで確認し、情報ブロック「相手の気持ちに気づく」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "相手の立場カードを使い、同じ出来事を異なる視点で語り合おう。",
-      "lesson_plan": "【習得】 カード「相手の立場」の将来のキャリアとのつながりを読んで確認し、情報ブロック「相手の気持ちに気づく」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 相手の立場カードを使い、同じ出来事を異なる視点で語り合おう。",
+      "shutoku_plan": "意見が対立した場面を振り返り、相手の立場を3つの視点で書き出す。",
+      "practice_plan": "同じ出来事（例：忘れ物をした人）について、当事者・友だち・先生の立場カードを使い、それぞれの気持ちを話し合う。立場によって見え方が変わることを整理して発表する。",
+      "lesson_plan": "【習得】 意見が対立した場面を振り返り、相手の立場を3つの視点で書き出す。【実践：お助け隊】 同じ出来事（例：忘れ物をした人）について、当事者・友だち・先生の立場カードを使い、それぞれの気持ちを話し合う。立場によって見え方が変わることを整理して発表する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -1852,9 +2119,9 @@ body {
       "blockId": "E",
       "blockTitle": "相手の気持ちに気づく",
       "unitType": "お助け隊",
-      "shutoku_plan": "カード「気持ちを想像する」の将来のキャリアとのつながりを読んで確認し、情報ブロック「相手の気持ちに気づく」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "「もし自分が相手だったら」をテーマに、気持ち想像ワークシートを完成させよう。",
-      "lesson_plan": "【習得】 カード「気持ちを想像する」の将来のキャリアとのつながりを読んで確認し、情報ブロック「相手の気持ちに気づく」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 「もし自分が相手だったら」をテーマに、気持ち想像ワークシートを完成させよう。",
+      "shutoku_plan": "「もし自分が相手だったら」シートを使い、相手の気持ちを言葉にしてみる。",
+      "practice_plan": "「もし自分が相手だったら」をテーマに、ケンカ・いじめ・誤解などの場面を1つ選ぶ。相手の気持ち・望み・困りごとを書く気持ち想像ワークシートを完成させる。",
+      "lesson_plan": "【習得】 「もし自分が相手だったら」シートを使い、相手の気持ちを言葉にしてみる。【実践：お助け隊】 「もし自分が相手だったら」をテーマに、ケンカ・いじめ・誤解などの場面を1つ選ぶ。相手の気持ち・望み・困りごとを書く気持ち想像ワークシートを完成させる。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -1867,9 +2134,9 @@ body {
       "blockId": "F",
       "blockTitle": "伝える・聞く",
       "unitType": "お助け隊",
-      "shutoku_plan": "カード「傾聴」の将来のキャリアとのつながりを読んで確認し、情報ブロック「伝える・聞く」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "話を遮らずに聞く練習をし、傾聴のコツを下級生向けアドバイスにまとめよう。",
-      "lesson_plan": "【習得】 カード「傾聴」の将来のキャリアとのつながりを読んで確認し、情報ブロック「伝える・聞く」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 話を遮らずに聞く練習をし、傾聴のコツを下級生向けアドバイスにまとめよう。",
+      "shutoku_plan": "良い聞き手・悪い聞き手の例を比べ、傾聴のポイントを3つメモする。",
+      "practice_plan": "傾聴の練習として、ペアで1人3分話し、もう1人はメモのみ（遮らない・うなずく・質問は最後）。傾聴のコツ5つをまとめ、下級生向けアドバイスカードを作る。",
+      "lesson_plan": "【習得】 良い聞き手・悪い聞き手の例を比べ、傾聴のポイントを3つメモする。【実践：お助け隊】 傾聴の練習として、ペアで1人3分話し、もう1人はメモのみ（遮らない・うなずく・質問は最後）。傾聴のコツ5つをまとめ、下級生向けアドバイスカードを作る。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -1882,9 +2149,9 @@ body {
       "blockId": "F",
       "blockTitle": "伝える・聞く",
       "unitType": "お助け隊",
-      "shutoku_plan": "カード「わかりやすく伝える」の将来のキャリアとのつながりを読んで確認し、情報ブロック「伝える・聞く」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "伝わりにくい説明を直す「わかりやすく伝えるお助け隊」として、ビフォーアフター例を作ろう。",
-      "lesson_plan": "【習得】 カード「わかりやすく伝える」の将来のキャリアとのつながりを読んで確認し、情報ブロック「伝える・聞く」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 伝わりにくい説明を直す「わかりやすく伝えるお助け隊」として、ビフォーアフター例を作ろう。",
+      "shutoku_plan": "同じ内容を伝える2つの言い方を比べ、わかりやすい方のコツを整理する。",
+      "practice_plan": "伝わりにくい説明（例：ルール・手順・出来事）を1つ選び、わかりやすく言い換える。ビフォーアフター例を含む「わかりやすく伝えるお助け隊カード」を作成する。",
+      "lesson_plan": "【習得】 同じ内容を伝える2つの言い方を比べ、わかりやすい方のコツを整理する。【実践：お助け隊】 伝わりにくい説明（例：ルール・手順・出来事）を1つ選び、わかりやすく言い換える。ビフォーアフター例を含む「わかりやすく伝えるお助け隊カード」を作成する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -1897,9 +2164,9 @@ body {
       "blockId": "F",
       "blockTitle": "伝える・聞く",
       "unitType": "お助け隊",
-      "shutoku_plan": "カード「感謝」の将来のキャリアとのつながりを読んで確認し、情報ブロック「伝える・聞く」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "日頃の感謝を言葉にする活動を行い、感謝カードをクラスで交換しよう。",
-      "lesson_plan": "【習得】 カード「感謝」の将来のキャリアとのつながりを読んで確認し、情報ブロック「伝える・聞く」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 日頃の感謝を言葉にする活動を行い、感謝カードをクラスで交換しよう。",
+      "shutoku_plan": "普段あまり言わない「ありがとう」を思い浮かべ、誰に何を伝えたいか書く。",
+      "practice_plan": "日頃感謝している人を3人選び、具体的な出来事と感謝の言葉を書く。感謝カードをクラスで交換し、伝え方（面とう・手紙・メッセージ）の違いも話し合う。",
+      "lesson_plan": "【習得】 普段あまり言わない「ありがとう」を思い浮かべ、誰に何を伝えたいか書く。【実践：お助け隊】 日頃感謝している人を3人選び、具体的な出来事と感謝の言葉を書く。感謝カードをクラスで交換し、伝え方（面とう・手紙・メッセージ）の違いも話し合う。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -1912,9 +2179,9 @@ body {
       "blockId": "F",
       "blockTitle": "伝える・聞く",
       "unitType": "お助け隊",
-      "shutoku_plan": "カード「謝る」の将来のキャリアとのつながりを読んで確認し、情報ブロック「伝える・聞く」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "謝り方がうまくいかなかった事例を直し、心が通う謝罪の例文を共有しよう。",
-      "lesson_plan": "【習得】 カード「謝る」の将来のキャリアとのつながりを読んで確認し、情報ブロック「伝える・聞く」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 謝り方がうまくいかなかった事例を直し、心が通う謝罪の例文を共有しよう。",
+      "shutoku_plan": "謝った経験・謝られた経験から、心が通った謝り方の条件を3つ挙げる。",
+      "practice_plan": "謝り方がうまくいかなかった事例を振り返り、心が通った謝罪の条件（タイミング・言葉・行動）を整理する。良い謝罪の例文を3パターン作成して共有する。",
+      "lesson_plan": "【習得】 謝った経験・謝られた経験から、心が通った謝り方の条件を3つ挙げる。【実践：お助け隊】 謝り方がうまくいかなかった事例を振り返り、心が通った謝罪の条件（タイミング・言葉・行動）を整理する。良い謝罪の例文を3パターン作成して共有する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -1927,9 +2194,9 @@ body {
       "blockId": "F",
       "blockTitle": "伝える・聞く",
       "unitType": "お助け隊",
-      "shutoku_plan": "カード「依頼する」の将来のキャリアとのつながりを読んで確認し、情報ブロック「伝える・聞く」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "助けを求めるのが苦手な友だちへ、依頼の言い方サンプルを一緒に考えよう。",
-      "lesson_plan": "【習得】 カード「依頼する」の将来のキャリアとのつながりを読んで確認し、情報ブロック「伝える・聞く」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 助けを求めるのが苦手な友だちへ、依頼の言い方サンプルを一緒に考えよう。",
+      "shutoku_plan": "助けを求めにくい場面を考え、伝えやすい依頼の言い方フレーズを作る。",
+      "practice_plan": "助けを求めにくい友だちを想定し、「いつ・誰に・どう頼むか」のフレーズを考える。依頼の言い方サンプル集（丁寧・短く・具体的）をペアで作る。",
+      "lesson_plan": "【習得】 助けを求めにくい場面を考え、伝えやすい依頼の言い方フレーズを作る。【実践：お助け隊】 助けを求めにくい友だちを想定し、「いつ・誰に・どう頼むか」のフレーズを考える。依頼の言い方サンプル集（丁寧・短く・具体的）をペアで作る。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -1942,9 +2209,9 @@ body {
       "blockId": "G",
       "blockTitle": "みんなで協力する",
       "unitType": "お助け隊",
-      "shutoku_plan": "カード「チームワーク」の将来のキャリアとのつながりを読んで確認し、情報ブロック「みんなで協力する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "学級活動の成功事例からチームワークの要素を抽出し、再現のヒントをまとめよう。",
-      "lesson_plan": "【習得】 カード「チームワーク」の将来のキャリアとのつながりを読んで確認し、情報ブロック「みんなで協力する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 学級活動の成功事例からチームワークの要素を抽出し、再現のヒントをまとめよう。",
+      "shutoku_plan": "うまくいったグループ活動を思い出し、チームワークの要素を抽出する。",
+      "practice_plan": "成功した学級活動（文化祭・体育祭など）を分析し、チームワークの要素（目標・役割・連携・声かけ）を抽出する。次の活動で再現するヒント集をまとめる。",
+      "lesson_plan": "【習得】 うまくいったグループ活動を思い出し、チームワークの要素を抽出する。【実践：お助け隊】 成功した学級活動（文化祭・体育祭など）を分析し、チームワークの要素（目標・役割・連携・声かけ）を抽出する。次の活動で再現するヒント集をまとめる。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -1957,9 +2224,9 @@ body {
       "blockId": "G",
       "blockTitle": "みんなで協力する",
       "unitType": "お助け隊",
-      "shutoku_plan": "カード「役割分担」の将来のキャリアとのつながりを読んで確認し、情報ブロック「みんなで協力する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "役割分担表を作成し、公平に分担するためのルールをグループで決めよう。",
-      "lesson_plan": "【習得】 カード「役割分担」の将来のキャリアとのつながりを読んで確認し、情報ブロック「みんなで協力する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 役割分担表を作成し、公平に分担するためのルールをグループで決めよう。",
+      "shutoku_plan": "役割分担の例を読み、それぞれの役割がなぜ大切かを整理する。",
+      "practice_plan": "クラス改善活動などの役割分担表を作成し、リーダー・記録・連絡・道具など役割を決める。公平に分担するためのルール（交代・負担の見える化）をグループで合意する。",
+      "lesson_plan": "【習得】 役割分担の例を読み、それぞれの役割がなぜ大切かを整理する。【実践：お助け隊】 クラス改善活動などの役割分担表を作成し、リーダー・記録・連絡・道具など役割を決める。公平に分担するためのルール（交代・負担の見える化）をグループで合意する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -1972,9 +2239,9 @@ body {
       "blockId": "G",
       "blockTitle": "みんなで協力する",
       "unitType": "お助け隊",
-      "shutoku_plan": "カード「助け合い」の将来のキャリアとのつながりを読んで確認し、情報ブロック「みんなで協力する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "困っている人を見つけたら助ける「助け合いチャレンジ」をクラスで実施しよう。",
-      "lesson_plan": "【習得】 カード「助け合い」の将来のキャリアとのつながりを読んで確認し、情報ブロック「みんなで協力する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 困っている人を見つけたら助ける「助け合いチャレンジ」をクラスで実施しよう。",
+      "shutoku_plan": "助けられた・助けた経験を共有し、助け合いのありがたさを言葉にする。",
+      "practice_plan": "「助け合いチャレンジ」を企画し、1日でできる小さな助け（忘れ物・勉強・片づけ）を実行する。実施記録と感じたことをまとめた助け合いレポートを提出する。",
+      "lesson_plan": "【習得】 助けられた・助けた経験を共有し、助け合いのありがたさを言葉にする。【実践：お助け隊】 「助け合いチャレンジ」を企画し、1日でできる小さな助け（忘れ物・勉強・片づけ）を実行する。実施記録と感じたことをまとめた助け合いレポートを提出する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -1987,9 +2254,9 @@ body {
       "blockId": "G",
       "blockTitle": "みんなで協力する",
       "unitType": "お助け隊",
-      "shutoku_plan": "カード「約束を守る」の将来のキャリアとのつながりを読んで確認し、情報ブロック「みんなで協力する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "約束を守れなかった場面を想定し、信頼を取り戻す方法を話し合おう。",
-      "lesson_plan": "【習得】 カード「約束を守る」の将来のキャリアとのつながりを読んで確認し、情報ブロック「みんなで協力する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 約束を守れなかった場面を想定し、信頼を取り戻す方法を話し合おう。",
+      "shutoku_plan": "約束を守った経験と破った経験を比べ、信頼につながる行動をメモする。",
+      "practice_plan": "約束を守れなかった場面を想定し、信頼を取り戻す手順（素直に謝る・理由を説明・再発防止・行動で示す）を話し合う。信頼回復の行動プランをシートにまとめる。",
+      "lesson_plan": "【習得】 約束を守った経験と破った経験を比べ、信頼につながる行動をメモする。【実践：お助け隊】 約束を守れなかった場面を想定し、信頼を取り戻す手順（素直に謝る・理由を説明・再発防止・行動で示す）を話し合う。信頼回復の行動プランをシートにまとめる。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2002,9 +2269,9 @@ body {
       "blockId": "G",
       "blockTitle": "みんなで協力する",
       "unitType": "お助け隊",
-      "shutoku_plan": "カード「責任感」の将来のキャリアとのつながりを読んで確認し、情報ブロック「みんなで協力する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "役割を全うできなかった経験から、責任感を高める自分のルールを作ろう。",
-      "lesson_plan": "【習得】 カード「責任感」の将来のキャリアとのつながりを読んで確認し、情報ブロック「みんなで協力する」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 役割を全うできなかった経験から、責任感を高める自分のルールを作ろう。",
+      "shutoku_plan": "任された役割を最後までやり遂げた経験を振り返り、責任感の源を考える。",
+      "practice_plan": "役割を全うできなかった経験から、自分の責任の取り方を振り返る。次から守る自分ルール（確認・報告・期限管理）を『責任感トリセツ』として作成する。",
+      "lesson_plan": "【習得】 任された役割を最後までやり遂げた経験を振り返り、責任感の源を考える。【実践：お助け隊】 役割を全うできなかった経験から、自分の責任の取り方を振り返る。次から守る自分ルール（確認・報告・期限管理）を『責任感トリセツ』として作成する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2017,9 +2284,9 @@ body {
       "blockId": "H",
       "blockTitle": "ちがいを認め、話し合う",
       "unitType": "モヤモヤ会議",
-      "shutoku_plan": "カード「多様性」の将来のキャリアとのつながりを読んで確認し、情報ブロック「ちがいを認め、話し合う」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "多様な背景を持つ架空のクラスメイトを想定し、尊重のための行動指針を議論しよう。",
-      "lesson_plan": "【習得】 カード「多様性」の将来のキャリアとのつながりを読んで確認し、情報ブロック「ちがいを認め、話し合う」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：モヤモヤ会議】 多様な背景を持つ架空のクラスメイトを想定し、尊重のための行動指針を議論しよう。",
+      "shutoku_plan": "身の回りの「ちがい」（意見・文化・個性）を3つ挙げ、大切にすることを書く。",
+      "practice_plan": "多様な背景を持つ架空のクラスメイトを想定し、尊重のための行動指針（呼び方・話題・困ったとき）を議論する。多様性を大切にするクラス宣言を文章化する。",
+      "lesson_plan": "【習得】 身の回りの「ちがい」（意見・文化・個性）を3つ挙げ、大切にすることを書く。【実践：モヤモヤ会議】 多様な背景を持つ架空のクラスメイトを想定し、尊重のための行動指針（呼び方・話題・困ったとき）を議論する。多様性を大切にするクラス宣言を文章化する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2032,9 +2299,9 @@ body {
       "blockId": "H",
       "blockTitle": "ちがいを認め、話し合う",
       "unitType": "モヤモヤ会議",
-      "shutoku_plan": "カード「意見のちがい」の将来のキャリアとのつながりを読んで確認し、情報ブロック「ちがいを認め、話し合う」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "意見のちがいからケンカした事例をもとに、対話で解決する手順を決めよう。",
-      "lesson_plan": "【習得】 カード「意見のちがい」の将来のキャリアとのつながりを読んで確認し、情報ブロック「ちがいを認め、話し合う」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：モヤモヤ会議】 意見のちがいからケンカした事例をもとに、対話で解決する手順を決めよう。",
+      "shutoku_plan": "意見が分かれた経験を思い出し、対立ではなく視点の違いとして整理する。",
+      "practice_plan": "意見のちがいからケンカした事例をもとに、対話で解決する手順（冷静になる→相手の話を聞く→共通点を探す→妥協案）を決める。解決の手順書を作成する。",
+      "lesson_plan": "【習得】 意見が分かれた経験を思い出し、対立ではなく視点の違いとして整理する。【実践：モヤモヤ会議】 意見のちがいからケンカした事例をもとに、対話で解決する手順（冷静になる→相手の話を聞く→共通点を探す→妥協案）を決める。解決の手順書を作成する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2047,9 +2314,9 @@ body {
       "blockId": "H",
       "blockTitle": "ちがいを認め、話し合う",
       "unitType": "モヤモヤ会議",
-      "shutoku_plan": "カード「話し合い」の将来のキャリアとのつながりを読んで確認し、情報ブロック「ちがいを認め、話し合う」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "クラスの困りごとを話し合いのルールに沿って解決する模擬会議を行おう。",
-      "lesson_plan": "【習得】 カード「話し合い」の将来のキャリアとのつながりを読んで確認し、情報ブロック「ちがいを認め、話し合う」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：モヤモヤ会議】 クラスの困りごとを話し合いのルールに沿って解決する模擬会議を行おう。",
+      "shutoku_plan": "話し合いでうまくいった例・いかなかった例を比べ、成功の条件をメモする。",
+      "practice_plan": "クラスの困りごとを1つ選び、話し合いのルール（時間・発言の仕方・決め方）を守りながら模擬会議を行う。決まったことと次の行動を議事録にまとめる。",
+      "lesson_plan": "【習得】 話し合いでうまくいった例・いかなかった例を比べ、成功の条件をメモする。【実践：モヤモヤ会議】 クラスの困りごとを1つ選び、話し合いのルール（時間・発言の仕方・決め方）を守りながら模擬会議を行う。決まったことと次の行動を議事録にまとめる。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2062,9 +2329,9 @@ body {
       "blockId": "H",
       "blockTitle": "ちがいを認め、話し合う",
       "unitType": "モヤモヤ会議",
-      "shutoku_plan": "カード「公平・公正」の将来のキャリアとのつながりを読んで確認し、情報ブロック「ちがいを認め、話し合う」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "「公平」と「平等」のちがいをケースで考え、納得できる基準を言語化しよう。",
-      "lesson_plan": "【習得】 カード「公平・公正」の将来のキャリアとのつながりを読んで確認し、情報ブロック「ちがいを認め、話し合う」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：モヤモヤ会議】 「公平」と「平等」のちがいをケースで考え、納得できる基準を言語化しよう。",
+      "shutoku_plan": "「公平」と「平等」のちがいを学び、学校生活の例を各1つ挙げる。",
+      "practice_plan": "「公平」と「平等」のちがいをケース（席替え・役割・配点など）で考える。納得できる基準を言語化し、クラスで使える判断のしかたをシートにまとめる。",
+      "lesson_plan": "【習得】 「公平」と「平等」のちがいを学び、学校生活の例を各1つ挙げる。【実践：モヤモヤ会議】 「公平」と「平等」のちがいをケース（席替え・役割・配点など）で考える。納得できる基準を言語化し、クラスで使える判断のしかたをシートにまとめる。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2077,9 +2344,9 @@ body {
       "blockId": "H",
       "blockTitle": "ちがいを認め、話し合う",
       "unitType": "お助け隊",
-      "shutoku_plan": "カード「相談する」の将来のキャリアとのつながりを読んで確認し、情報ブロック「ちがいを認め、話し合う」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "相談しにくい友だちに届ける「相談のしやすさ向上プラン」を作ろう。",
-      "lesson_plan": "【習得】 カード「相談する」の将来のキャリアとのつながりを読んで確認し、情報ブロック「ちがいを認め、話し合う」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 相談しにくい友だちに届ける「相談のしやすさ向上プラン」を作ろう。",
+      "shutoku_plan": "相談したいけど言えなかった経験を考え、相談しやすくする条件を書き出す。",
+      "practice_plan": "相談しにくい友だち向けに、相談のしやすさを高めるプラン（相談室・匿名箱・声かけの言葉・仲介役）を考える。実行可能な1つを選び、計画書を作成する。",
+      "lesson_plan": "【習得】 相談したいけど言えなかった経験を考え、相談しやすくする条件を書き出す。【実践：お助け隊】 相談しにくい友だち向けに、相談のしやすさを高めるプラン（相談室・匿名箱・声かけの言葉・仲介役）を考える。実行可能な1つを選び、計画書を作成する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2092,9 +2359,9 @@ body {
       "blockId": "I",
       "blockTitle": "困りごとに気づく",
       "unitType": "お助け隊",
-      "shutoku_plan": "カード「問題発見」の将来のキャリアとのつながりを読んで確認し、情報ブロック「困りごとに気づく」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "教室・廊下・休み時間の「困りごと」を見つけ、改善アイデアを1つ提案しよう。",
-      "lesson_plan": "【習得】 カード「問題発見」の将来のキャリアとのつながりを読んで確認し、情報ブロック「困りごとに気づく」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 教室・廊下・休み時間の「困りごと」を見つけ、改善アイデアを1つ提案しよう。",
+      "shutoku_plan": "教室・廊下・休み時間で「もっとよくしたいこと」を1つ見つけ、なぜ気になったか書く。",
+      "practice_plan": "教室・廊下・休み時間を歩き、改善したい困りごとを1つ発見する。誰が困っているか・原因は何かを整理し、具体的な改善アイデアと担当を提案する。",
+      "lesson_plan": "【習得】 教室・廊下・休み時間で「もっとよくしたいこと」を1つ見つけ、なぜ気になったか書く。【実践：お助け隊】 教室・廊下・休み時間を歩き、改善したい困りごとを1つ発見する。誰が困っているか・原因は何かを整理し、具体的な改善アイデアと担当を提案する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2107,9 +2374,9 @@ body {
       "blockId": "I",
       "blockTitle": "困りごとに気づく",
       "unitType": "お助け隊",
-      "shutoku_plan": "カード「困りごと」の将来のキャリアとのつながりを読んで確認し、情報ブロック「困りごとに気づく」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "身近な困りごと解決のお助け隊として、原因と関係者を整理した解決シートを作ろう。",
-      "lesson_plan": "【習得】 カード「困りごと」の将来のキャリアとのつながりを読んで確認し、情報ブロック「困りごとに気づく」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 身近な困りごと解決のお助け隊として、原因と関係者を整理した解決シートを作ろう。",
+      "shutoku_plan": "自分・友だち・家族の困りごとを1つずつ挙げ、共通点と違いを整理する。",
+      "practice_plan": "身近な困りごと（忘れ物・騒音・片づけなど）を1つ選び、原因・関係者・影響を整理する。解決の方向性を書いた解決シートをお助け隊として提出する。",
+      "lesson_plan": "【習得】 自分・友だち・家族の困りごとを1つずつ挙げ、共通点と違いを整理する。【実践：お助け隊】 身近な困りごと（忘れ物・騒音・片づけなど）を1つ選び、原因・関係者・影響を整理する。解決の方向性を書いた解決シートをお助け隊として提出する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2122,9 +2389,9 @@ body {
       "blockId": "I",
       "blockTitle": "困りごとに気づく",
       "unitType": "お助け隊",
-      "shutoku_plan": "カード「現状把握」の将来のキャリアとのつながりを読んで確認し、情報ブロック「困りごとに気づく」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "選んだ困りごとの現状を調査し、事実と推測を分けて整理しよう。",
-      "lesson_plan": "【習得】 カード「現状把握」の将来のキャリアとのつながりを読んで確認し、情報ブロック「困りごとに気づく」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 選んだ困りごとの現状を調査し、事実と推測を分けて整理しよう。",
+      "shutoku_plan": "選んだ困りごとについて、事実と思い込みを分けて現状を書き出す。",
+      "practice_plan": "選んだ困りごとについて、アンケートや観察で現状を調べる。事実（データ・目撃）と推測を分けて整理し、現状把握レポートを作成する。",
+      "lesson_plan": "【習得】 選んだ困りごとについて、事実と思い込みを分けて現状を書き出す。【実践：お助け隊】 選んだ困りごとについて、アンケートや観察で現状を調べる。事実（データ・目撃）と推測を分けて整理し、現状把握レポートを作成する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2137,9 +2404,9 @@ body {
       "blockId": "I",
       "blockTitle": "困りごとに気づく",
       "unitType": "お助け隊",
-      "shutoku_plan": "カード「関係する人」の将来のキャリアとのつながりを読んで確認し、情報ブロック「困りごとに気づく」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "困りごとに関わる人を洗い出し、それぞれの立場を整理したマップを作ろう。",
-      "lesson_plan": "【習得】 カード「関係する人」の将来のキャリアとのつながりを読んで確認し、情報ブロック「困りごとに気づく」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 困りごとに関わる人を洗い出し、それぞれの立場を整理したマップを作ろう。",
+      "shutoku_plan": "困りごとに関わる人を洗い出し、それぞれの立場をマップにする。",
+      "practice_plan": "困りごとに関わる人（当事者・友だち・先生・家族）を洗い出し、それぞれの立場と思いをマップ化する。関係者マップと対話のポイントをまとめる。",
+      "lesson_plan": "【習得】 困りごとに関わる人を洗い出し、それぞれの立場をマップにする。【実践：お助け隊】 困りごとに関わる人（当事者・友だち・先生・家族）を洗い出し、それぞれの立場と思いをマップ化する。関係者マップと対話のポイントをまとめる。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2152,9 +2419,9 @@ body {
       "blockId": "J",
       "blockTitle": "深く考える",
       "unitType": "トリセツ",
-      "shutoku_plan": "カード「なぜなぜ」の将来のキャリアとのつながりを読んで確認し、情報ブロック「深く考える」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "「なぜ？」を5回繰り返し、困りごとの根本原因を探るワークに挑戦しよう。",
-      "lesson_plan": "【習得】 カード「なぜなぜ」の将来のキャリアとのつながりを読んで確認し、情報ブロック「深く考える」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 「なぜ？」を5回繰り返し、困りごとの根本原因を探るワークに挑戦しよう。",
+      "shutoku_plan": "身近な困りごとに「なぜ？」を5回繰り返し、考えられる原因を書き出す。",
+      "practice_plan": "身近な困りごとに「なぜ？」を5回繰り返し、根本原因を探るワークに取り組む。表面の問題と考えられる原因を整理し、グループで発表する。",
+      "lesson_plan": "【習得】 身近な困りごとに「なぜ？」を5回繰り返し、考えられる原因を書き出す。【実践：トリセツ】 身近な困りごとに「なぜ？」を5回繰り返し、根本原因を探るワークに取り組む。表面の問題と考えられる原因を整理し、グループで発表する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2167,9 +2434,9 @@ body {
       "blockId": "J",
       "blockTitle": "深く考える",
       "unitType": "モヤモヤ会議",
-      "shutoku_plan": "カード「多面的に見る」の将来のキャリアとのつながりを読んで確認し、情報ブロック「深く考える」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "同じ出来事を複数の視点から語り、見え方のちがいを整理しよう。",
-      "lesson_plan": "【習得】 カード「多面的に見る」の将来のキャリアとのつながりを読んで確認し、情報ブロック「深く考える」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：モヤモヤ会議】 同じ出来事を複数の視点から語り、見え方のちがいを整理しよう。",
+      "shutoku_plan": "学校やニュースの出来事を複数の視点から読み直し、見方のちがいを整理する。",
+      "practice_plan": "同じ出来事（例：部活の敗北・ルール変更）を複数の視点（当事者・観客・先生）で語り合う。見え方のちがいを表に整理し、多面的に見る練習をする。",
+      "lesson_plan": "【習得】 学校やニュースの出来事を複数の視点から読み直し、見方のちがいを整理する。【実践：モヤモヤ会議】 同じ出来事（例：部活の敗北・ルール変更）を複数の視点（当事者・観客・先生）で語り合う。見え方のちがいを表に整理し、多面的に見る練習をする。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2182,9 +2449,9 @@ body {
       "blockId": "J",
       "blockTitle": "深く考える",
       "unitType": "トリセツ",
-      "shutoku_plan": "カード「仮説」の将来のキャリアとのつながりを読んで確認し、情報ブロック「深く考える」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "假説を立てて小さく試し、結果を記録するミニ実験を行おう。",
-      "lesson_plan": "【習得】 カード「仮説」の将来のキャリアとのつながりを読んで確認し、情報ブロック「深く考える」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 假説を立てて小さく試し、結果を記録するミニ実験を行おう。",
+      "shutoku_plan": "日常の不思議に仮説を1つ立て、「こうなるはず」の理由を書く。",
+      "practice_plan": "「〇〇すれば△△になるのでは？」という仮説を1つ立て、小さく試す（アンケート・観察・実験）。結果を記録し、仮説が当たったか振り返る。",
+      "lesson_plan": "【習得】 日常の不思議に仮説を1つ立て、「こうなるはず」の理由を書く。【実践：トリセツ】 「〇〇すれば△△になるのでは？」という仮説を1つ立て、小さく試す（アンケート・観察・実験）。結果を記録し、仮説が当たったか振り返る。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2197,9 +2464,9 @@ body {
       "blockId": "J",
       "blockTitle": "深く考える",
       "unitType": "トリセツ",
-      "shutoku_plan": "カード「理由づけ」の将来のキャリアとのつながりを読んで確認し、情報ブロック「深く考える」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "自分の考えに理由と根拠を添えて、説得力のある提案文を書こう。",
-      "lesson_plan": "【習得】 カード「理由づけ」の将来のキャリアとのつながりを読んで確認し、情報ブロック「深く考える」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 自分の考えに理由と根拠を添えて、説得力のある提案文を書こう。",
+      "shutoku_plan": "自分の意見に理由と根拠を添えて、納得感のある一文を作成する。",
+      "practice_plan": "クラス改善などの提案を1つ書き、理由（なぜ必要か）と根拠（事例・データ）を添える。説得力のある提案文を作成し、ペアでフィードバックする。",
+      "lesson_plan": "【習得】 自分の意見に理由と根拠を添えて、納得感のある一文を作成する。【実践：トリセツ】 クラス改善などの提案を1つ書き、理由（なぜ必要か）と根拠（事例・データ）を添える。説得力のある提案文を作成し、ペアでフィードバックする。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2212,9 +2479,9 @@ body {
       "blockId": "J",
       "blockTitle": "深く考える",
       "unitType": "トリセツ",
-      "shutoku_plan": "カード「比較する」の将来のキャリアとのつながりを読んで確認し、情報ブロック「深く考える」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "複数の解決案を比較表にし、選んだ理由を発表しよう。",
-      "lesson_plan": "【習得】 カード「比較する」の将来のキャリアとのつながりを読んで確認し、情報ブロック「深く考える」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 複数の解決案を比較表にし、選んだ理由を発表しよう。",
+      "shutoku_plan": "2つの選択肢を表にし、メリット・デメリットを書いて比較する。",
+      "practice_plan": "解決案を2つ以上出し、メリット・デメリット・コストを比較表にまとめる。選んだ案とその理由を1分で発表する。",
+      "lesson_plan": "【習得】 2つの選択肢を表にし、メリット・デメリットを書いて比較する。【実践：トリセツ】 解決案を2つ以上出し、メリット・デメリット・コストを比較表にまとめる。選んだ案とその理由を1分で発表する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2227,9 +2494,9 @@ body {
       "blockId": "K",
       "blockTitle": "動いて、振り返る",
       "unitType": "トリセツ",
-      "shutoku_plan": "カード「計画」の将来のキャリアとのつながりを読んで確認し、情報ブロック「動いて、振り返る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "学級の改善活動の計画書（目的・手順・役割・期日）を作成しよう。",
-      "lesson_plan": "【習得】 カード「計画」の将来のキャリアとのつながりを読んで確認し、情報ブロック「動いて、振り返る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 学級の改善活動の計画書（目的・手順・役割・期日）を作成しよう。",
+      "shutoku_plan": "計画の大切さを学び、明日の学校生活で必要な準備を3つリストアップする。",
+      "practice_plan": "学級改善活動の計画書を作成する（目的・手順・役割分担・日程・必要なもの）。実行前にグループで確認し、不足点を修正する。",
+      "lesson_plan": "【習得】 計画の大切さを学び、明日の学校生活で必要な準備を3つリストアップする。【実践：トリセツ】 学級改善活動の計画書を作成する（目的・手順・役割分担・日程・必要なもの）。実行前にグループで確認し、不足点を修正する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2242,9 +2509,9 @@ body {
       "blockId": "K",
       "blockTitle": "動いて、振り返る",
       "unitType": "お助け隊",
-      "shutoku_plan": "カード「実行」の将来のキャリアとのつながりを読んで確認し、情報ブロック「動いて、振り返る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "計画した活動を実行し、途中で起きた問題への対応を記録しよう。",
-      "lesson_plan": "【習得】 カード「実行」の将来のキャリアとのつながりを読んで確認し、情報ブロック「動いて、振り返る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 計画した活動を実行し、途中で起きた問題への対応を記録しよう。",
+      "shutoku_plan": "計画と実行のちがいを事例で学び、実行を妨げた要因を1つ挙げる。",
+      "practice_plan": "計画した活動を実際に行い、途中で起きた問題とその対応を記録する。予定と実際のちがいを振り返り、実行記録シートを提出する。",
+      "lesson_plan": "【習得】 計画と実行のちがいを事例で学び、実行を妨げた要因を1つ挙げる。【実践：お助け隊】 計画した活動を実際に行い、途中で起きた問題とその対応を記録する。予定と実際のちがいを振り返り、実行記録シートを提出する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2257,9 +2524,9 @@ body {
       "blockId": "K",
       "blockTitle": "動いて、振り返る",
       "unitType": "トリセツ",
-      "shutoku_plan": "カード「試行錯誤」の将来のキャリアとのつながりを読んで確認し、情報ブロック「動いて、振り返る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "うまくいかなかった点を変えて再挑戦する「試行錯誤ログ」を作ろう。",
-      "lesson_plan": "【習得】 カード「試行錯誤」の将来のキャリアとのつながりを読んで確認し、情報ブロック「動いて、振り返る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 うまくいかなかった点を変えて再挑戦する「試行錯誤ログ」を作ろう。",
+      "shutoku_plan": "うまくいかなかった挑戦を振り返り、変えればよかった点を1つ書く。",
+      "practice_plan": "うまくいかなかった点を変えて再挑戦する。変更点・結果・学びを「試行錯誤ログ」に記録し、次の改善につなげる。",
+      "lesson_plan": "【習得】 うまくいかなかった挑戦を振り返り、変えればよかった点を1つ書く。【実践：トリセツ】 うまくいかなかった点を変えて再挑戦する。変更点・結果・学びを「試行錯誤ログ」に記録し、次の改善につなげる。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2272,9 +2539,9 @@ body {
       "blockId": "K",
       "blockTitle": "動いて、振り返る",
       "unitType": "トリセツ",
-      "shutoku_plan": "カード「振り返り（改善）」の将来のキャリアとのつながりを読んで確認し、情報ブロック「動いて、振り返る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "活動結果を振り返り、次回への改善点を3つ挙げよう。",
-      "lesson_plan": "【習得】 カード「振り返り（改善）」の将来のキャリアとのつながりを読んで確認し、情報ブロック「動いて、振り返る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 活動結果を振り返り、次回への改善点を3つ挙げよう。",
+      "shutoku_plan": "最近の活動を振り返り、うまくいった点・改善点を各1つ書く。",
+      "practice_plan": "活動結果を振り返り、うまくいった点・改善点を各3つ挙げる。次回への改善案を書いた振り返りシートを作成する。",
+      "lesson_plan": "【習得】 最近の活動を振り返り、うまくいった点・改善点を各1つ書く。【実践：トリセツ】 活動結果を振り返り、うまくいった点・改善点を各3つ挙げる。次回への改善案を書いた振り返りシートを作成する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2287,9 +2554,9 @@ body {
       "blockId": "K",
       "blockTitle": "動いて、振り返る",
       "unitType": "トリセツ",
-      "shutoku_plan": "カード「PDCA」の将来のキャリアとのつながりを読んで確認し、情報ブロック「動いて、振り返る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "PDCAの一連の流れを自分の活動に当てはめ、サイクル図を完成させよう。",
-      "lesson_plan": "【習得】 カード「PDCA」の将来のキャリアとのつながりを読んで確認し、情報ブロック「動いて、振り返る」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 PDCAの一連の流れを自分の活動に当てはめ、サイクル図を完成させよう。",
+      "shutoku_plan": "PDCAの4つの意味を確認し、自分の学習や部活に当てはめて説明する。",
+      "practice_plan": "自分の活動（勉強・部活・改善活動）にPDCAを当てはめ、Plan・Do・Check・Actを書く。サイクル図を完成させ、どこを改善するか決める。",
+      "lesson_plan": "【習得】 PDCAの4つの意味を確認し、自分の学習や部活に当てはめて説明する。【実践：トリセツ】 自分の活動（勉強・部活・改善活動）にPDCAを当てはめ、Plan・Do・Check・Actを書く。サイクル図を完成させ、どこを改善するか決める。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2302,9 +2569,9 @@ body {
       "blockId": "L",
       "blockTitle": "社会の課題と向き合う",
       "unitType": "モヤモヤ会議",
-      "shutoku_plan": "カード「社会課題」の将来のキャリアとのつながりを読んで確認し、情報ブロック「社会の課題と向き合う」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "SDGsやニュースの社会課題を1つ選び、「自分にできることは？」を議論しよう。",
-      "lesson_plan": "【習得】 カード「社会課題」の将来のキャリアとのつながりを読んで確認し、情報ブロック「社会の課題と向き合う」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：モヤモヤ会議】 SDGsやニュースの社会課題を1つ選び、「自分にできることは？」を議論しよう。",
+      "shutoku_plan": "SDGsやニュースから社会課題を1つ選び、自分と関係ある理由を書く。",
+      "practice_plan": "SDGsやニュースから社会課題を1つ選び、内容と自分の関係を調べる。グループで「自分にできること」を3つ議論し、宣言文を作成する。",
+      "lesson_plan": "【習得】 SDGsやニュースから社会課題を1つ選び、自分と関係ある理由を書く。【実践：モヤモヤ会議】 SDGsやニュースから社会課題を1つ選び、内容と自分の関係を調べる。グループで「自分にできること」を3つ議論し、宣言文を作成する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2317,9 +2584,9 @@ body {
       "blockId": "L",
       "blockTitle": "社会の課題と向き合う",
       "unitType": "お助け隊",
-      "shutoku_plan": "カード「地域課題」の将来のキャリアとのつながりを読んで確認し、情報ブロック「社会の課題と向き合う」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "地域の困りごとを調査し、解決に向けた小さなアクションを提案しよう。",
-      "lesson_plan": "【習得】 カード「地域課題」の将来のキャリアとのつながりを読んで確認し、情報ブロック「社会の課題と向き合う」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 地域の困りごとを調査し、解決に向けた小さなアクションを提案しよう。",
+      "shutoku_plan": "地域の困りごとを1つ挙げ、誰が困っているか・なぜかを整理する。",
+      "practice_plan": "地域の困りごと（ごみ・交通・高齢者など）を調査し、原因と影響を整理する。学校や地域でできる小さなアクションを1つ提案する。",
+      "lesson_plan": "【習得】 地域の困りごとを1つ挙げ、誰が困っているか・なぜかを整理する。【実践：お助け隊】 地域の困りごと（ごみ・交通・高齢者など）を調査し、原因と影響を整理する。学校や地域でできる小さなアクションを1つ提案する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2332,9 +2599,9 @@ body {
       "blockId": "L",
       "blockTitle": "社会の課題と向き合う",
       "unitType": "モヤモヤ会議",
-      "shutoku_plan": "カード「当事者意識」の将来のキャリアとのつながりを読んで確認し、情報ブロック「社会の課題と向き合う」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "「他人ごと」と「自分ごと」の違いをケースで考え、当事者意識チェックリストを作ろう。",
-      "lesson_plan": "【習得】 カード「当事者意識」の将来のキャリアとのつながりを読んで確認し、情報ブロック「社会の課題と向き合う」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：モヤモヤ会議】 「他人ごと」と「自分ごと」の違いをケースで考え、当事者意識チェックリストを作ろう。",
+      "shutoku_plan": "「他人ごと」だと思いがちな出来事を1つ選び、自分ごととして考え直す。",
+      "practice_plan": "「他人ごと」になりがちな出来事をケースで考え、自分ごととして捉え直す。当事者意識チェックリスト（関係・影響・できること）を作成する。",
+      "lesson_plan": "【習得】 「他人ごと」だと思いがちな出来事を1つ選び、自分ごととして考え直す。【実践：モヤモヤ会議】 「他人ごと」になりがちな出来事をケースで考え、自分ごととして捉え直す。当事者意識チェックリスト（関係・影響・できること）を作成する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2347,9 +2614,9 @@ body {
       "blockId": "L",
       "blockTitle": "社会の課題と向き合う",
       "unitType": "モヤモヤ会議",
-      "shutoku_plan": "カード「持続可能性」の将来のキャリアとのつながりを読んで確認し、情報ブロック「社会の課題と向き合う」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "持続可能な未来のために、学校でできる行動を3つ決め、宣言しよう。",
-      "lesson_plan": "【習得】 カード「持続可能性」の将来のキャリアとのつながりを読んで確認し、情報ブロック「社会の課題と向き合う」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：モヤモヤ会議】 持続可能な未来のために、学校でできる行動を3つ決め、宣言しよう。",
+      "shutoku_plan": "持続可能性の例を学び、学校でできる行動を1つ考える。",
+      "practice_plan": "持続可能性（ごみ・エネルギー・水など）について学び、学校でできる行動を3つ決める。クラス宣言と実行計画をまとめて発表する。",
+      "lesson_plan": "【習得】 持続可能性の例を学び、学校でできる行動を1つ考える。【実践：モヤモヤ会議】 持続可能性（ごみ・エネルギー・水など）について学び、学校でできる行動を3つ決める。クラス宣言と実行計画をまとめて発表する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2362,9 +2629,9 @@ body {
       "blockId": "M",
       "blockTitle": "仕事と働くこと",
       "unitType": "お助け隊",
-      "shutoku_plan": "カード「仕事の意味」の将来のキャリアとのつながりを読んで確認し、情報ブロック「仕事と働くこと」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "身近な仕事人へのインタビュー動画（または紙）をもとに、仕事の意味を紹介しよう。",
-      "lesson_plan": "【習得】 カード「仕事の意味」の将来のキャリアとのつながりを読んで確認し、情報ブロック「仕事と働くこと」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 身近な仕事人へのインタビュー動画（または紙）をもとに、仕事の意味を紹介しよう。",
+      "shutoku_plan": "働くことの意味を考える質問に答え、自分にとっての仕事観をひとこと書く。",
+      "practice_plan": "身近な仕事人（家族・地域の方）へのインタビュー内容をもとに、その仕事の意義と大変さを紹介する。仕事紹介カード（仕事内容・やりがい・必要な力）を作る。",
+      "lesson_plan": "【習得】 働くことの意味を考える質問に答え、自分にとっての仕事観をひとこと書く。【実践：お助け隊】 身近な仕事人（家族・地域の方）へのインタビュー内容をもとに、その仕事の意義と大変さを紹介する。仕事紹介カード（仕事内容・やりがい・必要な力）を作る。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2377,9 +2644,9 @@ body {
       "blockId": "M",
       "blockTitle": "仕事と働くこと",
       "unitType": "お助け隊",
-      "shutoku_plan": "カード「職業の種類」の将来のキャリアとのつながりを読んで確認し、情報ブロック「仕事と働くこと」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "知らなかった職業を調べ、クラス向け職業紹介カードを作ろう。",
-      "lesson_plan": "【習得】 カード「職業の種類」の将来のキャリアとのつながりを読んで確認し、情報ブロック「仕事と働くこと」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 知らなかった職業を調べ、クラス向け職業紹介カードを作ろう。",
+      "shutoku_plan": "知らない職業を1つ調べ、どんな人に向いているかメモする。",
+      "practice_plan": "知らなかった職業を1つ調べ、仕事内容・必要な力・1日の流れをまとめる。クラス向け職業紹介カードを作成し、1分で紹介する。",
+      "lesson_plan": "【習得】 知らない職業を1つ調べ、どんな人に向いているかメモする。【実践：お助け隊】 知らなかった職業を1つ調べ、仕事内容・必要な力・1日の流れをまとめる。クラス向け職業紹介カードを作成し、1分で紹介する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2392,9 +2659,9 @@ body {
       "blockId": "M",
       "blockTitle": "仕事と働くこと",
       "unitType": "お助け隊",
-      "shutoku_plan": "カード「働く人」の将来のキャリアとのつながりを読んで確認し、情報ブロック「仕事と働くこと」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "働く人の一日を調べ、感謝のメッセージを届ける活動を企画しよう。",
-      "lesson_plan": "【習得】 カード「働く人」の将来のキャリアとのつながりを読んで確認し、情報ブロック「仕事と働くこと」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 働く人の一日を調べ、感謝のメッセージを届ける活動を企画しよう。",
+      "shutoku_plan": "身近な働く人を1人思い浮かべ、その人の仕事の大切さを言葉にする。",
+      "practice_plan": "働く人の1日を調べ、感謝のメッセージを届ける活動を企画する。企画書（対象・方法・メッセージ案・日程）を作成する。",
+      "lesson_plan": "【習得】 身近な働く人を1人思い浮かべ、その人の仕事の大切さを言葉にする。【実践：お助け隊】 働く人の1日を調べ、感謝のメッセージを届ける活動を企画する。企画書（対象・方法・メッセージ案・日程）を作成する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2407,9 +2674,9 @@ body {
       "blockId": "M",
       "blockTitle": "仕事と働くこと",
       "unitType": "トリセツ",
-      "shutoku_plan": "カード「仕事のやりがい」の将来のキャリアとのつながりを読んで確認し、情報ブロック「仕事と働くこと」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "やりがいを感じる瞬間を振り返り、自分の将来の仕事観トリセツを作ろう。",
-      "lesson_plan": "【習得】 カード「仕事のやりがい」の将来のキャリアとのつながりを読んで確認し、情報ブロック「仕事と働くこと」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 やりがいを感じる瞬間を振り返り、自分の将来の仕事観トリセツを作ろう。",
+      "shutoku_plan": "やりがいを感じた瞬間を振り返り、将来の仕事に望むことを書く。",
+      "practice_plan": "やりがいを感じた瞬間を振り返り、将来の仕事に望むことを書く。『将来の仕事観トリセツ』（大切にしたいこと・避けたいこと）を作成する。",
+      "lesson_plan": "【習得】 やりがいを感じた瞬間を振り返り、将来の仕事に望むことを書く。【実践：トリセツ】 やりがいを感じた瞬間を振り返り、将来の仕事に望むことを書く。『将来の仕事観トリセツ』（大切にしたいこと・避けたいこと）を作成する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2422,9 +2689,9 @@ body {
       "blockId": "M",
       "blockTitle": "仕事と働くこと",
       "unitType": "モヤモヤ会議",
-      "shutoku_plan": "カード「仕事の大変さ」の将来のキャリアとのつながりを読んで確認し、情報ブロック「仕事と働くこと」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "仕事の大変さとやりがいの両面をケースで議論し、バランスの取れた見方を言語化しよう。",
-      "lesson_plan": "【習得】 カード「仕事の大変さ」の将来のキャリアとのつながりを読んで確認し、情報ブロック「仕事と働くこと」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：モヤモヤ会議】 仕事の大変さとやりがいの両面をケースで議論し、バランスの取れた見方を言語化しよう。",
+      "shutoku_plan": "仕事の大変さとやりがいが両立する例を読み、バランスの見方をメモする。",
+      "practice_plan": "仕事の大変さとやりがいが両方あるケースを議論し、バランスの取れた見方を言語化する。モヤモヤ会議の結論をまとめて発表する。",
+      "lesson_plan": "【習得】 仕事の大変さとやりがいが両立する例を読み、バランスの見方をメモする。【実践：モヤモヤ会議】 仕事の大変さとやりがいが両方あるケースを議論し、バランスの取れた見方を言語化する。モヤモヤ会議の結論をまとめて発表する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2437,9 +2704,9 @@ body {
       "blockId": "N",
       "blockTitle": "仕事を調べる",
       "unitType": "お助け隊",
-      "shutoku_plan": "カード「職業研究」の将来のキャリアとのつながりを読んで確認し、情報ブロック「仕事を調べる」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "気になる職業を調べ、必要な力・1日の流れ・魅力をまとめた調査票を作ろう。",
-      "lesson_plan": "【習得】 カード「職業研究」の将来のキャリアとのつながりを読んで確認し、情報ブロック「仕事を調べる」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 気になる職業を調べ、必要な力・1日の流れ・魅力をまとめた調査票を作ろう。",
+      "shutoku_plan": "気になる職業を1つ選び、必要な力と1日の流れを調べて整理する。",
+      "practice_plan": "気になる職業を調べ、必要な力・1日の流れ・魅力を調査票にまとめる。情報源（本・ネット・人）も記録し、クラスで共有する。",
+      "lesson_plan": "【習得】 気になる職業を1つ選び、必要な力と1日の流れを調べて整理する。【実践：お助け隊】 気になる職業を調べ、必要な力・1日の流れ・魅力を調査票にまとめる。情報源（本・ネット・人）も記録し、クラスで共有する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2452,9 +2719,9 @@ body {
       "blockId": "N",
       "blockTitle": "仕事を調べる",
       "unitType": "お助け隊",
-      "shutoku_plan": "カード「インタビュー」の将来のキャリアとのつながりを読んで確認し、情報ブロック「仕事を調べる」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "働く人へのインタビュー質問を作成し、聞き取り結果をクラスで共有しよう。",
-      "lesson_plan": "【習得】 カード「インタビュー」の将来のキャリアとのつながりを読んで確認し、情報ブロック「仕事を調べる」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 働く人へのインタビュー質問を作成し、聞き取り結果をクラスで共有しよう。",
+      "shutoku_plan": "働く人へのインタビューで聞きたい質問を5つ作成する。",
+      "practice_plan": "働く人へのインタビュー質問を5つ作成し、実際に聞き取る（または想定で回答を書く）。聞き取り結果を整理し、クラスで発表する。",
+      "lesson_plan": "【習得】 働く人へのインタビューで聞きたい質問を5つ作成する。【実践：お助け隊】 働く人へのインタビュー質問を5つ作成し、実際に聞き取る（または想定で回答を書く）。聞き取り結果を整理し、クラスで発表する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2467,9 +2734,9 @@ body {
       "blockId": "N",
       "blockTitle": "仕事を調べる",
       "unitType": "お助け隊",
-      "shutoku_plan": "カード「職場見学」の将来のキャリアとのつながりを読んで確認し、情報ブロック「仕事を調べる」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "職場見学（または動画見学）の感想から、仕事のリアルを整理しよう。",
-      "lesson_plan": "【習得】 カード「職場見学」の将来のキャリアとのつながりを読んで確認し、情報ブロック「仕事を調べる」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 職場見学（または動画見学）の感想から、仕事のリアルを整理しよう。",
+      "shutoku_plan": "職場や仕事の記事・動画から印象に残った点を3つ書き出す。",
+      "practice_plan": "職場見学や動画見学の感想から、仕事のリアル（良い面・大変な面）を整理する。見学レポート（印象・学び・質問）を作成する。",
+      "lesson_plan": "【習得】 職場や仕事の記事・動画から印象に残った点を3つ書き出す。【実践：お助け隊】 職場見学や動画見学の感想から、仕事のリアル（良い面・大変な面）を整理する。見学レポート（印象・学び・質問）を作成する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2482,9 +2749,9 @@ body {
       "blockId": "N",
       "blockTitle": "仕事を調べる",
       "unitType": "トリセツ",
-      "shutoku_plan": "カード「ロールモデル」の将来のキャリアとのつながりを読んで確認し、情報ブロック「仕事を調べる」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "ロールモデルから学びたいことを3つ挙げ、自分への応用メモを作ろう。",
-      "lesson_plan": "【習得】 カード「ロールモデル」の将来のキャリアとのつながりを読んで確認し、情報ブロック「仕事を調べる」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 ロールモデルから学びたいことを3つ挙げ、自分への応用メモを作ろう。",
+      "shutoku_plan": "尊敬する人から学びたいことを3つ挙げ、なぜか理由を添える。",
+      "practice_plan": "ロールモデルから学びたいことを3つ挙げ、自分への応用方法を考える。ロールモデルメモ（尊敬する点・真似したいこと・最初の一歩）を作る。",
+      "lesson_plan": "【習得】 尊敬する人から学びたいことを3つ挙げ、なぜか理由を添える。【実践：トリセツ】 ロールモデルから学びたいことを3つ挙げ、自分への応用方法を考える。ロールモデルメモ（尊敬する点・真似したいこと・最初の一歩）を作る。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2497,9 +2764,9 @@ body {
       "blockId": "O",
       "blockTitle": "自分と進路",
       "unitType": "トリセツ",
-      "shutoku_plan": "カード「適性」の将来のキャリアとのつながりを読んで確認し、情報ブロック「自分と進路」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "自分の強み・興味と職業を結びつけ、適性マップを作成しよう。",
-      "lesson_plan": "【習得】 カード「適性」の将来のキャリアとのつながりを読んで確認し、情報ブロック「自分と進路」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 自分の強み・興味と職業を結びつけ、適性マップを作成しよう。",
+      "shutoku_plan": "自分の強み・興味と職業を結びつけ、相性がよさそうな仕事を2つ書く。",
+      "practice_plan": "自分の強み・興味と職業を結びつけ、適性マップを作成する。相性がよさそうな仕事を2つ選び、理由を書く。",
+      "lesson_plan": "【習得】 自分の強み・興味と職業を結びつけ、相性がよさそうな仕事を2つ書く。【実践：トリセツ】 自分の強み・興味と職業を結びつけ、適性マップを作成する。相性がよさそうな仕事を2つ選び、理由を書く。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2512,9 +2779,9 @@ body {
       "blockId": "O",
       "blockTitle": "自分と進路",
       "unitType": "モヤモヤ会議",
-      "shutoku_plan": "カード「進路の選択肢」の将来のキャリアとのつながりを読んで確認し、情報ブロック「自分と進路」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "進路の選択肢（進学・仕事・その他）を整理し、それぞれの特徴を比較しよう。",
-      "lesson_plan": "【習得】 カード「進路の選択肢」の将来のキャリアとのつながりを読んで確認し、情報ブロック「自分と進路」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：モヤモヤ会議】 進路の選択肢（進学・仕事・その他）を整理し、それぞれの特徴を比較しよう。",
+      "shutoku_plan": "進学・就職・その他の進路選択肢を整理し、それぞれの特徴を比べる。",
+      "practice_plan": "進学・就職・その他の進路選択肢を整理し、特徴・メリット・デメリットを比較表にまとめる。自分にとっての考え方を1分で共有する。",
+      "lesson_plan": "【習得】 進学・就職・その他の進路選択肢を整理し、それぞれの特徴を比べる。【実践：モヤモヤ会議】 進学・就職・その他の進路選択肢を整理し、特徴・メリット・デメリットを比較表にまとめる。自分にとっての考え方を1分で共有する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2527,9 +2794,9 @@ body {
       "blockId": "O",
       "blockTitle": "自分と進路",
       "unitType": "トリセツ",
-      "shutoku_plan": "カード「強みの活かし方」の将来のキャリアとのつながりを読んで確認し、情報ブロック「自分と進路」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "自分の強みを将来の活かし方に結びつけた『強み活用法』を書こう。",
-      "lesson_plan": "【習得】 カード「強みの活かし方」の将来のキャリアとのつながりを読んで確認し、情報ブロック「自分と進路」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 自分の強みを将来の活かし方に結びつけた『強み活用法』を書こう。",
+      "shutoku_plan": "自分の強みを将来の活かし方に結びつけた一文を書く。",
+      "practice_plan": "自分の強みを将来の活かし方に結びつけた『強み活用法』を文章で書く。具体的な場面（学校・部活・将来の仕事）を3つ挙げる。",
+      "lesson_plan": "【習得】 自分の強みを将来の活かし方に結びつけた一文を書く。【実践：トリセツ】 自分の強みを将来の活かし方に結びつけた『強み活用法』を文章で書く。具体的な場面（学校・部活・将来の仕事）を3つ挙げる。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2542,9 +2809,9 @@ body {
       "blockId": "O",
       "blockTitle": "自分と進路",
       "unitType": "トリセツ",
-      "shutoku_plan": "カード「目標設定」の将来のキャリアとのつながりを読んで確認し、情報ブロック「自分と進路」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "SMARTな目標を1つ設定し、達成のための行動計画を立てよう。",
-      "lesson_plan": "【習得】 カード「目標設定」の将来のキャリアとのつながりを読んで確認し、情報ブロック「自分と進路」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 SMARTな目標を1つ設定し、達成のための行動計画を立てよう。",
+      "shutoku_plan": "SMARTの5つの条件を確認し、自分の目標が当てはまるかチェックする。",
+      "practice_plan": "SMARTな目標を1つ設定し、Specific・Measurable・Achievable・Relevant・Time-boundの各条件を満たすか確認する。達成のための行動計画を立てる。",
+      "lesson_plan": "【習得】 SMARTの5つの条件を確認し、自分の目標が当てはまるかチェックする。【実践：トリセツ】 SMARTな目標を1つ設定し、Specific・Measurable・Achievable・Relevant・Time-boundの各条件を満たすか確認する。達成のための行動計画を立てる。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2557,9 +2824,9 @@ body {
       "blockId": "O",
       "blockTitle": "自分と進路",
       "unitType": "トリセツ",
-      "shutoku_plan": "カード「行動計画」の将来のキャリアとのつながりを読んで確認し、情報ブロック「自分と進路」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "目標達成までの行動計画を週単位で分解し、実行チェックリストを作ろう。",
-      "lesson_plan": "【習得】 カード「行動計画」の将来のキャリアとのつながりを読んで確認し、情報ブロック「自分と進路」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 目標達成までの行動計画を週単位で分解し、実行チェックリストを作ろう。",
+      "shutoku_plan": "決めた目標を週単位の行動に分け、最初の1週間でやることを書く。",
+      "practice_plan": "目標達成までの行動を週単位に分解し、実行チェックリストを作る。1週目にやることを具体的に書き、ペアで確認する。",
+      "lesson_plan": "【習得】 決めた目標を週単位の行動に分け、最初の1週間でやることを書く。【実践：トリセツ】 目標達成までの行動を週単位に分解し、実行チェックリストを作る。1週目にやることを具体的に書き、ペアで確認する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2572,9 +2839,9 @@ body {
       "blockId": "P",
       "blockTitle": "社会で生きる力",
       "unitType": "トリセツ",
-      "shutoku_plan": "カード「社会人基礎力」の将来のキャリアとのつながりを読んで確認し、情報ブロック「社会で生きる力」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "社会人基礎力の3要素を自分の学校生活の例と結びつけて整理しよう。",
-      "lesson_plan": "【習得】 カード「社会人基礎力」の将来のキャリアとのつながりを読んで確認し、情報ブロック「社会で生きる力」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 社会人基礎力の3要素を自分の学校生活の例と結びつけて整理しよう。",
+      "shutoku_plan": "社会人基礎力の3要素を学び、自分の学校生活の例を各1つ挙げる。",
+      "practice_plan": "社会人基礎力の3要素（前に踏み出す力・考え抜く力・チームで働く力）を、自分の学校生活の例と結びつけて整理する。各要素の具体例をシートにまとめる。",
+      "lesson_plan": "【習得】 社会人基礎力の3要素を学び、自分の学校生活の例を各1つ挙げる。【実践：トリセツ】 社会人基礎力の3要素（前に踏み出す力・考え抜く力・チームで働く力）を、自分の学校生活の例と結びつけて整理する。各要素の具体例をシートにまとめる。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2587,9 +2854,9 @@ body {
       "blockId": "P",
       "blockTitle": "社会で生きる力",
       "unitType": "トリセツ",
-      "shutoku_plan": "カード「主体性」の将来のキャリアとのつながりを読んで確認し、情報ブロック「社会で生きる力」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "「待っていても変わらない」と気づいた場面を振り返り、主体性トリセツを作ろう。",
-      "lesson_plan": "【習得】 カード「主体性」の将来のキャリアとのつながりを読んで確認し、情報ブロック「社会で生きる力」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：トリセツ】 「待っていても変わらない」と気づいた場面を振り返り、主体性トリセツを作ろう。",
+      "shutoku_plan": "待っていて変わらなかった経験を振り返り、自分から動いた経験と比べる。",
+      "practice_plan": "「待っていても変わらない」と感じた場面を振り返り、自分から動いた経験と比較する。主体性トリセツ（気づき・行動・結果）を作成する。",
+      "lesson_plan": "【習得】 待っていて変わらなかった経験を振り返り、自分から動いた経験と比べる。【実践：トリセツ】 「待っていても変わらない」と感じた場面を振り返り、自分から動いた経験と比較する。主体性トリセツ（気づき・行動・結果）を作成する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2602,9 +2869,9 @@ body {
       "blockId": "P",
       "blockTitle": "社会で生きる力",
       "unitType": "お助け隊",
-      "shutoku_plan": "カード「報告・連絡・相談」の将来のキャリアとのつながりを読んで確認し、情報ブロック「社会で生きる力」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "報連相が必要な場面をロールプレイし、うまくいく言い方例集を作ろう。",
-      "lesson_plan": "【習得】 カード「報告・連絡・相談」の将来のキャリアとのつながりを読んで確認し、情報ブロック「社会で生きる力」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 報連相が必要な場面をロールプレイし、うまくいく言い方例集を作ろう。",
+      "shutoku_plan": "報連相が必要な場面を3つ思い浮かべ、うまく伝えるポイントをメモする。",
+      "practice_plan": "報連相が必要な場面をロールプレイし、報告・連絡・相談のうまくいく言い方を練習する。場面別の言い方例集を作成する。",
+      "lesson_plan": "【習得】 報連相が必要な場面を3つ思い浮かべ、うまく伝えるポイントをメモする。【実践：お助け隊】 報連相が必要な場面をロールプレイし、報告・連絡・相談のうまくいく言い方を練習する。場面別の言い方例集を作成する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2617,9 +2884,9 @@ body {
       "blockId": "P",
       "blockTitle": "社会で生きる力",
       "unitType": "お助け隊",
-      "shutoku_plan": "カード「時間厳守」の将来のキャリアとのつながりを読んで確認し、情報ブロック「社会で生きる力」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "時間を守れなかった経験から、遅刻・延長を防ぐ自分のルールを決めよう。",
-      "lesson_plan": "【習得】 カード「時間厳守」の将来のキャリアとのつながりを読んで確認し、情報ブロック「社会で生きる力」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：お助け隊】 時間を守れなかった経験から、遅刻・延長を防ぐ自分のルールを決めよう。",
+      "shutoku_plan": "遅刻や期限を守れなかった経験から、時間を守る自分ルールを1つ考える。",
+      "practice_plan": "遅刻・期限を守れなかった経験から、時間を守る自分ルール（前日準備・余裕時間・確認）を決める。時間管理トリセツを作成し、ペアで確認する。",
+      "lesson_plan": "【習得】 遅刻や期限を守れなかった経験から、時間を守る自分ルールを1つ考える。【実践：お助け隊】 遅刻・期限を守れなかった経験から、時間を守る自分ルール（前日準備・余裕時間・確認）を決める。時間管理トリセツを作成し、ペアで確認する。",
       "duration": "45分（習得15分＋実践30分）"
     },
     {
@@ -2632,9 +2899,9 @@ body {
       "blockId": "P",
       "blockTitle": "社会で生きる力",
       "unitType": "モヤモヤ会議",
-      "shutoku_plan": "カード「経済的自立」の将来のキャリアとのつながりを読んで確認し、情報ブロック「社会で生きる力」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。",
-      "practice_plan": "お金と仕事・生活の関係をケースで考え、将来の経済的自立に向けた考えを言語化しよう。",
-      "lesson_plan": "【習得】 カード「経済的自立」の将来のキャリアとのつながりを読んで確認し、情報ブロック「社会で生きる力」との関連も整理し、自分の経験や身近な事例と照らし合わせながら「自分にとってなぜ必要か」を考え、15分でひとことの文章やメモにまとめます。【実践：モヤモヤ会議】 お金と仕事・生活の関係をケースで考え、将来の経済的自立に向けた考えを言語化しよう。",
+      "shutoku_plan": "お金と仕事・生活の関係を事例で学び、将来の生活で大切にしたいことを書く。",
+      "practice_plan": "お金と仕事・生活の関係をケース（アルバイト・家計・将来の生活）で考える。将来の経済的自立に向けた考えと行動を言語化し、グループで共有する。",
+      "lesson_plan": "【習得】 お金と仕事・生活の関係を事例で学び、将来の生活で大切にしたいことを書く。【実践：モヤモヤ会議】 お金と仕事・生活の関係をケース（アルバイト・家計・将来の生活）で考える。将来の経済的自立に向けた考えと行動を言語化し、グループで共有する。",
       "duration": "45分（習得15分＋実践30分）"
     }
   ]
@@ -2699,22 +2966,22 @@ body {
         <div class="lesson-popup-text">
           <h2 id="lesson-popup-title" class="lesson-popup-title"></h2>
           <div id="lesson-popup-meta" class="lesson-popup-meta"></div>
-          <div class="lesson-popup-block">
+          <div class="lesson-popup-block lesson-block--concept">
             <p class="lesson-popup-label" id="lesson-popup-concept-label"></p>
             <p id="lesson-popup-desc" class="lesson-popup-body"></p>
           </div>
-          <div class="lesson-popup-block">
+          <div class="lesson-popup-block lesson-block--shutoku">
             <p class="lesson-popup-label" id="lesson-popup-shutoku-label"></p>
             <p id="lesson-popup-shutoku" class="lesson-popup-body"></p>
           </div>
-          <div class="lesson-popup-block">
+          <div class="lesson-popup-block lesson-block--practice">
             <p class="lesson-popup-label" id="lesson-popup-practice-label"></p>
             <p id="lesson-popup-practice" class="lesson-popup-body"></p>
           </div>
         </div>
         <div class="lesson-popup-image-wrap">
           <img id="lesson-popup-image" class="lesson-popup-image" src="" alt="">
-          <div class="lesson-popup-block lesson-popup-career-block">
+          <div class="lesson-popup-block lesson-popup-career-block lesson-block--career">
             <p class="lesson-popup-label" id="lesson-popup-career-label"></p>
             <p id="lesson-popup-career" class="lesson-popup-body"></p>
           </div>
@@ -2889,7 +3156,8 @@ body {
   var toolbarEl = document.getElementById("toolbar");
   var toolbarToggle = document.getElementById("toolbar-toggle");
   var PRINT_CARDS_PER_PAGE = 9;
-  var PRINT_LESSONS_PER_PAGE = 2;
+  var PRINT_LESSONS_PER_PAGE = 3;
+  var LESSON_PRINT_IMG_SIZE = "52mm";
   var isPrinting = false;
 
   document.title = "\u30ad\u30e3\u30ea\u30a2\u6559\u80b2\u60c5\u5831\u30d6\u30ed\u30c3\u30af";
@@ -3415,6 +3683,55 @@ body {
     }
   }
 
+  function resetLessonPrintLayout(sheet) {
+    if (!sheet) return;
+    sheet.style.setProperty("--lesson-print-scale", "1");
+    sheet.style.setProperty("--lesson-print-img", LESSON_PRINT_IMG_SIZE);
+    sheet.style.setProperty("--lesson-flex-shutoku", "1.05");
+    sheet.style.setProperty("--lesson-flex-practice", "0.68");
+  }
+
+  function lessonPrintSheetOverflows(sheet) {
+    if (!sheet) return false;
+    if (sheet.scrollHeight > sheet.clientHeight + 1) return true;
+    var inner = sheet.querySelector(".print-lesson-inner");
+    if (inner && inner.scrollHeight > inner.clientHeight + 1) return true;
+    var blocks = sheet.querySelectorAll(".lesson-popup-block");
+    for (var i = 0; i < blocks.length; i++) {
+      if (blocks[i].scrollHeight > blocks[i].clientHeight + 1) return true;
+      var body = blocks[i].querySelector(".lesson-popup-body");
+      if (body && body.scrollHeight > body.clientHeight + 1) return true;
+    }
+    return false;
+  }
+
+  function applyLessonPrintImgSize(size) {
+    if (!printAreaEl) return;
+    var sheets = printAreaEl.querySelectorAll(".print-lesson-sheet");
+    for (var i = 0; i < sheets.length; i++) {
+      sheets[i].style.setProperty("--lesson-print-img", size);
+    }
+    void printAreaEl.offsetHeight;
+  }
+
+  function allLessonPrintSheetsFit() {
+    if (!printAreaEl) return true;
+    var sheets = printAreaEl.querySelectorAll(".print-lesson-sheet");
+    for (var i = 0; i < sheets.length; i++) {
+      if (lessonPrintSheetOverflows(sheets[i])) return false;
+    }
+    return true;
+  }
+
+  function fitAllPrintLessons() {
+    if (!printAreaEl) return;
+    var sheets = printAreaEl.querySelectorAll(".print-lesson-sheet");
+    for (var i = 0; i < sheets.length; i++) {
+      resetLessonPrintLayout(sheets[i]);
+    }
+    applyLessonPrintImgSize(LESSON_PRINT_IMG_SIZE);
+  }
+
   function waitForPrintLayout() {
     return new Promise(function(resolve) {
       if (printAreaEl) printAreaEl.classList.add("print-area--layout");
@@ -3450,9 +3767,10 @@ body {
     };
   }
 
-  function appendLessonPopupBlock(parent, label, text, extraClass) {
+  function appendLessonPopupBlock(parent, label, text, extraClass, blockKind) {
     var block = document.createElement("div");
-    block.className = "lesson-popup-block" + (extraClass ? " " + extraClass : "");
+    var kindClass = blockKind ? " lesson-block--" + blockKind : "";
+    block.className = "lesson-popup-block" + kindClass + (extraClass ? " " + extraClass : "");
     var labelEl = document.createElement("p");
     labelEl.className = "lesson-popup-label";
     labelEl.textContent = label;
@@ -3497,10 +3815,7 @@ body {
     sheet.className = "print-lesson-sheet lesson-popup-content " + getPerspClass(rawPersp);
 
     var inner = document.createElement("div");
-    inner.className = "lesson-popup-inner print-lesson-inner";
-
-    var textCol = document.createElement("div");
-    textCol.className = "lesson-popup-text";
+    inner.className = "print-lesson-inner";
 
     var titleEl = document.createElement("h2");
     titleEl.className = "lesson-popup-title";
@@ -3508,40 +3823,50 @@ body {
 
     var metaEl = document.createElement("div");
     metaEl.className = "lesson-popup-meta";
-    fillMeta(metaEl, lesson);
+    fillMeta(metaEl, lesson, { omitDuration: true });
 
+    var textCol = document.createElement("div");
+    textCol.className = "print-lesson-text-col";
     textCol.appendChild(titleEl);
     textCol.appendChild(metaEl);
     appendLessonPopupBlock(
       textCol,
       "\u5b66\u7fd2\u5185\u5bb9\uff08\u6982\u5ff5\uff09",
-      lesson.description || item.desc || ""
+      lesson.description || item.desc || "",
+      "",
+      "concept"
     );
     appendLessonPopupBlock(
       textCol,
       "\u7fd2\u5f9715\u5206\uff1a\u5fc5\u8981\u6027\u3092\u77e5\u308b",
-      lesson.shutoku_plan || extractShutokuFromPlan(lesson.lesson_plan || "")
+      lesson.shutoku_plan || extractShutokuFromPlan(lesson.lesson_plan || ""),
+      "",
+      "shutoku"
     );
     appendLessonPopupBlock(
       textCol,
       "\u5b9f\u8df530\u5206\uff1a" + (lesson.unitType || ""),
-      lesson.practice_plan || extractPracticeFromPlan(lesson.lesson_plan || "", lesson.unitType)
+      lesson.practice_plan || extractPracticeFromPlan(lesson.lesson_plan || "", lesson.unitType),
+      "",
+      "practice"
     );
 
-    var imageCol = document.createElement("div");
-    imageCol.className = "lesson-popup-image-wrap";
     var imgHost = document.createElement("div");
     imgHost.className = "print-lesson-img-host";
-    imageCol.appendChild(imgHost);
+
+    var careerCol = document.createElement("div");
+    careerCol.className = "print-lesson-career-col";
     appendLessonPopupBlock(
-      imageCol,
+      careerCol,
       "\u5c06\u6765\u306e\u30ad\u30e3\u30ea\u30a2\u3068\u306e\u3064\u306a\u304c\u308a",
       lesson.career_relevance || "",
-      "lesson-popup-career-block"
+      "print-lesson-career-block",
+      "career"
     );
 
     inner.appendChild(textCol);
-    inner.appendChild(imageCol);
+    inner.appendChild(imgHost);
+    inner.appendChild(careerCol);
     sheet.appendChild(inner);
 
     return { sheet: sheet, imgHost: imgHost, lesson: lesson, item: item };
@@ -3595,6 +3920,8 @@ body {
       printAreaEl.appendChild(a4Sheet);
     }
     await Promise.all(loadTasks);
+    await waitForPrintLayout();
+    fitAllPrintLessons();
     await waitForPrintLayout();
     printAreaEl.setAttribute("aria-hidden", "false");
   }
@@ -3656,14 +3983,18 @@ body {
     }
   }
 
-  function fillMeta(el, lesson) {
+  function fillMeta(el, lesson, options) {
     if (!el) return;
+    options = options || {};
     el.textContent = "";
     fillPerspectiveLabel(el, lesson.perspective || "");
-    el.appendChild(document.createTextNode(
+    var metaText =
       " / \u60c5\u5831\u30d6\u30ed\u30c3\u30af" + (lesson.blockId || "") + "\u300c" + (lesson.blockTitle || "") + "\u300d" +
-      " \u30fb " + (lesson.unitType || "") + " \u30fb " + (lesson.duration || "")
-    ));
+      " \u30fb " + (lesson.unitType || "");
+    if (!options.omitDuration) {
+      metaText += " \u30fb " + (lesson.duration || "");
+    }
+    el.appendChild(document.createTextNode(metaText));
   }
 
   function openCardPopup(lesson, item) {
